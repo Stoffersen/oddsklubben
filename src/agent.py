@@ -7,8 +7,7 @@ from src.stats import team_history,strength_from_fixtures
 from src.value import picks_for_quote
 
 TZ=ZoneInfo("Europe/Copenhagen")
-TARGET=("premier league","championship","serie a","bundesliga","superliga","laliga","la liga")
-INTL=("world cup","uefa nations","euro","qualification","qualifier","international","friendly")
+TARGET=("premier league","ligue 1","serie a","bundesliga","laliga","la liga")
 
 def next_week(now=None):
     now=now or datetime.now(TZ); d=7-now.weekday()
@@ -17,7 +16,7 @@ def next_week(now=None):
 def info(f):
     x=f.get("league") or {}; return (x.get("id"),str(x.get("name") or "")) if isinstance(x,dict) else (None,str(x))
 def scoped(name):
-    n=name.casefold(); return any(x in n for x in TARGET+INTL)
+    n=name.casefold(); return any(x in n for x in TARGET)
 def tid(f,side):
     return (((f.get("teams") or {}).get(side) or {}).get("id"))
 def profile(s):
@@ -74,6 +73,6 @@ def main():
         print(f"DOUBLE: combined odds {distinct[0].odds*distinct[1].odds:.2f}")
     if len(distinct)>=3:
         print(f"TRIBLE: combined odds {distinct[0].odds*distinct[1].odds*distinct[2].odds:.2f}")
-    print("LIMITATION: model currently uses results/form/goal difference/home-away form; xG and injury/lineup feeds are not connected.")
+    print("SCOPE: free-tier top five leagues only: Premier League, La Liga, Serie A, Bundesliga, Ligue 1.")\n    print("LIMITATION: model currently uses results/form/goal difference/home-away form; xG and injury/lineup feeds are not connected.")
 
 if __name__=="__main__": main()
