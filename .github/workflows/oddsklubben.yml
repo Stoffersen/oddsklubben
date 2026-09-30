@@ -3,7 +3,7 @@ name: Oddsklubben Agent
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 8 * * 0"
+    - cron: "0 9 * * 0"
 
 jobs:
   test-live:
