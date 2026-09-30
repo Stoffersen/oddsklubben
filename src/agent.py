@@ -3,7 +3,7 @@ from datetime import datetime,timedelta,timezone
 from zoneinfo import ZoneInfo
 from src.bet365 import Bet365Client
 from src.model import TeamProfile,estimate_1x2,confidence
-from src.stats import team_history,strength_from_fixtures
+from src.stats import strength_from_fixtures\nimport json\nfrom pathlib import Path
 from src.value import picks_for_quote
 
 TZ=ZoneInfo("Europe/Copenhagen")
@@ -39,18 +39,16 @@ def main():
                 print(f"RATE LIMIT: {e}"); break
             print(f"Odds error {f.get('id')}: {e}")
     print(f"Verified Bet365 1X2 candidate field: {len(quotes)}")
-    # Historical team calls cost 2 requests/match, so process only while quota permits.
+    cache_path=Path("data/team_history.json")
+    cache=json.loads(cache_path.read_text()) if cache_path.exists() else {}
     picks=[]
     for f,q in quotes:
         h,a=tid(f,"home"),tid(f,"away")
         if not h or not a: continue
-        try:
-            hh=team_history(c,h,checked.astimezone(timezone.utc))
-            ah=team_history(c,a,checked.astimezone(timezone.utc))
-        except RuntimeError as e:
-            if "rate limit" in str(e).lower():
-                print(f"MODEL DATA RATE LIMIT: {e}"); break
-            continue
+        he=cache.get(str(h)); ae=cache.get(str(a))
+        if not he or not ae:
+            print(f"SKIP model data missing: {q.home} v {q.away}"); continue
+        hh=he.get("fixtures",[]); ah=ae.get("fixtures",[])
         hs=strength_from_fixtures(hh,h,"home"); ass=strength_from_fixtures(ah,a,"away")
         if not hs or not ass: continue
         probs=estimate_1x2(profile(hs),profile(ass))
