@@ -45,10 +45,38 @@ function doGet() {
       else if (free) item.free = free;
       program.push(item);
     });
-    return json_({ok:true,status:'online',writeEnabled:props.getProperty('WRITE_ENABLED')==='true',program:program});
+    const entrySheet = ss.getSheetByName(SHEET_NAME);
+    const saved = entrySheet ? readSavedEntries_(entrySheet) : [];
+    return json_({ok:true,status:'online',writeEnabled:props.getProperty('WRITE_ENABLED')==='true',program:program,saved:saved});
   } catch (err) {
     return json_({ok:false,error:String(err && err.message || err)});
   }
+}
+
+function readSavedEntries_(sheet) {
+  const last = sheet.getLastRow();
+  if (last < FIRST_DATA_ROW) return [];
+  const values = sheet.getRange(FIRST_DATA_ROW,1,last-FIRST_DATA_ROW+1,11).getDisplayValues();
+  const saved = [];
+  let currentWeek = '', currentRound = '', currentMatch = '';
+  values.forEach(function(row) {
+    if (String(row[0] || '').trim()) currentWeek = String(row[0]).trim();
+    if (String(row[1] || '').trim()) currentRound = String(row[1]).trim();
+    if (String(row[2] || '').trim()) currentMatch = String(row[2]).trim();
+    const playerText = String(row[3] || '').trim();
+    if (!playerText || !currentWeek || !currentRound || !currentMatch) return;
+    const playerMatch = playerText.match(/Pingvinus|King|Gorilla|Kaninus|Kardinalus/);
+    if (!playerMatch) return;
+    saved.push({
+      week:Number(currentWeek),
+      round:currentRound,
+      match:currentMatch,
+      player:playerMatch[0],
+      money:String(row[4] || '').trim(),
+      result:String(row[8] || '').trim()
+    });
+  });
+  return saved;
 }
 
 function doPost(e) {
