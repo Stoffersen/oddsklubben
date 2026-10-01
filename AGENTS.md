@@ -29,7 +29,8 @@ Spreadsheet ID:
 Det oprindelige ark **Program Aktiv** skal betragtes som historisk reference og må ikke ændres uden udtrykkelig besked.
 
 Vigtige faner i arbejdsarket:
-- `📲 Rundeindtastning` – autoritativ lodret indtastningsmodel
+- `📅 Program 26-27` – autoritativ kilde til sæsonprogrammet, som mobilappen læser dynamisk
+- `📲 Rundeindtastning` – autoritativ lodret indtastningsmodel for faktiske resultater og gevinster
 - `Tabellen` – stillinger og konkurrencer
 - `Diagram_Aktiv` – statistik/diagramgrundlag
 - `All Time Pokaler`
@@ -38,6 +39,15 @@ Vigtige faner i arbejdsarket:
 - `test` – skjult
 
 De gamle faner `Program_Aktiv` og `📱 Program · overblik` er fjernet fra arbejdsarket og må ikke genindføres som afhængigheder.
+
+## Mobilapp og dataflow
+
+- `📅 Program 26-27` er **source of truth for programmet**. Mobilappen skal hente uge, runde/aktivitet, kampe og Fri Odds dynamisk herfra. Programmet må ikke igen blive afhængigt af hardcodede kampe i frontend; en lokal kopi må kun bruges som fallback ved forbindelsesfejl.
+- Når en pokalkamp eller anden programoplysning ændres i `📅 Program 26-27`, skal ændringen kunne ses i appen efter genindlæsning uden ny GitHub-deployment.
+- Appens indtastede Kr og Resultat skal ved live-drift skrives til `📲 Rundeindtastning`. Hjælpe-/formelkolonnerne F:H og J:K må ikke overskrives af appen.
+- Skrivning fra appen skal forblive dry-run/deaktiveret, indtil sæson 2026/27 er migreret og live-skrivning udtrykkeligt er godkendt.
+- Efter en succesfuld live-gemning skal Sheet-formlerne genberegnes, og relevante stillinger i `Tabellen` skal sorteres på ny efter Grundlovens regler. Sortering må ikke være en manuel efteropgave og må ikke være en simpel alfabetisk eller generisk sortering af hele fanen.
+- Super League-stillingen sorteres efter de gældende tie-breaks (point → målscore → scorede mål; brug Grundloven for eventuelle yderligere afgørelser). Andre konkurrencer skal bruge deres egne regler.
 
 ## Rundeindtastning
 
