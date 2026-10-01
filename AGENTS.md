@@ -52,6 +52,7 @@ G Mål M (automatisk, skjult)
 H Point (automatisk, skjult)
 I Resultat
 J Runde-hjælper (automatisk, skjult)
+K Uge-hjælper (automatisk, skjult)
 
 Grundidé: én spiller pr. række. Når flere spillere hører til samme aktivitet, bør kamp/aktivitet ikke gentages unødigt i kolonne C.
 
@@ -59,7 +60,7 @@ Normalt skal en spiller i D høre til aktiviteten i C. **Fri Odds / "Alle Fri od
 
 Kr er én samlet kolonne. Der skal ikke igen opdeles i "Kr Fri" og "Kr CL".
 
-Brugeren skal kun indtaste Uge, Runde, Kamp, Spiller, Kr og Resultat. F:H beregnes automatisk og er skjult. J fører seneste rundenavn videre til beregningsmotoren og er også skjult. Champions League-beregningen gælder kun runder hvis navn starter med `Runde` og ignorerer kampe markeret `Fri odds`.
+Brugeren skal kun indtaste Uge, Runde, Kamp, Spiller, Kr og Resultat. F:H beregnes automatisk og er skjult. J fører seneste rundenavn videre til beregningsmotoren og er også skjult. K fører seneste uge videre og bruges bl.a. til periodebaseret statistik. Champions League-beregningen gælder kun runder hvis navn starter med `Runde` og ignorerer kampe markeret `Fri odds`.
 
 Pointregel: vinder 3 point, taber 0. Ved uafgjort får spilleren med flest vundne kroner 3 point og den anden 1 point. Ved 0-0 får begge 1 point. Ved helt lige kroner i en øvrig uafgjort kamp gives 1 point til begge.
 
@@ -67,7 +68,7 @@ Pointregel: vinder 3 point, taber 0. Ved uafgjort får spilleren med flest vundn
 
 Vær opmærksom på historiske særtilfælde. En tidligere migrering fra den gamle brede model til den lodrette model kunne miste værdier, hvis statistik lå på en aktivitet, hvor spillernavnet ikke stod direkte i kampteksten.
 
-Særligt vigtigt: Pingvinus havde historisk **986 kr** i Fri Odds i uge 37 under "Alle Fri odds". Denne værdi skal bevares i den autoritative model/statistik. Hvis den lodrette model kun viser 716,5 kr for Pingvinus samlet, mangler de 986 kr.
+Særligt vigtigt: Pingvinus havde historisk **986 kr** i Fri Odds i uge 37 under "Alle Fri odds". Værdien er nu genskabt i den lodrette model; Pingvinus' samlede Kr må derfor ikke falde tilbage til 716,5 kr.
 
 Historiske samlede vundne beløb, før nye indtastninger:
 - Kardinalus: 792,72 kr
@@ -85,7 +86,7 @@ Tabellen indeholder bl.a. Champions League, Årets Manager, Topscorer, Hattrick,
 
 Designpræference: behold den enkle eksisterende stil. En tidligere redesign-idé med mørkegrønne dashboard-sektioner, ekstra luft og kraftig styling blev fravalgt og rullet tilbage.
 
-Kendt teknisk gæld: Sommer Cup har haft `#REF!`, fordi gamle formler pegede på den slettede `Program_Aktiv`-fane. Reparer dette ud fra de faktiske historiske data/perioder – gæt ikke.
+Sommer Cup er repareret og beregnes nu fra den lodrette model for uge 23–26 via den skjulte uge-hjælper K. Den må ikke igen afhænge af den slettede `Program_Aktiv`-fane.
 
 ## Diagram_Aktiv
 
