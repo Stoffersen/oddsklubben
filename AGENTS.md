@@ -80,6 +80,23 @@ Historiske samlede vundne beløb, før nye indtastninger:
 
 Historisk indsats: 1440 kr pr. spiller / 7200 kr samlet.
 
+## Grundloven og konkurrenceregler
+
+Oddsklubbens Grundlov er facit for konkurrencereglerne. Hvis en eksisterende formel eller implementering strider mod Grundloven, må agenten ikke gætte eller stiltiende ændre historiske data. Identificér konflikten og ret først modellen, når konsekvensen er afklaret.
+
+- Super League: Resultat angiver antal vundne kuponer, fx `2-1`. Det er grundlag for Mål F, Mål M, Topscorer og ligapoint.
+- Super League-point: sejr giver 3 point og nederlag 0. Ved uafgjort i antal vundne kuponer får spilleren med flest vundne kroner 3 point og den anden 1. Ved samme kr-beløb får begge 1 point; dermed giver 0-0 uden gevinst 1-1 i point.
+- Super League tie-break: point → målscore → flest scorede mål. TV-penge har yderligere tie-breaks; brug Grundloven ved behov frem for at gætte.
+- Årets Manager og Muldvarpen: alle gyldige gevinster i hele sæsonen tæller.
+- Topscorer: kun vundne kuponer fra de 10 Super League-runder tæller.
+- Det Gyldne Bur: færrest indkasserede mål → målscore → flest vundne kroner.
+- Årets Mål: største ugegevinst fra de konkurrencer, Grundloven tillader: Super League, pokal, Supercup, Match Odds og Toto Cup.
+- Sommer-/Julecup: flest vundne kroner i de relevante cupuger; ved lighed afgør placeringen i ligaen.
+- Pokal, Supercup og Toto har særlige tie-breaks, som kan kræve højeste kuponodds. Hvis oddsdata mangler, må agenten ikke gætte vinderen.
+- Ugyldige kuponer: gevinst går i klubkassen, men må ikke automatisk tælles med i konkurrencestillinger, hvor Grundloven udelukker dem.
+
+Bevar `📲 Rundeindtastning` enkel. Tilføj ikke permanente synlige felter for sjældne tie-break-data som odds, medmindre der er et konkret behov; særdata kan håndteres separat.
+
 ## Tabellen
 
 Tabellen indeholder bl.a. Champions League, Årets Manager, Topscorer, Hattrick, Saksespark, Årets Mål, Det Gyldne Bur og Sommer Cup.
