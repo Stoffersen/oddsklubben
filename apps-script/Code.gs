@@ -12,8 +12,44 @@
  * WRITE_ENABLED = true   (omit/anything else = dry-run)
  */
 const SHEET_NAME = '📲 Rundeindtastning';
+const PROGRAM_SHEET_NAME = '📅 Program 26-27';
 const FIRST_DATA_ROW = 5;
 const MAX_SCAN_ROWS = 594;
+
+
+function doGet() {
+  try {
+    const props = PropertiesService.getScriptProperties();
+    const spreadsheetId = props.getProperty('SPREADSHEET_ID');
+    const ss = spreadsheetId ? SpreadsheetApp.openById(spreadsheetId) : SpreadsheetApp.getActiveSpreadsheet();
+    if (!ss) throw new Error('Google Sheet kunne ikke åbnes');
+    const sheet = ss.getSheetByName(PROGRAM_SHEET_NAME);
+    if (!sheet) throw new Error('Fanen '+PROGRAM_SHEET_NAME+' findes ikke');
+    const lastRow = Math.max(4, sheet.getLastRow());
+    const values = sheet.getRange(4,1,lastRow-3,6).getDisplayValues();
+    const program = [];
+    values.forEach(function(row){
+      const week = Number(row[0]);
+      const round = String(row[1] || '').trim();
+      if (!week || !round) return;
+      if (round === 'Toto Cup') {
+        const target = program.length && program[program.length-1].w === week ? program[program.length-1] : null;
+        const toto = String(row[4] || '').split('·').map(function(x){return x.trim()}).filter(Boolean);
+        if (target) target.toto = toto;
+        else program.push({w:week,r:round,m:[],toto:toto,note:String(row[5]||'')});
+        return;
+      }
+      const item = {w:week,r:round,m:[row[2],row[3]].map(function(x){return String(x||'').trim()}).filter(Boolean),note:String(row[5]||'')};
+      const free = String(row[4] || '').trim();
+      if (free === 'Alle') item.allFree = true;
+      else if (free) item.free = free;
+      program.push(item);
+    });
+    return json_({ok:true,status:'online',writeEnabled:props.getProperty('WRITE_ENABLED')==='true',program:program});
+  } catch (err) {
+    return json_({ok:false,error:String(err && err.message || err)});
+  }
+}
 
 function doPost(e) {
   try {
