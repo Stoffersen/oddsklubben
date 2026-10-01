@@ -47,16 +47,21 @@ B Runde
 C Kamp
 D Spiller
 E Kr
-F Mål F
-G Mål M
-H Point
+F Mål F (automatisk, skjult)
+G Mål M (automatisk, skjult)
+H Point (automatisk, skjult)
 I Resultat
+J Runde-hjælper (automatisk, skjult)
 
 Grundidé: én spiller pr. række. Når flere spillere hører til samme aktivitet, bør kamp/aktivitet ikke gentages unødigt i kolonne C.
 
 Normalt skal en spiller i D høre til aktiviteten i C. **Fri Odds / "Alle Fri odds" er en særlig fælles aktivitet**, hvor alle fem spillere kan have hver sin række under samme aktivitet.
 
 Kr er én samlet kolonne. Der skal ikke igen opdeles i "Kr Fri" og "Kr CL".
+
+Brugeren skal kun indtaste Uge, Runde, Kamp, Spiller, Kr og Resultat. F:H beregnes automatisk og er skjult. J fører seneste rundenavn videre til beregningsmotoren og er også skjult. Champions League-beregningen gælder kun runder hvis navn starter med `Runde` og ignorerer kampe markeret `Fri odds`.
+
+Pointregel: vinder 3 point, taber 0. Ved uafgjort får spilleren med flest vundne kroner 3 point og den anden 1 point. Ved 0-0 får begge 1 point. Ved helt lige kroner i en øvrig uafgjort kamp gives 1 point til begge.
 
 ## Statistik og historik
 
