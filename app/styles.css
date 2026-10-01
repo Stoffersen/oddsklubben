@@ -4,3 +4,5 @@
 
 
 .error{background:#fff0ee;border-radius:14px;padding:14px;color:#8f241c;font-weight:700}.error small{font-weight:500}.confirm button:disabled{opacity:.6}
+
+.home{min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:28px 18px;background:#f4f1e8}.home-card{width:100%;max-width:430px;text-align:center}.club-logo{display:block;width:min(82vw,340px);height:auto;margin:0 auto 14px;border-radius:24px}.home h1{font-size:34px;margin:4px 0}.home p{margin:0 0 26px;color:#667168}.home-primary,.home-secondary{display:block;width:100%;border:0;border-radius:16px;padding:17px;font-size:17px;font-weight:800;text-decoration:none}.home-primary{background:#163d27;color:#fff;margin-bottom:11px}.home-secondary{background:#fff;color:#163d27;border:1px solid #cfd7d0}.entry-hidden{display:none}.back-home{border:0;background:transparent;color:#41604b;font-size:14px;font-weight:750;padding:4px 0 8px}
