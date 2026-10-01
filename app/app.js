@@ -1,4 +1,4 @@
-const API_URL = localStorage.getItem("oddsklubben-api-url") || "";
+const API_URL = localStorage.getItem("oddsklubben-api-url") || "https://script.google.com/macros/s/AKfycbwt1E1CC6EDlvwmblrzM6vtK4WmYCrmpIhj_SV7NUvMmcsNweZXcr0E4M1X83dvsE7WlQ/exec";
 const players={Pingvinus:"🐧 Pingvinus",King:"👑 King",Gorilla:"🦍 Gorilla",Kaninus:"🐰 Kaninus",Kardinalus:"🙏 Kardinalus"};
 const program=[
 {w:43,r:"Supercup",m:["Kardinalus – King"],note:"Toto Cup: Pingvinus · Gorilla · Kaninus"},
