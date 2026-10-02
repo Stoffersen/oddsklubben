@@ -45,3 +45,7 @@
 
 .home-credit{margin-top:13px;text-align:center}
 \n/* All Time podium medal colours */\n.alltime-page .alltime-hero>.hero-medal{background:#d6b54c;color:#163d27}\n.alltime-page .alltime-card.silver>.hero-medal{background:#c8ced1;color:#344047}\n.alltime-page .alltime-card.bronze>.hero-medal{background:#c58a5b;color:#fff}\n
+/* Podium rank colors: gold, silver, bronze */
+.hero-medal{background:#d6b54c!important;color:#163d27!important}
+.trophy-silver .hero-medal{background:#c9ced1!important;color:#344047!important;box-shadow:inset 0 0 0 3px #ffffff55}
+.trophy-bronze .hero-medal{background:#b87345!important;color:#fff!important;box-shadow:inset 0 0 0 3px #ffffff30}
