@@ -143,6 +143,25 @@ Det svarer under dansk sommertid cirka til 02:10, 08:10, 14:10 og 20:10. GitHub 
 
 Den ugentlige agent bruger Copenhagen-tid og er tiltænkt søndag kl. 10:00.
 
+
+## Mobilapp – UX, releases og visninger
+
+- Mobilappen ligger på branch `mobile-round-entry`; `main` skal forblive urørt, indtil hele live-kæden er testet og brugeren godkender merge.
+- Appens visuelle retning skal følge den endelige Pokaloversigt: rolig mobilhierarki, én tydelig hovedhistorie, ens komposition for beslægtede kort, få simple faner, god luft og ingen regnearks-/dashboard-følelse. Undgå "card soup" og grandiose labels som "Hall of Fame".
+- Undersider skal have en tydelig bundknap `⌂ Tilbage til forsiden` samt diskret `© 2026 Kardinal IT`.
+- Forsiden skal holdes enkel. Funktioner, der naturligt hører til en eksisterende sektion, skal placeres dér frem for at skabe endnu en forsideknap.
+- Forsiden har et kompakt "Næste runde"-kort. På sigt skal det drives af `📅 Program 26-27`, ikke være en permanent hardcoded programkopi.
+- Spillerprofiler viser de fem aktive spillere og bruger data fra `All Time Pokaler` og `Diagram_Aktiv`. Profildata skal på sigt være dynamiske via Sheet/backend frem for hardcodede snapshots.
+- Pokaloversigt, Aktuel stilling og All Time Leader indeholder aktuelt snapshot-data i frontend. Hvor data ændrer sig løbende, er målet at gøre Sheet/backend til source of truth.
+- Under Aktuel stilling findes fanen `Udvikling`. For sæson 2026/27 skal den vise hver spillers akkumulerede saldo uge for uge: `samlede gyldige gevinster til og med ugen − akkumuleret indsats`.
+- Fast indsatsmodel for 2026/27: alle fem spillere belastes med **80 kr pr. relevant spilleuge**. Diagram_Aktiv og appens sæsonudvikling skal bruge samme beregningsregel. Den historiske sæson må ikke omskrives for at efterligne denne model.
+- Udviklingsgrafen må ikke opfinde datapunkter før sæsonstart; vis en tom/starttilstand indtil faktiske data findes.
+- Installeret PWA/hjemmeskærmsapp skal kunne opdatere uden manuel cache-rydning. Repoet bruger `sw.js`, network-first fetch, `skipWaiting()`, `clients.claim()`, eksplicit `registration.update()`, `updateViaCache: "none"` og reload ved `controllerchange`.
+- Ved hver app-release, der ændrer shell/CSS/JS, skal service-workerens cacheversion og relevante asset-query-versioner hæves konsekvent. Glemte versionsløft kan få den installerede app til at vise gamle filer.
+- Når en bruger siger, at en ændring ikke er synlig, kontrollér først GitHub Pages-workflowets status og deployet commit; antag ikke automatisk browser-cache.
+- Den originale logo-fil er `assets/oddsklub_logo.jpg` og er den aktive logo-/appikon-kilde. Det gamle SVG-logo må ikke genindføres som primært logo.
+- Mobilfrontend bør fortsat være enkel vanilla HTML/CSS/JS uden unødvendigt build-system. Af hensyn til ældre mobilbrowsere foretrækkes konservativ JavaScript-syntaks ved ny funktionalitet.
+
 ## Når denne fil vedligeholdes
 
 Opdatér denne håndbog, når projektets datamodel, faste regler eller brugerpræferencer ændres. Undgå at fylde den med midlertidige samtaledetaljer. Dokumentér især beslutninger, der ellers let kan blive glemt og føre til datatab eller gentagelse af tidligere fejl.
