@@ -161,6 +161,8 @@ Den ugentlige agent bruger Copenhagen-tid og er tiltænkt søndag kl. 10:00.
 - Når en bruger siger, at en ændring ikke er synlig, kontrollér først GitHub Pages-workflowets status og deployet commit; antag ikke automatisk browser-cache.
 - Den originale logo-fil er `assets/oddsklub_logo.jpg` og er den aktive logo-/appikon-kilde. Det gamle SVG-logo må ikke genindføres som primært logo.
 - Mobilfrontend bør fortsat være enkel vanilla HTML/CSS/JS uden unødvendigt build-system. Af hensyn til ældre mobilbrowsere foretrækkes konservativ JavaScript-syntaks ved ny funktionalitet.
+- Rundeindtastning er **ikke en samlet obligatorisk formular**. Hver deltager skal kunne registrere sit eget vundne beløb uafhængigt af de andre; tomme felter er derfor gyldige. Valider kun felter, der faktisk er udfyldt, og kræv blot mindst én reel indtastning før gemning.
+- Ved live-skrivning skal en delvis indsendelse være en merge/opdatering af de berørte spiller-rækker. Den må aldrig nulstille, overskrive eller slette andre spilleres allerede gemte beløb/resultater for samme uge/runde.
 
 ## Når denne fil vedligeholdes
 
