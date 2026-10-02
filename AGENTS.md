@@ -103,6 +103,7 @@ Oddsklubbens Grundlov er facit for konkurrencereglerne. Hvis en eksisterende for
 - Årets Mål: største ugegevinst fra de konkurrencer, Grundloven tillader: Super League, pokal, Supercup, Match Odds og Toto Cup.
 - Sommer-/Julecup: flest vundne kroner i de relevante cupuger; ved lighed afgør placeringen i ligaen.
 - Pokal, Supercup og Toto har særlige tie-breaks, som kan kræve højeste kuponodds. Hvis oddsdata mangler, må agenten ikke gætte vinderen.
+- Pokalrunder kombineres med Fri Odds for spillere, der ikke deltager i pokalkampene: uge 47 indledende pokal har 2 lodtrukne spillere i kampen og de øvrige 3 direkte i semifinalen + Fri Odds; i semifinaler har den 5. spiller Fri Odds; i finalen har de 3 ikke-finalister Fri Odds. Denne regel skal slå igennem i program, app, `📲 Rundeindtastning`, formler og relevante statistikker.
 - Ugyldige kuponer: gevinst går i klubkassen, men må ikke automatisk tælles med i konkurrencestillinger, hvor Grundloven udelukker dem.
 
 Bevar `📲 Rundeindtastning` enkel. Tilføj ikke permanente synlige felter for sjældne tie-break-data som odds, medmindre der er et konkret behov; særdata kan håndteres separat.
