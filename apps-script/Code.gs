@@ -13,6 +13,7 @@
  */
 const SHEET_NAME = '📲 Rundeindtastning';
 const PROGRAM_SHEET_NAME = '📅 Program 26-27';
+const APP_LOG_SHEET_NAME = '📊 App-log';
 const FIRST_DATA_ROW = 5;
 const MAX_SCAN_ROWS = 594;
 
@@ -82,6 +83,10 @@ function readSavedEntries_(sheet) {
 function doPost(e) {
   try {
     const payload = JSON.parse((e && e.postData && e.postData.contents) || '{}');
+    if (payload && payload.type === 'app_log') {
+      logAppEvent_(payload);
+      return json_({ok:true,status:'logged'});
+    }
     const normalized = normalizePayload_(payload);
     const rows = buildRows_(normalized);
     const props = PropertiesService.getScriptProperties();
@@ -182,4 +187,21 @@ function writeRows_(sheet,startRow,rows) {
 
 function json_(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
+}
+
+
+function logAppEvent_(payload) {
+  var props = PropertiesService.getScriptProperties();
+  var spreadsheetId = props.getProperty('SPREADSHEET_ID');
+  var ss = spreadsheetId ? SpreadsheetApp.openById(spreadsheetId) : SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) return;
+  var sheet = ss.getSheetByName(APP_LOG_SHEET_NAME);
+  if (!sheet) return;
+  var eventName = String(payload.event || '').trim().slice(0,80);
+  if (!eventName) return;
+  var page = String(payload.page || '').trim().slice(0,80);
+  var installation = String(payload.installation || '').trim().slice(0,100);
+  var version = String(payload.version || '').trim().slice(0,40);
+  var detail = String(payload.detail || '').trim().slice(0,250);
+  sheet.appendRow([new Date(), eventName, page, installation, version, detail]);
 }
