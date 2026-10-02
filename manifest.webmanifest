@@ -9,9 +9,9 @@
   "theme_color": "#163d27",
   "icons": [
     {
-      "src": "assets/oddsklubben-logo.svg",
+      "src": "assets/oddsklub_logo.jpg",
       "sizes": "any",
-      "type": "image/svg+xml",
+      "type": "image/jpeg",
       "purpose": "any"
     }
   ]
