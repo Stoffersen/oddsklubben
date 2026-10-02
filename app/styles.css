@@ -62,3 +62,5 @@
 .alltime-page .alltime-card.silver .hero-copy span b{color:#eef2f3;font-size:14px}
 .alltime-page .alltime-card.bronze .hero-copy span b{color:#f1c09e;font-size:14px}
 .alltime-page .hero-trophy{font-size:31px;text-align:right;filter:drop-shadow(0 3px 4px #0003)}
+
+.install-app:disabled{display:block!important;opacity:.62;cursor:default}\n
