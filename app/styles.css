@@ -103,3 +103,6 @@ html{background:var(--md-bg)}body{background:radial-gradient(circle at 50% -8%,#
 .install-app{color:#8ca49b}.install-help{background:#0d2b22;border:1px solid #24513f}
 .hero-medal{box-shadow:inset 0 0 0 3px #ffffff2b!important}
 @media(min-width:600px){body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 100%,#176c4220,transparent 45%)}}
+
+/* Matchday logo fit: keep the full original crest visible */
+.club-logo{width:min(58vw,230px);height:min(58vw,230px);object-fit:contain;background:#fff;border-radius:50%;padding:10px}
