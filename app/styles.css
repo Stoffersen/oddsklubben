@@ -49,3 +49,16 @@
 .hero-medal{background:#d6b54c!important;color:#163d27!important}
 .trophy-silver .hero-medal{background:#c9ced1!important;color:#344047!important;box-shadow:inset 0 0 0 3px #ffffff55}
 .trophy-bronze .hero-medal{background:#b87345!important;color:#fff!important;box-shadow:inset 0 0 0 3px #ffffff30}
+
+/* All Time podium: mirror Pokaloversigt card treatment */
+.alltime-page .alltime-hero,.alltime-page .alltime-card{position:relative;display:grid;grid-template-columns:42px minmax(0,1fr) 42px;gap:12px;align-items:center;padding:18px;border-radius:22px;margin:0 0 10px;overflow:hidden}
+.alltime-page .alltime-hero{background:linear-gradient(145deg,#163d27,#24563a);color:#fff;box-shadow:0 10px 28px #163d2724}
+.alltime-page .alltime-card.silver{background:linear-gradient(145deg,#4b5559,#747f83);color:#fff;box-shadow:0 10px 28px #45505420;border:0}
+.alltime-page .alltime-card.bronze{background:linear-gradient(145deg,#70452e,#9b6747);color:#fff;box-shadow:0 10px 28px #70452e20;border:0}
+.alltime-page .hero-copy small{font-size:9px;letter-spacing:.16em;opacity:.7}
+.alltime-page .hero-copy strong{font-size:20px;letter-spacing:-.02em;white-space:nowrap;margin:2px 0 0}
+.alltime-page .hero-copy span{font-size:12px;opacity:.78}
+.alltime-page .alltime-hero .hero-copy span b{color:#f0d77c;font-size:14px}
+.alltime-page .alltime-card.silver .hero-copy span b{color:#eef2f3;font-size:14px}
+.alltime-page .alltime-card.bronze .hero-copy span b{color:#f1c09e;font-size:14px}
+.alltime-page .hero-trophy{font-size:31px;text-align:right;filter:drop-shadow(0 3px 4px #0003)}
