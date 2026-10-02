@@ -106,3 +106,13 @@ html{background:var(--md-bg)}body{background:radial-gradient(circle at 50% -8%,#
 
 /* Matchday logo fit: keep the full original crest visible */
 .club-logo{width:min(58vw,230px);height:min(58vw,230px);object-fit:contain;background:#fff;border-radius:50%;padding:10px}
+
+/* Final Matchday layout tuning */
+body{background-color:#03110d;background-image:radial-gradient(ellipse at 50% -4%,#14543c 0,#08251b 28%,#03130f 58%,#020c09 100%)}
+.home{align-items:flex-start;padding:calc(22px + env(safe-area-inset-top)) 18px 34px;background:radial-gradient(ellipse at 50% -2%,#14543c 0,#08251b 28%,#03130f 60%,#020c09 100%)}
+.home-card{max-width:430px}.home-card:before{display:none}
+.club-logo{width:min(52vw,220px);height:min(52vw,220px);padding:8px;margin:8px auto 18px;background:#fff;border-radius:50%;object-fit:contain;box-shadow:0 0 0 1px #ffffff22,0 18px 48px #0007}
+.home h1{font-size:36px;line-height:1.05;letter-spacing:-.035em;margin:0 0 7px}.home p{font-size:16px;margin:0 0 27px;color:#9aa9a3!important}
+.next-round{padding:17px 18px;margin-bottom:16px;border-radius:22px;background:linear-gradient(145deg,#0b2b22,#071c17);border:1px solid #24815a}.next-round-top{margin-bottom:12px}.next-round-top span{font-size:10px;letter-spacing:.2em}.next-round-top b{font-size:11px;padding:5px 10px}.next-round>strong{font-size:16px;line-height:1.45}.next-round-line{font-size:14px;line-height:1.45}.next-round>small{font-size:11px;margin-top:12px;padding-top:10px}
+.home-primary,.home-secondary{min-height:64px;border-radius:20px;padding:16px 18px;font-size:18px}.home-primary{font-size:19px;margin-top:3px}.home-secondary{background:linear-gradient(145deg,#0b211b,#081914);border-color:#245044}.home-card>.home-primary,.home-card>.home-secondary{margin-bottom:12px}
+.install-app{margin-top:12px}.kardinal-credit{color:#60736b!important}
