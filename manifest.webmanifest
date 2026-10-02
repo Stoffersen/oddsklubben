@@ -1,0 +1,18 @@
+{
+  "name": "Oddsklubben",
+  "short_name": "Oddsklubben",
+  "description": "Oddsklubben – runder, stillinger og pokaler",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f1e8",
+  "theme_color": "#163d27",
+  "icons": [
+    {
+      "src": "assets/oddsklubben-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
