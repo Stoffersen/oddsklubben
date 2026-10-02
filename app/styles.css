@@ -116,3 +116,17 @@ body{background-color:#03110d;background-image:radial-gradient(ellipse at 50% -4
 .next-round{padding:17px 18px;margin-bottom:16px;border-radius:22px;background:linear-gradient(145deg,#0b2b22,#071c17);border:1px solid #24815a}.next-round-top{margin-bottom:12px}.next-round-top span{font-size:10px;letter-spacing:.2em}.next-round-top b{font-size:11px;padding:5px 10px}.next-round>strong{font-size:16px;line-height:1.45}.next-round-line{font-size:14px;line-height:1.45}.next-round>small{font-size:11px;margin-top:12px;padding-top:10px}
 .home-primary,.home-secondary{min-height:64px;border-radius:20px;padding:16px 18px;font-size:18px}.home-primary{font-size:19px;margin-top:3px}.home-secondary{background:linear-gradient(145deg,#0b211b,#081914);border-color:#245044}.home-card>.home-primary,.home-card>.home-secondary{margin-bottom:12px}
 .install-app{margin-top:12px}.kardinal-credit{color:#60736b!important}
+
+/* Original crest: enlarge the white logo disc so the complete source artwork stays visible */
+.club-logo{
+  width:min(76vw,320px);
+  height:min(76vw,320px);
+  box-sizing:border-box;
+  object-fit:contain;
+  object-position:center;
+  padding:12px;
+  margin:6px auto 20px;
+  background:#fff;
+  border-radius:50%;
+}
+@media(max-width:380px){.club-logo{width:min(78vw,296px);height:min(78vw,296px)}}
