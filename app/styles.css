@@ -36,3 +36,5 @@
 .bottom-home{width:100%;min-height:50px;margin-top:20px;border:1px solid #d8ddd6;border-radius:15px;background:#fff;color:#17442c;font:inherit;font-size:13px;font-weight:850;letter-spacing:.01em;box-shadow:0 3px 14px #0000000a}.bottom-home:active{transform:translateY(1px);background:#f4f6f2}
 
 .kardinal-credit{text-align:center;margin:16px 0 2px;color:#9a9f98;font-size:9px;font-weight:650;letter-spacing:.08em;text-transform:uppercase}
+
+.next-round{margin:0 0 13px;padding:14px 16px;border-radius:18px;background:#fff;text-align:left;border:1px solid #dce2dc;box-shadow:0 4px 18px #00000008}.next-round-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.next-round-top span{font-size:9px;font-weight:900;letter-spacing:.13em;color:#64806d}.next-round-top b{font-size:10px;padding:4px 8px;border-radius:999px;background:#edf3ee;color:#17442c}.next-round>strong{display:block;font-size:14px;color:#183d29;line-height:1.35}.next-round-line{margin-top:5px;font-size:12px;font-weight:700;color:#4e5f53}.next-round>small{display:block;margin-top:8px;padding-top:8px;border-top:1px solid #edf0ec;font-size:10px;color:#8a918b}
