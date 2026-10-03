@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-03 15:59 UTC",
+  "updated": "2026-10-03 16:44 UTC",
   "favorites": [
     {
       "date": "2026-10-10",
@@ -170,6 +170,7 @@
   "smart_double": null,
   "smart_triple": {
     "combined_probability": 0.3846,
+    "expected_odds_90": 2.34,
     "note": "Value leg is probability-based until bookmaker odds are available.",
     "legs": [
       {
