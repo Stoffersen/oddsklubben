@@ -1,23 +1,56 @@
 {
-  "updated": "2026-10-03 14:52 UTC",
+  "updated": "2026-10-03 15:59 UTC",
   "favorites": [
     {
       "date": "2026-10-10",
       "match": "FC Barcelona vs Getafe CF",
       "selection": "FC Barcelona",
-      "probability": 0.7684
+      "probability": 0.7684,
+      "explanation": {
+        "home_expected_goals": 2.25,
+        "away_expected_goals": 0.52,
+        "home_attack_strength": 1.74,
+        "home_defence_strength": 0.73,
+        "away_attack_strength": 0.61,
+        "away_defence_strength": 0.79,
+        "league_home_goals": 1.63,
+        "league_away_goals": 1.18,
+        "summary": "Modellen forventer 2.25 mål til FC Barcelona mod 0.52 til Getafe CF; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
     },
     {
       "date": "2026-10-10",
       "match": "FC Internazionale Milano vs Parma Calcio 1913",
       "selection": "FC Internazionale Milano",
-      "probability": 0.7349
+      "probability": 0.7349,
+      "explanation": {
+        "home_expected_goals": 2.37,
+        "away_expected_goals": 0.75,
+        "home_attack_strength": 1.85,
+        "home_defence_strength": 0.94,
+        "away_attack_strength": 0.65,
+        "away_defence_strength": 0.97,
+        "league_home_goals": 1.32,
+        "league_away_goals": 1.21,
+        "summary": "Modellen forventer 2.37 mål til FC Internazionale Milano mod 0.75 til Parma Calcio 1913; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
     },
     {
       "date": "2026-10-09",
       "match": "Borussia Dortmund vs SV Werder Bremen",
       "selection": "Borussia Dortmund",
-      "probability": 0.681
+      "probability": 0.681,
+      "explanation": {
+        "home_expected_goals": 2.15,
+        "away_expected_goals": 0.81,
+        "home_attack_strength": 1.21,
+        "home_defence_strength": 0.71,
+        "away_attack_strength": 0.79,
+        "away_defence_strength": 0.94,
+        "league_home_goals": 1.89,
+        "league_away_goals": 1.45,
+        "summary": "Modellen forventer 2.15 mål til Borussia Dortmund mod 0.81 til SV Werder Bremen; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
     }
   ],
   "upsets": [
@@ -26,6 +59,17 @@
       "match": "AFC Ajax vs NEC",
       "selection": "NEC",
       "probability": 0.369,
+      "explanation": {
+        "home_expected_goals": 1.86,
+        "away_expected_goals": 1.75,
+        "home_attack_strength": 1.12,
+        "home_defence_strength": 0.91,
+        "away_attack_strength": 1.25,
+        "away_defence_strength": 0.93,
+        "league_home_goals": 1.78,
+        "league_away_goals": 1.54,
+        "summary": "Modellen forventer 1.75 mål til NEC mod 1.86 til AFC Ajax; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      },
       "uncertain": true
     },
     {
@@ -33,6 +77,17 @@
       "match": "Chelsea vs Bournemouth",
       "selection": "Chelsea",
       "probability": 0.3665,
+      "explanation": {
+        "home_expected_goals": 1.59,
+        "away_expected_goals": 1.67,
+        "home_attack_strength": 1.02,
+        "home_defence_strength": 1.2,
+        "away_attack_strength": 1.12,
+        "away_defence_strength": 1.02,
+        "league_home_goals": 1.52,
+        "league_away_goals": 1.24,
+        "summary": "Modellen forventer 1.59 mål til Chelsea mod 1.67 til Bournemouth; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      },
       "uncertain": true
     },
     {
@@ -40,6 +95,17 @@
       "match": "FC Lorient vs Paris FC",
       "selection": "Paris FC",
       "probability": 0.3645,
+      "explanation": {
+        "home_expected_goals": 1.4,
+        "away_expected_goals": 1.37,
+        "home_attack_strength": 1.06,
+        "home_defence_strength": 1.12,
+        "away_attack_strength": 0.96,
+        "away_defence_strength": 0.85,
+        "league_home_goals": 1.56,
+        "league_away_goals": 1.27,
+        "summary": "Modellen forventer 1.37 mål til Paris FC mod 1.40 til FC Lorient; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      },
       "uncertain": true
     }
   ],
