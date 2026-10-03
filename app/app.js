@@ -1,5 +1,5 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbwt1E1CC6EDlvwmblrzM6vtK4WmYCrmpIhj_SV7NUvMmcsNweZXcr0E4M1X83dvsE7WlQ/exec";
-const APP_VERSION = "20";
+const APP_VERSION = "21";
 function appInstallId_(){var k="oddsklubben-install-id",v=localStorage.getItem(k);if(!v){v="ok-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,10);localStorage.setItem(k,v)}return v}
 function logApp_(eventName,page,detail){if(!API_URL)return;try{fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({type:"app_log",event:eventName,page:page||"",installation:appInstallId_(),version:APP_VERSION,detail:detail||""})}).catch(function(){})}catch(e){}}
 
@@ -43,18 +43,10 @@ function prettyMatch_(m){return String(m||"").replace("Kardinalus","🙏 Kardina
 function programCard_(x,i,current){var holiday=String(x.r||"").indexOf("JULEFERIE")>=0;var julecup=(String(x.r||"")+" "+String(x.note||"")).toLowerCase().indexOf("julecup")>=0;var roundLabel=(julecup?"🎄 ":"")+x.r;var t='<article class="program-week '+(i===current?"current ":"")+(holiday?"holiday ":"")+'" data-program-kind="'+programKind_(x)+'"><div class="program-week-head"><b>UGE '+x.w+'</b><span>'+roundLabel+'</span></div>';if(holiday)return t+'<div class="program-holiday">🎄 Juleferie</div></article>';if(x.m&&x.m.length){x.m.forEach(function(m){t+='<div class="program-match">'+(String(m).indexOf("TBD")>=0?'🏆 <strong>Modstandere afgøres ved lodtrækning</strong>':'<strong>'+prettyMatch_(m)+'</strong>')+'</div>'})}if(x.toto)t+='<div class="program-note">🎲 Toto Cup · '+x.toto.map(function(n){return players[n]||n}).join(" · ")+'</div>';if(x.allFree)t+='<div class="program-note">🎯 Fri Odds · hele klubben</div>';else if(x.free)t+='<div class="program-note">🎯 Fri Odds · '+(players[x.free]||x.free)+'</div>';if(julecup){var jc=(String(x.r||'')+' · '+String(x.note||'')).match(/Julecup[^·]*/i);t+='<div class="program-badge">🎄 '+(jc?jc[0].trim():'Julecup')+'</div>'}if(x.w===47)t+='<div class="program-note">2 spiller pokal · de øvrige 3 har Fri Odds</div>';if(x.w===3)t+='<div class="program-note">4 semifinalister · den øvrige spiller har Fri Odds</div>';if(x.w===8)t+='<div class="program-note">2 finalister · de øvrige 3 har Fri Odds</div>';return t+'</article>'}
 window.renderSeasonProgram=function(){var wrap=document.getElementById("programTimeline"),hero=document.getElementById("programHero");if(!wrap||!hero)return;var current=initialPosition(),x=program[current];hero.innerHTML='<div><small>NÆSTE / AKTUELLE UGE</small><strong>Uge '+x.w+' · '+x.r+'</strong><span>'+(x.m&&x.m.length?x.m.map(prettyMatch_).join(" · "):x.r)+'</span></div>';function draw(filter){wrap.innerHTML=program.map(function(v,i){return programCard_(v,i,current)}).join("");Array.prototype.forEach.call(wrap.children,function(el){el.style.display=filter==="all"||el.getAttribute("data-program-kind")===filter?"block":"none"})}draw("all");document.querySelectorAll(".program-tab").forEach(function(btn){btn.onclick=function(){document.querySelectorAll(".program-tab").forEach(function(b){b.className="program-tab"});btn.className="program-tab active";draw(btn.getAttribute("data-program-filter"))}})};
 
-var bettingTips={
- updated:"3/10 2026",
- favorites:[
-  {date:"11/10",match:"Benfica – Vitória Guimarães",pick:"Benfica",p:"80,6%"},
-  {date:"10/10",match:"Barcelona – Getafe",pick:"Barcelona",p:"80,1%"},
-  {date:"10/10",match:"Inter – Parma",pick:"Inter",p:"76,0%"}
- ],
- upsets:[
-  {date:"10/10",match:"Paderborn – Stuttgart",pick:"Stuttgart",p:"38,8%"},
-  {date:"12/10",match:"Levante – Sevilla",pick:"Sevilla",p:"37,6%"},
-  {date:"16/10",match:"Le Mans – Toulouse",pick:"Toulouse",p:"37,4%"}
- ]
-};
-function tipRows_(items,kind){return items.map(function(x,i){return '<article class="tip-card '+kind+'"><div class="tip-rank">'+(i+1)+'</div><div class="tip-copy"><small>'+x.date+'</small><strong>'+x.match+'</strong><span>'+x.pick+'</span></div><b>'+x.p+'</b></article>'}).join("")}
-window.renderBettingTips=function(){var f=document.getElementById("favoriteTips"),u=document.getElementById("upsetTips");if(f)f.innerHTML=tipRows_(bettingTips.favorites,"favorite");if(u)u.innerHTML=tipRows_(bettingTips.upsets,"upset");logApp_("view","spilforslag","snapshot "+bettingTips.updated)}
+var TIPS_URL="https://raw.githubusercontent.com/Stoffersen/football-betting-agent/main/docs/latest-tips.json";
+var bettingTips={updated:"",favorites:[],upsets:[]};
+function pctTip_(p){return (Number(p)*100).toFixed(1).replace(".",",")+"%"}
+function shortDate_(d){var a=String(d||"").split("-");return a.length===3?Number(a[2])+"/"+Number(a[1]):d}
+function tipRows_(items,kind){return items.map(function(x,i){return '<article class="tip-card '+kind+'"><div class="tip-rank">'+(i+1)+'</div><div class="tip-copy"><small>'+shortDate_(x.date)+'</small><strong>'+x.match.replace(" vs "," – ")+'</strong><span>'+x.selection+'</span></div><b>'+pctTip_(x.probability)+'</b></article>'}).join("")}
+function paintBettingTips_(){var f=document.getElementById("favoriteTips"),u=document.getElementById("upsetTips");if(f)f.innerHTML=bettingTips.favorites.length?tipRows_(bettingTips.favorites,"favorite"):'<p class="tips-empty">Ingen favoritsignaler i den aktuelle analyse.</p>';if(u)u.innerHTML=bettingTips.upsets.length?tipRows_(bettingTips.upsets,"upset"):'<p class="tips-empty">Ingen upset-signaler i den aktuelle analyse.</p>'}
+window.renderBettingTips=function(){var f=document.getElementById("favoriteTips"),u=document.getElementById("upsetTips");if(f)f.innerHTML='<p class="tips-empty">Henter seneste analyse…</p>';if(u)u.innerHTML="";fetch(TIPS_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("feed");return r.json()}).then(function(data){bettingTips=data||bettingTips;paintBettingTips_()}).catch(function(){if(f)f.innerHTML='<p class="tips-empty">Kunne ikke hente den seneste analyse lige nu.</p>'});logApp_("view","spilforslag","live feed")}
