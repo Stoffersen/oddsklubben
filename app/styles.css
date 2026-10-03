@@ -78,3 +78,5 @@
 .triple-total{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;background:#edf6ef}
 .triple-total span{font-size:12px;font-weight:700;color:#365d43}
 .triple-total b{font-size:18px;color:#183f28}
+
+.smart-combo-label{margin:0 0 8px;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#365d43}
