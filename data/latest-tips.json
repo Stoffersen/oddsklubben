@@ -1,0 +1,132 @@
+{
+  "updated": "2026-10-03 14:02 UTC",
+  "favorites": [
+    {
+      "date": "2026-10-10",
+      "match": "FC Barcelona vs Getafe CF",
+      "selection": "FC Barcelona",
+      "probability": 0.7684
+    },
+    {
+      "date": "2026-10-10",
+      "match": "FC Internazionale Milano vs Parma Calcio 1913",
+      "selection": "FC Internazionale Milano",
+      "probability": 0.7349
+    },
+    {
+      "date": "2026-10-09",
+      "match": "Borussia Dortmund vs SV Werder Bremen",
+      "selection": "Borussia Dortmund",
+      "probability": 0.681
+    }
+  ],
+  "upsets": [
+    {
+      "date": "2026-10-10",
+      "match": "AFC Ajax vs NEC",
+      "selection": "NEC",
+      "probability": 0.369,
+      "uncertain": true
+    },
+    {
+      "date": "2026-10-10",
+      "match": "Chelsea vs Bournemouth",
+      "selection": "Chelsea",
+      "probability": 0.3665,
+      "uncertain": true
+    },
+    {
+      "date": "2026-10-10",
+      "match": "FC Lorient vs Paris FC",
+      "selection": "Paris FC",
+      "probability": 0.3645,
+      "uncertain": true
+    }
+  ],
+  "bold_upsets": [
+    {
+      "date": "2026-10-10",
+      "match": "1. FC Union Berlin vs SV 07 Elversberg",
+      "selection": "1. FC Union Berlin",
+      "probability": 0.3427,
+      "favorite_probability": 0.4331,
+      "tier": "bold"
+    },
+    {
+      "date": "2026-10-10",
+      "match": "Swansea City AFC vs Norwich City FC",
+      "selection": "Norwich City FC",
+      "probability": 0.3154,
+      "favorite_probability": 0.4323,
+      "tier": "bold"
+    },
+    {
+      "date": "2026-10-10",
+      "match": "Aston Villa vs Brentford",
+      "selection": "Brentford",
+      "probability": 0.3078,
+      "favorite_probability": 0.4465,
+      "tier": "bold"
+    }
+  ],
+  "model_80kr_portfolio": {
+    "budget_kr": 80,
+    "note": "Probability-based model allocation only; bookmaker odds are not available, so expected value is not claimed.",
+    "bets": [
+      {
+        "type": "single",
+        "stake_kr": 40,
+        "combined_probability": 0.7684,
+        "legs": [
+          {
+            "date": "2026-10-10",
+            "match": "FC Barcelona vs Getafe CF",
+            "selection": "FC Barcelona",
+            "probability": 0.7684
+          }
+        ]
+      },
+      {
+        "type": "single",
+        "stake_kr": 40,
+        "combined_probability": 0.7349,
+        "legs": [
+          {
+            "date": "2026-10-10",
+            "match": "FC Internazionale Milano vs Parma Calcio 1913",
+            "selection": "FC Internazionale Milano",
+            "probability": 0.7349
+          }
+        ]
+      }
+    ]
+  },
+  "smart_double": null,
+  "smart_triple": {
+    "combined_probability": 0.3846,
+    "note": "Value leg is probability-based until bookmaker odds are available.",
+    "legs": [
+      {
+        "role": "best_available",
+        "date": "2026-10-10",
+        "match": "FC Barcelona vs Getafe CF",
+        "selection": "FC Barcelona",
+        "probability": 0.7684
+      },
+      {
+        "role": "best_available",
+        "date": "2026-10-10",
+        "match": "FC Internazionale Milano vs Parma Calcio 1913",
+        "selection": "FC Internazionale Milano",
+        "probability": 0.7349
+      },
+      {
+        "role": "best_available",
+        "date": "2026-10-09",
+        "match": "Borussia Dortmund vs SV Werder Bremen",
+        "selection": "Borussia Dortmund",
+        "probability": 0.681
+      }
+    ]
+  }
+}
