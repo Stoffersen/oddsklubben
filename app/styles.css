@@ -133,3 +133,44 @@
 .portfolio-stake span{font-size:12px;color:#496454}.portfolio-legs small{font-size:12px;color:#4f5951}
 .next-round-top span{font-size:11px}.next-round-top b{font-size:12px}.next-round-line{font-size:14px}.next-round>small{font-size:12px;color:#4f5951}
 .install-app{font-size:14px;color:#4f5951}.install-help p{font-size:13px}
+
+/* Accessibility pass v2: eliminate remaining tiny/low-contrast UI text */
+.eyebrow{font-size:13px;color:#365742}
+.tag{font-size:13px;color:#3f5c48}
+.weekbar small{font-size:12px;opacity:1}.weekbar span{font-size:14px;opacity:1}
+.result label{font-size:14px}
+#notice{font-size:14px;color:#31523d}
+.confirm span{font-size:14px;color:#4b584f}
+.success small,.error small{font-size:13px}
+.home p{font-size:15px;color:#465249}
+.trophy-shell>.eyebrow{font-size:12px}
+.trophy-updated,.standings-updated,.alltime-sub,.profiles-sub,.tips-sub{font-size:15px!important;color:#465249!important}
+.trophy-page .hero-copy small,.alltime-page .hero-copy small,.leader-card small{font-size:12px!important;opacity:1!important}
+.trophy-page .hero-copy span,.alltime-page .hero-copy span,.standings-page .leader-card span{font-size:15px!important;opacity:1!important}
+.section-head small{font-size:13px;color:#3f4b42}
+.record small{font-size:13px;color:#465249;text-transform:none;letter-spacing:0}
+.stab,.atab{font-size:14px}
+.panel-title span{font-size:12px;color:#465249}
+.standing-panel .srow span small{font-size:13px;color:#465249}
+.mood,.alltime-whisper{font-size:14px;color:#36443a}
+.extra-row{font-size:14px}
+.mini-stats small{font-size:12px;color:#465249}
+.alltime-rank span{font-size:15px}
+.season-win small{font-size:13px;color:#465249}.season-win strong{font-size:15px}.season-win b{font-size:16px}
+.ptab{font-size:14px}
+.profile-identity small,.profile-money small{font-size:12px}
+.profile-stats span{font-size:12px;color:#465249}
+.profile-best{font-size:13px;color:#465249}.profile-best strong{font-size:14px}
+.balance-chart-head small{font-size:11px;color:#465249}.balance-chart-head>span{font-size:12px}
+.balance-axis{font-size:11px;color:#465249}
+.balance-empty>strong{font-size:14px}.balance-empty>p{font-size:13px;color:#465249}
+.balance-legend span{font-size:12px;color:#465249}
+.tip-copy small{font-size:12px;color:#465249}.tip-copy strong{font-size:15px}.tip-copy span{font-size:14px}
+.triple-leg small{font-size:13px;color:#3e5948}.triple-leg span{font-size:14px;color:#3f4b42}
+.triple-total span{font-size:13px}.smart-combo-label{font-size:13px}
+.portfolio-stake span{font-size:13px;color:#3e5948}.portfolio-legs small{font-size:13px;color:#465249}.portfolio-total{font-size:13px}
+.next-round-top span{font-size:12px;color:#3f604a}.next-round-top b{font-size:13px}.next-round>small{font-size:13px;color:#465249}
+.install-app{font-size:15px;color:#465249}.install-help strong{font-size:14px}.install-help p{font-size:14px}
+.foot,.trophy-page .foot,.standings-page .foot,.alltime-page .foot,.tips-page .foot,.program-page .foot{font-size:13px!important;color:#465249!important;opacity:1!important}
+.kardinal-credit{font-size:12px;color:#535d55}
+.bottom-home{font-size:15px}
