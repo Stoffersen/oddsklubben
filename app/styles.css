@@ -174,3 +174,9 @@
 .foot,.trophy-page .foot,.standings-page .foot,.alltime-page .foot,.tips-page .foot,.program-page .foot{font-size:13px!important;color:#465249!important;opacity:1!important}
 .kardinal-credit{font-size:12px;color:#535d55}
 .bottom-home{font-size:15px}
+
+/* Helt frække bud */
+.tip-card.bold-upset{border-color:#eadbc7;background:#fffaf4}
+.tip-card.bold-upset .tip-rank{background:#f4e4d2;color:#71451f}
+.tip-card.bold-upset .tip-copy span,.tip-card.bold-upset>b{color:#71451f}
+.bold-upset-group .section-head small{color:#684c34}
