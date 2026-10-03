@@ -177,3 +177,16 @@ Opdatér denne håndbog, når projektets datamodel, faste regler eller brugerpr�
 - **Normale modelgrænser har altid førsteprioritet.** Findes der kvalificerede signaler i en kategori, skal appen vise dem. Bedste tilgængelige må kun bruges, hvis kategorien ellers ville være tom.
 - Fallback uden for en normal grænse skal være tydeligt markeret som usikkert i feed og UI: **Professoren er lidt i tvivl om det her · bedste tilgængelige bud**. Det må aldrig præsenteres som et normalt kvalificeret signal.
 - Bot'ens Bet skal lave 80 fiktive kr hver søndag, når mindst to forskellige spilbare kampe findes; normal modelportefølje først, fallback kun ved behov.
+
+
+## Appidentitet og Professor-integration
+
+- Appen skal bevare den **lyse, enkle Oddsklubben-stil**. En mørk “Matchday”-retning, animationer og dashboard/card-soup er fravalgt.
+- De faste spilleremojis må ikke ændres: 🙏 Kardinalus · 👑 King · 🐧 Pingvinus · 🦍 Gorilla · 🐰 Kaninus. Det originale logo `assets/oddsklub_logo.jpg` skal ligeledes bevares uændret.
+- Sekundær tekst skal være læsbar på mobil og for svagtseende: undgå meget lille/lys grå tekst; brug tydelig kontrast og rolig typografisk hierarki.
+- **Professoren** er det interne analyse-/modelnavn. I appens brugerflade omtales den som **Bot’en**, så medlemmerne oplever, at de konkurrerer mod Bot’en. Brug 🤖 som synligt Bot-ikon; professorhatten 🎓 skal ikke bruges i Bot-UI. Dette er ikke en invitation til at genindføre en animeret robotfigur/mascot, som tidligere er fravalgt.
+- Professor-feedet synkroniseres fra det private `Stoffersen/football-betting-agent` til de offentlige filer `data/latest-tips.json` og `data/bot-bets.json` på `mobile-round-entry`, så GitHub Pages kan læse data uden private credentials i frontend.
+- Spilforslag kan vise en diskret, fold-ud **“Hvorfor tror Bot’en på den?”**. Den bruger de allerede publicerede modeldata (kort forklaring, forventede mål samt angrebs-/forsvarsstyrker) og må ikke køre en ny analyse ved tryk.
+- Bot’ens Bet viser **Bot’ens humør** som menneskelig forklaring af den eksisterende balanceafhængige risikotilstand: 😌 kølig/protect, 🤖 fokuseret/normal, 😤 på jagt/attack og 😈 går til stålet/high. Humøret skal beskrive risikovillighed/varians, ikke love højere forventet afkast.
+- Smart Double/Triple viser **“Forventet odds · 90% tilbagebetaling”**. Professor-feedets `expected_odds_90` beregnes som `0.90 / combined_model_probability`; frontend må beregne samme værdi som fallback. Det er et fiktivt modelodds for kombinationen som helhed, ikke bookmakerodds eller dokumentation for markedsværdi.
+- Appens installerede cache skal fortsat versionsløftes ved synlige releases. Efter de seneste Bot-/forklaringsændringer er shell-versionen **v59**, JS-query **v43** og CSS-query **20261003-38**.
