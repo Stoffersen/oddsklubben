@@ -167,3 +167,13 @@ Den ugentlige agent bruger Copenhagen-tid og er tiltænkt søndag kl. 10:00.
 ## Når denne fil vedligeholdes
 
 Opdatér denne håndbog, når projektets datamodel, faste regler eller brugerpræferencer ændres. Undgå at fylde den med midlertidige samtaledetaljer. Dokumentér især beslutninger, der ellers let kan blive glemt og føre til datatab eller gentagelse af tidligere fejl.
+
+
+## Professoren / spilforslag
+
+- I Oddsklubben betyder **professoren** repoet Stoffersen/football-betting-agent; hent det aktuelle feed/analyse derfra, når professoren omtales. Det betyder ikke en baggrundssamtale mellem agenter.
+- Spilforslag må kun bruge kampe inden for professorens aktuelle **8-dagesvindue**.
+- Professoren skal, når der er nok forskellige kampe, levere forslag til alle viste kategorier samt 80 kr-porteføljen og Bot'ens Bet.
+- **Normale modelgrænser har altid førsteprioritet.** Findes der kvalificerede signaler i en kategori, skal appen vise dem. Bedste tilgængelige må kun bruges, hvis kategorien ellers ville være tom.
+- Fallback uden for en normal grænse skal være tydeligt markeret som usikkert i feed og UI: **Professoren er lidt i tvivl om det her · bedste tilgængelige bud**. Det må aldrig præsenteres som et normalt kvalificeret signal.
+- Bot'ens Bet skal lave 80 fiktive kr hver søndag, når mindst to forskellige spilbare kampe findes; normal modelportefølje først, fallback kun ved behov.
