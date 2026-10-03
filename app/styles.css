@@ -100,3 +100,36 @@
 .program-badge{font-size:11px;color:#23472f;padding:6px 9px}
 .program-holiday{font-size:15px;color:#39483e}
 .program-page .foot{font-size:12px;color:#4f5951}
+
+/* App-wide accessibility: larger secondary text and stronger contrast */
+.home p,.trophy-updated,.standings-updated,.alltime-sub,.profiles-sub,.tips-sub{font-size:14px;color:#4f5951;line-height:1.45}
+.back-home{font-size:15px;color:#284f35}
+.section-head small{font-size:12px;color:#4f5951;font-weight:750}
+.foot,.trophy-page .foot,.standings-page .foot,.alltime-page .foot,.tips-page .foot{font-size:12px;color:#4f5951;opacity:1;line-height:1.45}
+.kardinal-credit{font-size:11px;color:#626b64}
+.trophy-page .hero-copy small,.alltime-page .hero-copy small,.leader-card small{font-size:11px;opacity:1}
+.trophy-page .hero-copy span,.alltime-page .hero-copy span,.standings-page .leader-card span{font-size:14px;opacity:1}
+.record small{font-size:12px;color:#4f5951}
+.stab,.atab{font-size:13px;color:#3f4b42}
+.panel-title span{font-size:11px;color:#4f5951}
+.standing-panel .srow span small{font-size:12px;color:#566159}
+.mood,.alltime-whisper{font-size:13px;line-height:1.45;color:#3f4b42}
+.mini-stats small{font-size:11px;color:#4f5951}
+.alltime-page .hero-copy small{font-size:11px}
+.alltime-page .hero-copy span{font-size:14px}
+.alltime-chasers strong{font-size:14px}.alltime-chasers small{font-size:12px;color:#4f5951}
+.season-win small{font-size:12px;color:#4f5951}.season-win strong{font-size:14px}.season-win b{font-size:15px}
+.alltime-fun span{font-size:13px;color:#4f5951;line-height:1.45}
+.ptab{font-size:13px;color:#3f4b42;padding:9px 12px}
+.profile-identity small,.profile-money small{font-size:11px}
+.profile-stats span{font-size:11px;color:#4f5951}
+.profile-best{font-size:12px;color:#4f5951}.profile-best strong{font-size:13px}
+.balance-chart-head small{font-size:10px;color:#4f5951}.balance-chart-head>span{font-size:11px}
+.balance-axis{font-size:10px;color:#59635b}
+.balance-empty>p{font-size:12px;color:#4f5951;line-height:1.5}
+.balance-legend span{font-size:11px;color:#4f5951}
+.tip-copy small{font-size:11px;color:#4f5951}.tip-copy strong{font-size:14px}.tip-copy span{font-size:13px}
+.triple-leg small{font-size:12px;color:#496454}.triple-leg span{font-size:13px;color:#46574c}
+.portfolio-stake span{font-size:12px;color:#496454}.portfolio-legs small{font-size:12px;color:#4f5951}
+.next-round-top span{font-size:11px}.next-round-top b{font-size:12px}.next-round-line{font-size:14px}.next-round>small{font-size:12px;color:#4f5951}
+.install-app{font-size:14px;color:#4f5951}.install-help p{font-size:13px}
