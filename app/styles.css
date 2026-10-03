@@ -80,3 +80,9 @@
 .triple-total b{font-size:18px;color:#183f28}
 
 .smart-combo-label{margin:0 0 8px;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#365d43}
+
+.portfolio-card{border:1px solid #d8e7dc;border-radius:18px;background:#fff;overflow:hidden}
+.portfolio-bet{padding:12px 14px;border-bottom:1px solid #e4eee7;display:grid;grid-template-columns:62px 1fr;gap:10px}
+.portfolio-stake{display:flex;flex-direction:column}.portfolio-stake b{font-size:17px;color:#183f28}.portfolio-stake span{font-size:11px;color:#66806e;text-transform:uppercase;font-weight:700}
+.portfolio-legs{display:grid;gap:2px}.portfolio-legs span{font-size:14px;font-weight:750;color:#243b2b}.portfolio-legs small{font-size:11px;color:#6d776f;margin-bottom:5px;line-height:1.3}
+.portfolio-total{padding:11px 14px;display:flex;justify-content:space-between;background:#edf6ef;color:#365d43;font-size:12px;font-weight:700}.portfolio-total b{font-size:16px;color:#183f28}
