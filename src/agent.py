@@ -3,7 +3,9 @@ from datetime import datetime,timedelta,timezone
 from zoneinfo import ZoneInfo
 from src.bet365 import Bet365Client
 from src.model import TeamProfile,estimate_1x2,confidence
-from src.stats import strength_from_fixtures\nimport json\nfrom pathlib import Path
+from src.stats import strength_from_fixtures
+import json
+from pathlib import Path
 from src.value import picks_for_quote
 
 TZ=ZoneInfo("Europe/Copenhagen")
@@ -71,6 +73,7 @@ def main():
         print(f"DOUBLE: combined odds {distinct[0].odds*distinct[1].odds:.2f}")
     if len(distinct)>=3:
         print(f"TRIBLE: combined odds {distinct[0].odds*distinct[1].odds*distinct[2].odds:.2f}")
-    print("SCOPE: free-tier top five leagues only: Premier League, La Liga, Serie A, Bundesliga, Ligue 1.")\n    print("LIMITATION: model currently uses results/form/goal difference/home-away form; xG and injury/lineup feeds are not connected.")
+    print("SCOPE: free-tier top five leagues only: Premier League, La Liga, Serie A, Bundesliga, Ligue 1.")
+    print("LIMITATION: model currently uses results/form/goal difference/home-away form; xG and injury/lineup feeds are not connected.")
 
 if __name__=="__main__": main()
