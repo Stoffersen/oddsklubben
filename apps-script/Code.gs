@@ -105,13 +105,9 @@ function doPost(e) {
     const lock = LockService.getScriptLock();
     lock.waitLock(10000);
     try {
-      const target = findTargetBlock_(sheet, normalized.week, normalized.round);
-      if (target.existingCount && target.existingCount !== rows.length) {
-        throw new Error('Eksisterende blok har '+target.existingCount+' rækker, men appen vil skrive '+rows.length+'. Manuel kontrol kræves.');
-      }
-      writeRows_(sheet, target.startRow, rows);
+      const written = mergeEntries_(sheet, normalized);
       SpreadsheetApp.flush();
-      return json_({ok:true,status:'written',week:normalized.week,round:normalized.round,startRow:target.startRow,rowCount:rows.length});
+      return json_({ok:true,status:'written',week:normalized.week,round:normalized.round,rowCount:written});
     } finally {
       lock.releaseLock();
     }
@@ -130,14 +126,16 @@ function normalizePayload_(p) {
   const allowed = ['Pingvinus','King','Gorilla','Kaninus','Kardinalus'];
   const entries = p.entries.map((x,i)=>{
     const player=String(x.player||'').trim(), match=String(x.match||'').trim();
-    const money=Number(x.money);
+    const rawMoney=x.money;
+    const money=(rawMoney===null || rawMoney===undefined || rawMoney==='') ? null : Number(rawMoney);
     const result=String(x.result||'').trim().replace('–','-');
     if(!allowed.includes(player)) throw new Error('Ukendt spiller på linje '+(i+1));
     if(!match) throw new Error('Kamp mangler på linje '+(i+1));
-    if(!Number.isFinite(money)||money<0) throw new Error('Ugyldigt Kr-beløb på linje '+(i+1));
+    if(money!==null && (!Number.isFinite(money)||money<0)) throw new Error('Ugyldigt Kr-beløb på linje '+(i+1));
     if(result && !/^\d+-\d+$/.test(result)) throw new Error('Ugyldigt resultat på linje '+(i+1));
     return {match:match,player:player,money:money,result:result};
-  });
+  }).filter(e=>e.money!==null || e.result);
+  if(!entries.length) throw new Error('Ingen udfyldte indtastninger');
   return {week:week,round:round,entries:entries};
 }
 
@@ -158,6 +156,31 @@ function buildRows_(p) {
     previousMatch=e.match;
   });
   return rows;
+}
+
+function mergeEntries_(sheet,p) {
+  const last=Math.max(FIRST_DATA_ROW,Math.min(sheet.getLastRow(),FIRST_DATA_ROW+MAX_SCAN_ROWS-1));
+  const values=sheet.getRange(FIRST_DATA_ROW,1,last-FIRST_DATA_ROW+1,9).getDisplayValues();
+  let week='',round='',match='';
+  const rows=[];
+  values.forEach((r,i)=>{
+    if(String(r[0]).trim()) week=String(r[0]).trim();
+    if(String(r[1]).trim()) round=String(r[1]).trim();
+    if(String(r[2]).trim()) match=String(r[2]).trim();
+    rows.push({row:FIRST_DATA_ROW+i,week:week,round:round,match:match,player:String(r[3]).replace(/^[^A-Za-zÆØÅæøå]+\s*/,'').trim(),isMatchHead:!!String(r[2]).trim()});
+  });
+  let writes=0;
+  p.entries.forEach(e=>{
+    const target=rows.find(r=>r.week===String(p.week) && r.round===p.round && r.match===e.match && r.player===e.player);
+    if(!target) throw new Error('Kunne ikke finde eksisterende række for '+e.player+' · '+e.match+'. Manuel kontrol kræves.');
+    if(e.money!==null){ sheet.getRange(target.row,5).setValue(e.money); writes++; }
+    if(e.result){
+      const head=rows.find(r=>r.week===String(p.week) && r.round===p.round && r.match===e.match && r.isMatchHead);
+      if(!head) throw new Error('Kunne ikke finde kampens hovedrække for '+e.match);
+      sheet.getRange(head.row,9).setValue(e.result); writes++;
+    }
+  });
+  return writes;
 }
 
 function findTargetBlock_(sheet, week, round) {
