@@ -1,6 +1,9 @@
 name: Oddsklubben Agent
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/manual-run']
   schedule:
     - cron: "0 8 * * 0"
     - cron: "0 9 * * 0"
