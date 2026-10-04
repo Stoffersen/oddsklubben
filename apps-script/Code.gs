@@ -14,7 +14,7 @@
 const SHEET_NAME = '📲 Rundeindtastning';
 const PROGRAM_SHEET_NAME = '📅 Program 26-27';
 const APP_LOG_SHEET_NAME = '📊 App-log';
-const FIRST_DATA_ROW = 5;
+const FIRST_DATA_ROW = 110;
 const MAX_SCAN_ROWS = 594;
 
 
