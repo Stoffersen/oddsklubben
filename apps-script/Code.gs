@@ -107,6 +107,8 @@ function doPost(e) {
     try {
       const written = mergeEntries_(sheet, normalized);
       SpreadsheetApp.flush();
+      sortStandings_(ss);
+      SpreadsheetApp.flush();
       return json_({ok:true,status:'written',week:normalized.week,round:normalized.round,rowCount:written});
     } finally {
       lock.releaseLock();
@@ -156,6 +158,35 @@ function buildRows_(p) {
     previousMatch=e.match;
   });
   return rows;
+}
+
+function sortStandings_(ss) {
+  const table=ss.getSheetByName('Tabellen');
+  if(!table) throw new Error('Fanen Tabellen findes ikke');
+  // Sort only self-contained ranking blocks. Keep section headers/layout untouched.
+  // Champions League: points -> goal difference -> goals scored.
+  table.getRange(4,1,5,6).sort([{column:2,ascending:false},{column:6,ascending:false},{column:3,ascending:false}]);
+  // Season money and goals are simple descending leaderboards.
+  table.getRange(11,1,5,2).sort({column:2,ascending:false});
+  table.getRange(18,1,5,2).sort({column:2,ascending:false});
+  // Fewest conceded -> goal difference -> most won kroner.
+  // Goal difference and winnings are derived from the same player rows in the league block,
+  // so rank names here from the current league data rather than guessing a generic sheet sort.
+  const league=table.getRange(4,1,5,6).getValues();
+  const byName={};
+  league.forEach(r=>{byName[String(r[0]).trim()]={against:Number(r[3])||0,diff:Number(r[5])||0,money:Number(r[4])||0};});
+  const bur=table.getRange(42,1,5,2).getValues();
+  bur.sort((a,b)=>{
+    const x=byName[String(a[0]).trim()]||{against:0,diff:0,money:0};
+    const y=byName[String(b[0]).trim()]||{against:0,diff:0,money:0};
+    return x.against-y.against || y.diff-x.diff || y.money-x.money;
+  });
+  table.getRange(42,1,5,2).setValues(bur);
+  // Sommer Cup is ranked by won kroner; league placement is the tie-break.
+  const leagueRank={}; league.forEach((r,i)=>leagueRank[String(r[0]).trim()]=i);
+  const summer=table.getRange(49,1,5,2).getValues();
+  summer.sort((a,b)=>Number(b[1]||0)-Number(a[1]||0) || (leagueRank[String(a[0]).trim()]??99)-(leagueRank[String(b[0]).trim()]??99));
+  table.getRange(49,1,5,2).setValues(summer);
 }
 
 function mergeEntries_(sheet,p) {
