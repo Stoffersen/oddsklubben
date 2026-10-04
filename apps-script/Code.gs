@@ -175,18 +175,21 @@ function sortStandings_(ss) {
   const league=table.getRange(4,1,5,6).getValues();
   const byName={};
   league.forEach(r=>{byName[String(r[0]).trim()]={against:Number(r[3])||0,diff:Number(r[5])||0,money:Number(r[4])||0};});
+  // Use temporary helper columns Y:AA so Range.sort moves formulas instead of replacing them with values.
   const bur=table.getRange(42,1,5,2).getValues();
-  bur.sort((a,b)=>{
-    const x=byName[String(a[0]).trim()]||{against:0,diff:0,money:0};
-    const y=byName[String(b[0]).trim()]||{against:0,diff:0,money:0};
-    return x.against-y.against || y.diff-x.diff || y.money-x.money;
+  const burHelpers=bur.map(r=>{
+    const x=byName[String(r[0]).trim()]||{against:0,diff:0,money:0};
+    return [x.against,x.diff,x.money];
   });
-  table.getRange(42,1,5,2).setValues(bur);
-  // Sommer Cup is ranked by won kroner; league placement is the tie-break.
-  const leagueRank={}; league.forEach((r,i)=>leagueRank[String(r[0]).trim()]=i);
+  table.getRange(42,25,5,3).setValues(burHelpers);
+  table.getRange(42,1,5,27).sort([{column:25,ascending:true},{column:26,ascending:false},{column:27,ascending:false}]);
+  table.getRange(42,25,5,3).clearContent();
+  // Sommer Cup: most won kroner, then current league placement.
+  const leagueRank={}; league.forEach((r,i)=>leagueRank[String(r[0]).trim()]=i+1);
   const summer=table.getRange(49,1,5,2).getValues();
-  summer.sort((a,b)=>Number(b[1]||0)-Number(a[1]||0) || (leagueRank[String(a[0]).trim()]??99)-(leagueRank[String(b[0]).trim()]??99));
-  table.getRange(49,1,5,2).setValues(summer);
+  table.getRange(49,25,5,1).setValues(summer.map(r=>[leagueRank[String(r[0]).trim()]||99]));
+  table.getRange(49,1,5,25).sort([{column:2,ascending:false},{column:25,ascending:true}]);
+  table.getRange(49,25,5,1).clearContent();
 }
 
 function mergeEntries_(sheet,p) {
