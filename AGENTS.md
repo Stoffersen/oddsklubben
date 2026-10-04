@@ -44,9 +44,9 @@ De gamle faner `Program_Aktiv` og `📱 Program · overblik` er fjernet fra arbe
 
 - `📅 Program 26-27` er **source of truth for programmet**. Mobilappen skal hente uge, runde/aktivitet, kampe og Fri Odds dynamisk herfra. Programmet må ikke igen blive afhængigt af hardcodede kampe i frontend; en lokal kopi må kun bruges som fallback ved forbindelsesfejl.
 - Når en pokalkamp eller anden programoplysning ændres i `📅 Program 26-27`, skal ændringen kunne ses i appen efter genindlæsning uden ny GitHub-deployment.
-- Appens indtastede Kr og Resultat skal ved live-drift skrives til `📲 Rundeindtastning`. Hjælpe-/formelkolonnerne F:H og J:K må ikke overskrives af appen.
+- Appens indtastede Kr og Resultat skal ved live-drift skrives til `📲 Rundeindtastning`. Hjælpe-/formelkolonnerne F:H og J:K må ikke overskrives af appen. 2026/27-backenden scanner kun række 110–598 (`FIRST_DATA_ROW=110`, `MAX_SCAN_ROWS=489`) og bruger merge-safe gemning: tomme felter må aldrig blive til 0 eller overskrive en anden spillers eksisterende værdi.
 - Skrivning fra appen skal forblive dry-run/deaktiveret, indtil sæson 2026/27 er migreret og live-skrivning udtrykkeligt er godkendt.
-- Efter en succesfuld live-gemning skal Sheet-formlerne genberegnes, og relevante stillinger i `Tabellen` skal sorteres på ny efter Grundlovens regler. Sortering må ikke være en manuel efteropgave og må ikke være en simpel alfabetisk eller generisk sortering af hele fanen.
+- Efter en succesfuld live-gemning skal Sheet-formlerne genberegnes, og relevante stillinger i `Tabellen` skal sorteres på ny efter Grundlovens regler. Apps Script-backenden udfører denne blokvise sortering efter gemning. Sortering må ikke være en manuel efteropgave og må ikke være en simpel alfabetisk eller generisk sortering af hele fanen.
 - Super League-stillingen sorteres efter de gældende tie-breaks (point → målscore → scorede mål; brug Grundloven for eventuelle yderligere afgørelser). Andre konkurrencer skal bruge deres egne regler.
 
 ## Rundeindtastning
