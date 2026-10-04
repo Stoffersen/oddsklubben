@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-04 13:36 UTC",
+  "updated": "2026-10-04 18:04 UTC",
   "favorites": [
     {
       "date": "2026-10-11",
@@ -171,7 +171,7 @@
   "smart_triple": {
     "combined_probability": 0.4404,
     "expected_odds_90": 2.04,
-    "note": "Value leg is probability-based until bookmaker odds are available.",
+    "note": "Professoren er lidt i tvivl om det her · bedste tilgængelige bud",
     "legs": [
       {
         "role": "best_available",
