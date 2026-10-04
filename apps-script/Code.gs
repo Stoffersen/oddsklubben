@@ -181,15 +181,15 @@ function sortStandings_(ss) {
     const x=byName[String(r[0]).trim()]||{against:0,diff:0,money:0};
     return [x.against,x.diff,x.money];
   });
-  table.getRange(42,25,5,3).setValues(burHelpers);
-  table.getRange(42,1,5,27).sort([{column:25,ascending:true},{column:26,ascending:false},{column:27,ascending:false}]);
-  table.getRange(42,25,5,3).clearContent();
+  table.getRange(42,23,5,3).setValues(burHelpers);
+  table.getRange(42,1,5,25).sort([{column:23,ascending:true},{column:24,ascending:false},{column:25,ascending:false}]);
+  table.getRange(42,23,5,3).clearContent();
   // Jule Cup: most won kroner in weeks 46–49, then current league placement.
   const leagueRank={}; league.forEach((r,i)=>leagueRank[String(r[0]).trim()]=i+1);
-  const summer=table.getRange(49,1,5,2).getValues();
-  table.getRange(49,25,5,1).setValues(summer.map(r=>[leagueRank[String(r[0]).trim()]||99]));
-  table.getRange(49,1,5,25).sort([{column:2,ascending:false},{column:25,ascending:true}]);
-  table.getRange(49,25,5,1).clearContent();
+  const jule=table.getRange(49,1,5,2).getValues();
+  table.getRange(49,23,5,1).setValues(jule.map(r=>[leagueRank[String(r[0]).trim()]||99]));
+  table.getRange(49,1,5,23).sort([{column:2,ascending:false},{column:23,ascending:true}]);
+  table.getRange(49,23,5,1).clearContent();
 }
 
 function mergeEntries_(sheet,p) {
