@@ -1,5 +1,5 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbwt1E1CC6EDlvwmblrzM6vtK4WmYCrmpIhj_SV7NUvMmcsNweZXcr0E4M1X83dvsE7WlQ/exec";
-const APP_VERSION = "27";
+const APP_VERSION = "28";
 function appInstallId_(){var k="oddsklubben-install-id",v=localStorage.getItem(k);if(!v){v="ok-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,10);localStorage.setItem(k,v)}return v}
 function logApp_(eventName,page,detail){if(!API_URL)return;try{fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({type:"app_log",event:eventName,page:page||"",installation:appInstallId_(),version:APP_VERSION,detail:detail||""})}).catch(function(){})}catch(e){}}
 
@@ -9,13 +9,13 @@ let program=[
 {w:44,r:"Runde 1",m:["Kardinalus – Kaninus","Gorilla – King"],free:"Pingvinus"},
 {w:45,r:"Runde 2",m:["Kardinalus – Pingvinus","Kaninus – Gorilla"],free:"King"},
 {w:46,r:"Runde 3 · Julecup 1/4",m:["King – Pingvinus","Kardinalus – Gorilla"],free:"Kaninus"},
-{w:47,r:"Pokal · indledende · Julecup 2/4",m:["TBD – TBD"]},
+{w:47,r:"Pokal · indledende · Julecup 2/4",m:["Pingvinus – Kaninus"],free:"King · Gorilla · Kardinalus"},
 {w:48,r:"Runde 4 · Julecup 3/4",m:["Gorilla – Pingvinus","King – Kaninus"],free:"Kardinalus"},
 {w:49,r:"Runde 5 · Julecup 4/4",m:["Pingvinus – Kaninus","Kardinalus – King"],free:"Gorilla"},
 {w:50,r:"Runde 6",m:["Kaninus – Kardinalus","King – Gorilla"],free:"Pingvinus"},
 {w:51,r:"JULEFERIE",m:[]},{w:52,r:"JULEFERIE",m:[]},{w:1,r:"JULEFERIE",m:[]},
 {w:2,r:"Runde 7",m:["Pingvinus – Kardinalus","Gorilla – Kaninus"],free:"King"},
-{w:3,r:"Pokal · semifinaler",m:["TBD – TBD","TBD – TBD"]},
+{w:3,r:"Pokal · semifinaler",m:["King – vinder af Pingvinus/Kaninus","Gorilla – Kardinalus"],free:"Taberen af Pingvinus/Kaninus"},
 {w:4,r:"Runde 8",m:["Pingvinus – King","Gorilla – Kardinalus"],free:"Kaninus"},
 {w:5,r:"Fri Odds",m:[],allFree:true},{w:6,r:"Runde 9",m:["Pingvinus – Gorilla","Kaninus – King"],free:"Kardinalus"},
 {w:7,r:"Fri Odds",m:[],allFree:true},{w:8,r:"Pokalfinale",m:["TBD – TBD"]},{w:9,r:"Fri Odds",m:[],allFree:true},
