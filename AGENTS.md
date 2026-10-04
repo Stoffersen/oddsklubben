@@ -116,7 +116,7 @@ Tabellen indeholder bl.a. Champions League, Årets Manager, Topscorer, Hattrick,
 
 Designpræference: behold den enkle eksisterende stil. En tidligere redesign-idé med mørkegrønne dashboard-sektioner, ekstra luft og kraftig styling blev fravalgt og rullet tilbage.
 
-Jule Cup er repareret og beregnes nu fra den lodrette model for uge 23–26 via den skjulte uge-hjælper K. Den må ikke igen afhænge af den slettede `Program_Aktiv`-fane.
+Jule Cup-tabellen for 2026/27 beregnes fra den lodrette model for uge 46–49 via den skjulte uge-hjælper K. Flest vundne kroner vinder; ved lighed afgør placeringen i ligaen. Den må ikke afhænge af den slettede `Program_Aktiv`-fane.
 
 ## Diagram_Aktiv
 
