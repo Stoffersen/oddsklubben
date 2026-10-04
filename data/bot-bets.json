@@ -45,51 +45,6 @@
           "return_kr": null
         }
       ]
-    },
-    {
-      "coupon_date": "2026-10-04",
-      "model_updated": "2026-10-04 13:36 UTC",
-      "stake_kr": 80,
-      "rtp": 0.9,
-      "status": "open",
-      "risk_mode": "normal",
-      "risk_note": "Saldoen er omkring neutral: Bot’en bruger sin normale modelportefølje.",
-      "return_kr": null,
-      "profit_kr": null,
-      "bets": [
-        {
-          "type": "single",
-          "stake_kr": 40,
-          "fake_odds": 1.15,
-          "legs": [
-            {
-              "date": "2026-10-11",
-              "match": "Sport Lisboa e Benfica vs Vitória Guimarães",
-              "selection": "Sport Lisboa e Benfica",
-              "probability": 0.7798,
-              "fake_odds": 1.15
-            }
-          ],
-          "result": "pending",
-          "return_kr": null
-        },
-        {
-          "type": "single",
-          "stake_kr": 40,
-          "fake_odds": 1.17,
-          "legs": [
-            {
-              "date": "2026-10-10",
-              "match": "FC Barcelona vs Getafe CF",
-              "selection": "FC Barcelona",
-              "probability": 0.7684,
-              "fake_odds": 1.17
-            }
-          ],
-          "result": "pending",
-          "return_kr": null
-        }
-      ]
     }
   ],
   "totals": {
@@ -99,5 +54,5 @@
     "profit_kr": 0,
     "return_pct": null
   },
-  "updated": "2026-10-04 18:04 UTC"
+  "updated": "2026-10-04 18:11 UTC"
 }
