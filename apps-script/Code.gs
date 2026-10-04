@@ -184,7 +184,7 @@ function sortStandings_(ss) {
   table.getRange(42,25,5,3).setValues(burHelpers);
   table.getRange(42,1,5,27).sort([{column:25,ascending:true},{column:26,ascending:false},{column:27,ascending:false}]);
   table.getRange(42,25,5,3).clearContent();
-  // Sommer Cup: most won kroner, then current league placement.
+  // Jule Cup: most won kroner in weeks 46–49, then current league placement.
   const leagueRank={}; league.forEach((r,i)=>leagueRank[String(r[0]).trim()]=i+1);
   const summer=table.getRange(49,1,5,2).getValues();
   table.getRange(49,25,5,1).setValues(summer.map(r=>[leagueRank[String(r[0]).trim()]||99]));
