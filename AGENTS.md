@@ -80,6 +80,8 @@ Vær opmærksom på historiske særtilfælde. En tidligere migrering fra den gam
 
 Særligt vigtigt: Pingvinus havde historisk **986 kr** i Fri Odds i uge 37 under "Alle Fri odds". Værdien er nu genskabt i den lodrette model; Pingvinus' samlede Kr må derfor ikke falde tilbage til 716,5 kr.
 
+Sæson 2025/26 er afsluttet og arkiveret i `Diagram_Aktiv` som `2026_2`: Kardinalus 968,02 kr · King 1200,55 kr · Pingvinus 1702,50 kr · Kaninus 660,20 kr · Gorilla 1233,00 kr · total 5764,27 kr. 2026/27-indtastninger starter fra række 110 i `📲 Rundeindtastning`; rækker 5–104 bevares som historisk revisionsspor.
+
 Historiske samlede vundne beløb, før nye indtastninger:
 - Kardinalus: 792,72 kr
 - King: 1200,55 kr
@@ -103,7 +105,7 @@ Oddsklubbens Grundlov er facit for konkurrencereglerne. Hvis en eksisterende for
 - Årets Mål: største ugegevinst fra de konkurrencer, Grundloven tillader: Super League, pokal, Supercup, Match Odds og Toto Cup.
 - Sommer-/Julecup: flest vundne kroner i de relevante cupuger; ved lighed afgør placeringen i ligaen.
 - Pokal, Supercup og Toto har særlige tie-breaks, som kan kræve højeste kuponodds. Hvis oddsdata mangler, må agenten ikke gætte vinderen.
-- Pokalrunder kombineres med Fri Odds for spillere, der ikke deltager i pokalkampene: uge 47 indledende pokal har 2 lodtrukne spillere i kampen og de øvrige 3 direkte i semifinalen + Fri Odds; i semifinaler har den 5. spiller Fri Odds; i finalen har de 3 ikke-finalister Fri Odds. Denne regel skal slå igennem i program, app, `📲 Rundeindtastning`, formler og relevante statistikker.
+- Pokalrunder kombineres med Fri Odds for spillere, der ikke deltager i pokalkampene: uge 47 indledende pokal er fastlagt til Pingvinus–Kaninus; King, Gorilla og Kardinalus går direkte i semifinalen og har Fri Odds. Semifinalerne er King mod vinderen af Pingvinus/Kaninus samt Gorilla mod Kardinalus; taberen af Pingvinus/Kaninus har Fri Odds. I finalen har de 3 ikke-finalister Fri Odds. Denne regel skal slå igennem i program, app, `📲 Rundeindtastning`, formler og relevante statistikker.
 - Ugyldige kuponer: gevinst går i klubkassen, men må ikke automatisk tælles med i konkurrencestillinger, hvor Grundloven udelukker dem.
 
 Bevar `📲 Rundeindtastning` enkel. Tilføj ikke permanente synlige felter for sjældne tie-break-data som odds, medmindre der er et konkret behov; særdata kan håndteres separat.
@@ -189,4 +191,4 @@ Opdatér denne håndbog, når projektets datamodel, faste regler eller brugerpr�
 - Spilforslag kan vise en diskret, fold-ud **“Hvorfor tror Bot’en på den?”**. Den bruger de allerede publicerede modeldata (kort forklaring, forventede mål samt angrebs-/forsvarsstyrker) og må ikke køre en ny analyse ved tryk.
 - Bot’ens Bet viser **Bot’ens humør** som menneskelig forklaring af den eksisterende balanceafhængige risikotilstand: 😌 kølig/protect, 🤖 fokuseret/normal, 😤 på jagt/attack og 😈 går til stålet/high. Humøret skal beskrive risikovillighed/varians, ikke love højere forventet afkast.
 - Smart Double/Triple viser **“Forventet odds · 90% tilbagebetaling”**. Professor-feedets `expected_odds_90` beregnes som `0.90 / combined_model_probability`; frontend må beregne samme værdi som fallback. Det er et fiktivt modelodds for kombinationen som helhed, ikke bookmakerodds eller dokumentation for markedsværdi.
-- Appens installerede cache skal fortsat versionsløftes ved synlige releases. Efter de seneste Bot-/forklaringsændringer er shell-versionen **v59**, JS-query **v43** og CSS-query **20261003-38**.
+- Appens installerede cache skal fortsat versionsløftes ved synlige releases. Efter sæsonskiftet til 2026/27 er shell-versionen **v61**, JS-query **v45** og CSS-query **20261003-39**.
