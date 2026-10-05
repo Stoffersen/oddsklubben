@@ -197,3 +197,21 @@ Opdatér denne håndbog, når projektets datamodel, faste regler eller brugerpr�
 
 - Live-skrivning for 2026/27 er aktiveret og end-to-end-verificeret: mobilapp → Apps Script-webapp → `📲 Rundeindtastning`. Apps Script-projektet skal have Script Properties `SPREADSHEET_ID` og `WRITE_ENABLED=true`, webappen skal køre som den deployende bruger, og manifestet skal have OAuth-scope `https://www.googleapis.com/auth/spreadsheets`. En kontrolleret 0-kr-test på uge 43 blev skrevet korrekt og derefter ryddet igen; hjælpeformlerne F:H/J:K forblev intakte.
 - Efter indsættelsen af uge 42 har `📅 Program 26-27` 41 rækker. `Diagram_Aktiv!B5:B9` skal derfor læse programområdet A4:A41/B4:B41, så sæsonafslutningen i uge 12 ikke falder uden for indsatsoptællingen.
+
+
+## Website / GitHub Pages
+
+- Branch `mobile-round-entry` er den aktuelle arbejds- og previewgren for både website og mobilapp. `main` må fortsat ikke ændres/merges uden udtrykkelig godkendelse.
+- Website og mobilapp er to forskellige oplevelser. Website må gerne være desktop-first, mens mobilbrugere på website skal mødes af en tydelig anbefaling om at bruge Oddsklubben-appen. På `stats.html` vises derfor et mobil-only banner med budskabet om, at hjemmesiden primært er udviklet til PC, og at appen anbefales på mobil.
+- Websiteændringer må udføres, når brugeren specifikt beder om dem. De må ikke utilsigtet ændre appens shell, dataflow, cacheversioner eller PWA-adfærd.
+- `regler.html` skal på mobil have en tydelig `‹ Forside`-navigation tilbage til appens forside. Desktopversionens normale navigation bevares.
+- Spillerarkivet `spillere.html` indeholder 466 registrerede spillerforekomster fra 16 ture. Transfermarkt-links må kun tilføjes efter konkret verifikation af navn + hold/kamp/tur. URL'er må aldrig gættes eller konstrueres. Ved tvetydige korte navne/efternavne skal alle forekomster kontrolleres for kollisioner før mapping.
+- Transfermarkt-profiler udvides konservativt i `profiles`-mappingen uden at ændre de historiske spillerforekomster. Seneste auditblokke har bl.a. udvidet verificerede profiler fra Danmark/Italien/Tyskland samt HSV–Dortmund 2014.
+- Før enhver website/app-commit på arbejdsgrenen skal seneste relevante GitHub Actions-run være `completed` + `success`. Efter commit skal den nye run for committen også verificeres som `completed` + `success` før arbejdet betragtes som afsluttet.
+
+### Desktop-illustrationer
+
+- Der er besluttet en fremtidig visuel retning med Oddsklubbens fem figurer: 👑 King, 🐰 Kaninus, 🦍 Gorilla, 🙏 Kardinalus og 🐧 Pingvinus.
+- Kvalitetsbaren er en poleret redaktionel/graphic-novel-illustration med voksne figurer, tekstur, lys og karakter. Simple stregtegninger, clipart-look og barnlig mascot-stil er udtrykkeligt fravalgt.
+- Illustrationerne skal bruges doseret og humoristisk på desktop-hjemmesidens relevante sektioner, mens statistik, arkiver og funktionalitet fortsat er hovedindholdet. De må ikke gøre mobilappen tungere eller ændre dens enkle visuelle retning.
+- **Status:** illustrationerne er konceptuelt godkendt, men endnu ikke implementeret i repoet. Der må ikke dokumenteres eller kommunikeres, at de er live, før rigtige billed-assets er lagt i repoet og deployment er verificeret.
