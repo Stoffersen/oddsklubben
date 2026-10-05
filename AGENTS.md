@@ -194,3 +194,6 @@ Opdatér denne håndbog, når projektets datamodel, faste regler eller brugerpr�
 - Appens installerede cache skal fortsat versionsløftes ved synlige releases. Efter sæsonskiftet til 2026/27 er shell-versionen **v63**, JS-query **v46** og CSS-query **20261003-39**.
 
 - Kalenderkorrektion 2026/27: uge 42 er EFTERÅRSFERIE uden program eller indsats; juleferien er uge 51, 52 og 53. Runde 7 ligger i uge 1 og pokalsemifinalerne i uge 2. Uge 7 er VINTERFERIE uden program eller indsats; pokalfinalen ligger derfor i uge 8, og sæsonafslutningen ligger i uge 12.
+
+- Live-skrivning for 2026/27 er aktiveret og end-to-end-verificeret: mobilapp → Apps Script-webapp → `📲 Rundeindtastning`. Apps Script-projektet skal have Script Properties `SPREADSHEET_ID` og `WRITE_ENABLED=true`, webappen skal køre som den deployende bruger, og manifestet skal have OAuth-scope `https://www.googleapis.com/auth/spreadsheets`. En kontrolleret 0-kr-test på uge 43 blev skrevet korrekt og derefter ryddet igen; hjælpeformlerne F:H/J:K forblev intakte.
+- Efter indsættelsen af uge 42 har `📅 Program 26-27` 41 rækker. `Diagram_Aktiv!B5:B9` skal derfor læse programområdet A4:A41/B4:B41, så sæsonafslutningen i uge 12 ikke falder uden for indsatsoptællingen.
