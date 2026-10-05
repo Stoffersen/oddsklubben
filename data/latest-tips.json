@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-04 18:11 UTC",
+  "updated": "2026-10-05 16:35 UTC",
   "favorites": [
     {
       "date": "2026-10-11",
@@ -119,19 +119,19 @@
       "tier": "bold"
     },
     {
-      "date": "2026-10-11",
-      "match": "Como 1907 vs AS Roma",
-      "selection": "AS Roma",
-      "probability": 0.3273,
-      "favorite_probability": 0.4173,
+      "date": "2026-10-12",
+      "match": "Torino FC vs Udinese Calcio",
+      "selection": "Torino FC",
+      "probability": 0.3379,
+      "favorite_probability": 0.4433,
       "tier": "bold"
     },
     {
-      "date": "2026-10-11",
-      "match": "Liverpool vs Man City",
-      "selection": "Liverpool",
-      "probability": 0.326,
-      "favorite_probability": 0.4152,
+      "date": "2026-10-12",
+      "match": "Levante UD vs Sevilla FC",
+      "selection": "Sevilla FC",
+      "probability": 0.3288,
+      "favorite_probability": 0.4391,
       "tier": "bold"
     }
   ],
