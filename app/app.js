@@ -19,7 +19,7 @@ let program=[
 {w:3,r:"Runde 8",m:["Pingvinus – King","Gorilla – Kardinalus"],free:"Kaninus"},
 {w:4,r:"Fri Odds",m:[],allFree:true},{w:5,r:"Runde 9",m:["Pingvinus – Gorilla","Kaninus – King"],free:"Kardinalus"},
 {w:6,r:"Fri Odds",m:[],allFree:true},{w:7,r:"VINTERFERIE",m:[]},{w:8,r:"Pokalfinale",m:["TBD – TBD"]},{w:9,r:"Fri Odds",m:[],allFree:true},
-{w:10,r:"Runde 10",m:["Kaninus – Pingvinus","King – Kardinalus"],free:"Gorilla"},{w:10,r:"Fri Odds",m:[],allFree:true},{w:11,r:"Fri Odds · sæsonafslutning",m:[],allFree:true}];
+{w:10,r:"Runde 10",m:["Kaninus – Pingvinus","King – Kardinalus"],free:"Gorilla"},{w:11,r:"Fri Odds",m:[],allFree:true},{w:12,r:"Fri Odds · sæsonafslutning",m:[],allFree:true}];
 let pos=initialPosition();
 let savedEntries=[];
 let backendWriteEnabled=false;
