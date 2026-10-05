@@ -192,3 +192,5 @@ Opdatér denne håndbog, når projektets datamodel, faste regler eller brugerpr�
 - Bot’ens Bet viser **Bot’ens humør** som menneskelig forklaring af den eksisterende balanceafhængige risikotilstand: 😌 kølig/protect, 🤖 fokuseret/normal, 😤 på jagt/attack og 😈 går til stålet/high. Humøret skal beskrive risikovillighed/varians, ikke love højere forventet afkast.
 - Smart Double/Triple viser **“Forventet odds · 90% tilbagebetaling”**. Professor-feedets `expected_odds_90` beregnes som `0.90 / combined_model_probability`; frontend må beregne samme værdi som fallback. Det er et fiktivt modelodds for kombinationen som helhed, ikke bookmakerodds eller dokumentation for markedsværdi.
 - Appens installerede cache skal fortsat versionsløftes ved synlige releases. Efter sæsonskiftet til 2026/27 er shell-versionen **v63**, JS-query **v46** og CSS-query **20261003-39**.
+
+- Kalenderkorrektion 2026/27: juleferien er uge 51, 52 og 53. Runde 7 ligger i uge 1, pokalsemifinalerne i uge 2, og resten af forårsprogrammet er tilsvarende flyttet én uge frem i kalenderen; pokalfinalen ligger i uge 7 og sæsonafslutningen i uge 11.
