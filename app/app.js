@@ -13,7 +13,7 @@ let program=[
 {w:48,r:"Runde 4 · Julecup 3/4",m:["Gorilla – Pingvinus","King – Kaninus"],free:"Kardinalus"},
 {w:49,r:"Runde 5 · Julecup 4/4",m:["Pingvinus – Kaninus","Kardinalus – King"],free:"Gorilla"},
 {w:50,r:"Runde 6",m:["Kaninus – Kardinalus","King – Gorilla"],free:"Pingvinus"},
-{w:51,r:"JULEFERIE",m:[]},{w:52,r:"JULEFERIE",m:[]},{w:1,r:"JULEFERIE",m:[]},
+{w:51,r:"JULEFERIE",m:[]},{w:52,r:"JULEFERIE",m:[]},{w:53,r:"JULEFERIE",m:[]},
 {w:1,r:"Runde 7",m:["Pingvinus – Kardinalus","Gorilla – Kaninus"],free:"King"},
 {w:2,r:"Pokal · semifinaler",m:["King – vinder af Pingvinus/Kaninus","Gorilla – Kardinalus"],free:"Taberen af Pingvinus/Kaninus"},
 {w:3,r:"Runde 8",m:["Pingvinus – King","Gorilla – Kardinalus"],free:"Kaninus"},
