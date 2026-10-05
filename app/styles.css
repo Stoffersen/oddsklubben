@@ -193,3 +193,7 @@
 .botbet-mood{display:flex;align-items:flex-start;gap:12px;margin:12px 0;padding:13px 14px;border:1px solid #d8e7dc;border-radius:16px;background:#f7fbf8}.botbet-mood-icon{font-size:25px;line-height:1.1}.botbet-mood div{min-width:0}.botbet-mood small{display:block;font-size:10px;font-weight:900;letter-spacing:.09em;color:#52665a}.botbet-mood strong{display:block;margin:2px 0 3px;font-size:15px;color:#183f28}.botbet-mood p{margin:0;font-size:12px;line-height:1.45;color:#45544a}
 
 .triple-odds{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #dfe9e2;background:#f7fbf8}.triple-odds span{font-size:12px;font-weight:700;color:#4f6255}.triple-odds b{font-size:17px;color:#183f28}
+
+
+/* Persistent app home navigation */
+.floating-home{position:fixed;z-index:1000;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));display:none;align-items:center;gap:6px;padding:11px 15px;border:1px solid #cfd9d1;border-radius:999px;background:rgba(255,255,255,.96);color:#17472d;font:800 14px/1 system-ui;box-shadow:0 5px 18px rgba(20,55,35,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}.floating-home.show{display:inline-flex}.floating-home:active{transform:translateY(1px)}@media(min-width:851px){.floating-home{display:none!important}}
