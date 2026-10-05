@@ -193,4 +193,4 @@ Opdatér denne håndbog, når projektets datamodel, faste regler eller brugerpr�
 - Smart Double/Triple viser **“Forventet odds · 90% tilbagebetaling”**. Professor-feedets `expected_odds_90` beregnes som `0.90 / combined_model_probability`; frontend må beregne samme værdi som fallback. Det er et fiktivt modelodds for kombinationen som helhed, ikke bookmakerodds eller dokumentation for markedsværdi.
 - Appens installerede cache skal fortsat versionsløftes ved synlige releases. Efter sæsonskiftet til 2026/27 er shell-versionen **v63**, JS-query **v46** og CSS-query **20261003-39**.
 
-- Kalenderkorrektion 2026/27: juleferien er uge 51, 52 og 53. Runde 7 ligger i uge 1 og pokalsemifinalerne i uge 2. Uge 7 er VINTERFERIE uden program eller indsats; pokalfinalen ligger derfor i uge 8, og sæsonafslutningen ligger i uge 12.
+- Kalenderkorrektion 2026/27: uge 42 er EFTERÅRSFERIE uden program eller indsats; juleferien er uge 51, 52 og 53. Runde 7 ligger i uge 1 og pokalsemifinalerne i uge 2. Uge 7 er VINTERFERIE uden program eller indsats; pokalfinalen ligger derfor i uge 8, og sæsonafslutningen ligger i uge 12.
