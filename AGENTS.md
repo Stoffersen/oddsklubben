@@ -29,7 +29,8 @@ Spreadsheet ID:
 Det oprindelige ark **Program Aktiv** skal betragtes som historisk reference og må ikke ændres uden udtrykkelig besked.
 
 Vigtige faner i arbejdsarket:
-- `📲 Rundeindtastning` – autoritativ lodret indtastningsmodel
+- `📅 Program 26-27` – autoritativ kilde til sæsonprogrammet, som mobilappen læser dynamisk
+- `📲 Rundeindtastning` – autoritativ lodret indtastningsmodel for faktiske resultater og gevinster
 - `Tabellen` – stillinger og konkurrencer
 - `Diagram_Aktiv` – statistik/diagramgrundlag
 - `All Time Pokaler`
@@ -38,6 +39,15 @@ Vigtige faner i arbejdsarket:
 - `test` – skjult
 
 De gamle faner `Program_Aktiv` og `📱 Program · overblik` er fjernet fra arbejdsarket og må ikke genindføres som afhængigheder.
+
+## Mobilapp og dataflow
+
+- `📅 Program 26-27` er **source of truth for programmet**. Mobilappen skal hente uge, runde/aktivitet, kampe og Fri Odds dynamisk herfra. Programmet må ikke igen blive afhængigt af hardcodede kampe i frontend; en lokal kopi må kun bruges som fallback ved forbindelsesfejl.
+- Når en pokalkamp eller anden programoplysning ændres i `📅 Program 26-27`, skal ændringen kunne ses i appen efter genindlæsning uden ny GitHub-deployment.
+- Appens indtastede Kr og Resultat skal ved live-drift skrives til `📲 Rundeindtastning`. Hjælpe-/formelkolonnerne F:H og J:K må ikke overskrives af appen. 2026/27-backenden scanner kun række 110–598 (`FIRST_DATA_ROW=110`, `MAX_SCAN_ROWS=489`) og bruger merge-safe gemning: tomme felter må aldrig blive til 0 eller overskrive en anden spillers eksisterende værdi.
+- Skrivning fra appen skal forblive dry-run/deaktiveret, indtil sæson 2026/27 er migreret og live-skrivning udtrykkeligt er godkendt.
+- Efter en succesfuld live-gemning skal Sheet-formlerne genberegnes, og relevante stillinger i `Tabellen` skal sorteres på ny efter Grundlovens regler. Apps Script-backenden udfører denne blokvise sortering efter gemning. Sortering må ikke være en manuel efteropgave og må ikke være en simpel alfabetisk eller generisk sortering af hele fanen.
+- Super League-stillingen sorteres efter de gældende tie-breaks (point → målscore → scorede mål; brug Grundloven for eventuelle yderligere afgørelser). Andre konkurrencer skal bruge deres egne regler.
 
 ## Rundeindtastning
 
@@ -70,6 +80,8 @@ Vær opmærksom på historiske særtilfælde. En tidligere migrering fra den gam
 
 Særligt vigtigt: Pingvinus havde historisk **986 kr** i Fri Odds i uge 37 under "Alle Fri odds". Værdien er nu genskabt i den lodrette model; Pingvinus' samlede Kr må derfor ikke falde tilbage til 716,5 kr.
 
+Sæson 2025/26 er afsluttet og arkiveret i `Diagram_Aktiv` som `2026_2`: Kardinalus 968,02 kr · King 1200,55 kr · Pingvinus 1702,50 kr · Kaninus 660,20 kr · Gorilla 1233,00 kr · total 5764,27 kr. 2026/27-indtastninger starter fra række 110 i `📲 Rundeindtastning`; rækker 5–104 bevares som historisk revisionsspor.
+
 Historiske samlede vundne beløb, før nye indtastninger:
 - Kardinalus: 792,72 kr
 - King: 1200,55 kr
@@ -93,17 +105,18 @@ Oddsklubbens Grundlov er facit for konkurrencereglerne. Hvis en eksisterende for
 - Årets Mål: største ugegevinst fra de konkurrencer, Grundloven tillader: Super League, pokal, Supercup, Match Odds og Toto Cup.
 - Sommer-/Julecup: flest vundne kroner i de relevante cupuger; ved lighed afgør placeringen i ligaen.
 - Pokal, Supercup og Toto har særlige tie-breaks, som kan kræve højeste kuponodds. Hvis oddsdata mangler, må agenten ikke gætte vinderen.
+- Pokalrunder kombineres med Fri Odds for spillere, der ikke deltager i pokalkampene: uge 47 indledende pokal er fastlagt til Pingvinus–Kaninus; King, Gorilla og Kardinalus går direkte i semifinalen og har Fri Odds. Semifinalerne er King mod vinderen af Pingvinus/Kaninus samt Gorilla mod Kardinalus; taberen af Pingvinus/Kaninus har Fri Odds. I finalen har de 3 ikke-finalister Fri Odds. Denne regel skal slå igennem i program, app, `📲 Rundeindtastning`, formler og relevante statistikker.
 - Ugyldige kuponer: gevinst går i klubkassen, men må ikke automatisk tælles med i konkurrencestillinger, hvor Grundloven udelukker dem.
 
 Bevar `📲 Rundeindtastning` enkel. Tilføj ikke permanente synlige felter for sjældne tie-break-data som odds, medmindre der er et konkret behov; særdata kan håndteres separat.
 
 ## Tabellen
 
-Tabellen indeholder bl.a. Champions League, Årets Manager, Topscorer, Hattrick, Saksespark, Årets Mål, Det Gyldne Bur og Sommer Cup.
+Tabellen indeholder bl.a. Champions League, Årets Manager, Topscorer, Hattrick, Saksespark, Årets Mål, Det Gyldne Bur og Jule Cup.
 
 Designpræference: behold den enkle eksisterende stil. En tidligere redesign-idé med mørkegrønne dashboard-sektioner, ekstra luft og kraftig styling blev fravalgt og rullet tilbage.
 
-Sommer Cup er repareret og beregnes nu fra den lodrette model for uge 23–26 via den skjulte uge-hjælper K. Den må ikke igen afhænge af den slettede `Program_Aktiv`-fane.
+Jule Cup-tabellen for 2026/27 beregnes fra den lodrette model for uge 46–49 via den skjulte uge-hjælper K. Flest vundne kroner vinder; ved lighed afgør placeringen i ligaen. Den må ikke afhænge af den slettede `Program_Aktiv`-fane.
 
 ## Diagram_Aktiv
 
@@ -132,6 +145,55 @@ Det svarer under dansk sommertid cirka til 02:10, 08:10, 14:10 og 20:10. GitHub 
 
 Den ugentlige agent bruger Copenhagen-tid og er tiltænkt søndag kl. 10:00.
 
+
+## Mobilapp – UX, releases og visninger
+
+- Mobilappen ligger på branch `mobile-round-entry`; `main` skal forblive urørt, indtil hele live-kæden er testet og brugeren godkender merge.
+- Appens visuelle retning skal følge den endelige Pokaloversigt: rolig mobilhierarki, én tydelig hovedhistorie, ens komposition for beslægtede kort, få simple faner, god luft og ingen regnearks-/dashboard-følelse. Undgå "card soup" og grandiose labels som "Hall of Fame".
+- Undersider skal have en tydelig bundknap `⌂ Tilbage til forsiden` samt diskret `© 2026 Kardinal IT`.
+- Forsiden skal holdes enkel. Funktioner, der naturligt hører til en eksisterende sektion, skal placeres dér frem for at skabe endnu en forsideknap.
+- Forsiden har et kompakt "Næste runde"-kort. På sigt skal det drives af `📅 Program 26-27`, ikke være en permanent hardcoded programkopi.
+- Spillerprofiler viser de fem aktive spillere og bruger data fra `All Time Pokaler` og `Diagram_Aktiv`. Profildata skal på sigt være dynamiske via Sheet/backend frem for hardcodede snapshots.
+- Pokaloversigt, Aktuel stilling og All Time Leader indeholder aktuelt snapshot-data i frontend. Hvor data ændrer sig løbende, er målet at gøre Sheet/backend til source of truth.
+- Under Aktuel stilling findes fanen `Udvikling`. For sæson 2026/27 skal den vise hver spillers akkumulerede saldo uge for uge: `samlede gyldige gevinster til og med ugen − akkumuleret indsats`.
+- Fast indsatsmodel for 2026/27: alle fem spillere belastes med **80 kr pr. relevant spilleuge**. Diagram_Aktiv og appens sæsonudvikling skal bruge samme beregningsregel. Den historiske sæson må ikke omskrives for at efterligne denne model.
+- Udviklingsgrafen må ikke opfinde datapunkter før sæsonstart; vis en tom/starttilstand indtil faktiske data findes.
+- Installeret PWA/hjemmeskærmsapp skal kunne opdatere uden manuel cache-rydning. Repoet bruger `sw.js`, network-first fetch, `skipWaiting()`, `clients.claim()`, eksplicit `registration.update()`, `updateViaCache: "none"` og reload ved `controllerchange`.
+- Ved hver app-release, der ændrer shell/CSS/JS, skal service-workerens cacheversion og relevante asset-query-versioner hæves konsekvent. Glemte versionsløft kan få den installerede app til at vise gamle filer.
+- Når en bruger siger, at en ændring ikke er synlig, kontrollér først GitHub Pages-workflowets status og deployet commit; antag ikke automatisk browser-cache.
+- Den originale logo-fil er `assets/oddsklub_logo.jpg` og er den aktive logo-/appikon-kilde. Det gamle SVG-logo må ikke genindføres som primært logo.
+- Mobilfrontend bør fortsat være enkel vanilla HTML/CSS/JS uden unødvendigt build-system. Af hensyn til ældre mobilbrowsere foretrækkes konservativ JavaScript-syntaks ved ny funktionalitet.
+- Rundeindtastning er **ikke en samlet obligatorisk formular**. Hver deltager skal kunne registrere sit eget vundne beløb uafhængigt af de andre; tomme felter er derfor gyldige. Valider kun felter, der faktisk er udfyldt, og kræv blot mindst én reel indtastning før gemning.
+- Ved live-skrivning skal en delvis indsendelse være en merge/opdatering af de berørte spiller-rækker. Den må aldrig nulstille, overskrive eller slette andre spilleres allerede gemte beløb/resultater for samme uge/runde.
+
 ## Når denne fil vedligeholdes
 
 Opdatér denne håndbog, når projektets datamodel, faste regler eller brugerpræferencer ændres. Undgå at fylde den med midlertidige samtaledetaljer. Dokumentér især beslutninger, der ellers let kan blive glemt og føre til datatab eller gentagelse af tidligere fejl.
+
+
+## Professoren / spilforslag
+
+- I Oddsklubben betyder **professoren** repoet Stoffersen/football-betting-agent; hent det aktuelle feed/analyse derfra, når professoren omtales. Det betyder ikke en baggrundssamtale mellem agenter.
+- Spilforslag må kun bruge kampe inden for professorens aktuelle **8-dagesvindue**.
+- Professoren skal, når der er nok forskellige kampe, levere forslag til alle viste kategorier samt 80 kr-porteføljen og Bot'ens Bet.
+- **Normale modelgrænser har altid førsteprioritet.** Findes der kvalificerede signaler i en kategori, skal appen vise dem. Bedste tilgængelige må kun bruges, hvis kategorien ellers ville være tom.
+- Fallback uden for en normal grænse skal være tydeligt markeret som usikkert i feed og UI: **Professoren er lidt i tvivl om det her · bedste tilgængelige bud**. Det må aldrig præsenteres som et normalt kvalificeret signal.
+- Bot'ens Bet skal lave 80 fiktive kr hver søndag, når mindst to forskellige spilbare kampe findes; normal modelportefølje først, fallback kun ved behov.
+
+
+## Appidentitet og Professor-integration
+
+- Appen skal bevare den **lyse, enkle Oddsklubben-stil**. En mørk “Matchday”-retning, animationer og dashboard/card-soup er fravalgt.
+- De faste spilleremojis må ikke ændres: 🙏 Kardinalus · 👑 King · 🐧 Pingvinus · 🦍 Gorilla · 🐰 Kaninus. Det originale logo `assets/oddsklub_logo.jpg` skal ligeledes bevares uændret.
+- Sekundær tekst skal være læsbar på mobil og for svagtseende: undgå meget lille/lys grå tekst; brug tydelig kontrast og rolig typografisk hierarki.
+- **Professoren** er det interne analyse-/modelnavn. I appens brugerflade omtales den som **Bot’en**, så medlemmerne oplever, at de konkurrerer mod Bot’en. Brug 🤖 som synligt Bot-ikon; professorhatten 🎓 skal ikke bruges i Bot-UI. Dette er ikke en invitation til at genindføre en animeret robotfigur/mascot, som tidligere er fravalgt.
+- Professor-feedet synkroniseres fra det private `Stoffersen/football-betting-agent` til de offentlige filer `data/latest-tips.json` og `data/bot-bets.json` på `mobile-round-entry`, så GitHub Pages kan læse data uden private credentials i frontend.
+- Spilforslag kan vise en diskret, fold-ud **“Hvorfor tror Bot’en på den?”**. Den bruger de allerede publicerede modeldata (kort forklaring, forventede mål samt angrebs-/forsvarsstyrker) og må ikke køre en ny analyse ved tryk.
+- Bot’ens Bet viser **Bot’ens humør** som menneskelig forklaring af den eksisterende balanceafhængige risikotilstand: 😌 kølig/protect, 🤖 fokuseret/normal, 😤 på jagt/attack og 😈 går til stålet/high. Humøret skal beskrive risikovillighed/varians, ikke love højere forventet afkast.
+- Smart Double/Triple viser **“Forventet odds · 90% tilbagebetaling”**. Professor-feedets `expected_odds_90` beregnes som `0.90 / combined_model_probability`; frontend må beregne samme værdi som fallback. Det er et fiktivt modelodds for kombinationen som helhed, ikke bookmakerodds eller dokumentation for markedsværdi.
+- Appens installerede cache skal fortsat versionsløftes ved synlige releases. Efter sæsonskiftet til 2026/27 er shell-versionen **v63**, JS-query **v46** og CSS-query **20261003-39**.
+
+- Kalenderkorrektion 2026/27: uge 42 er EFTERÅRSFERIE uden program eller indsats; juleferien er uge 51, 52 og 53. Runde 7 ligger i uge 1 og pokalsemifinalerne i uge 2. Uge 7 er VINTERFERIE uden program eller indsats; pokalfinalen ligger derfor i uge 8, og sæsonafslutningen ligger i uge 12.
+
+- Live-skrivning for 2026/27 er aktiveret og end-to-end-verificeret: mobilapp → Apps Script-webapp → `📲 Rundeindtastning`. Apps Script-projektet skal have Script Properties `SPREADSHEET_ID` og `WRITE_ENABLED=true`, webappen skal køre som den deployende bruger, og manifestet skal have OAuth-scope `https://www.googleapis.com/auth/spreadsheets`. En kontrolleret 0-kr-test på uge 43 blev skrevet korrekt og derefter ryddet igen; hjælpeformlerne F:H/J:K forblev intakte.
+- Efter indsættelsen af uge 42 har `📅 Program 26-27` 41 rækker. `Diagram_Aktiv!B5:B9` skal derfor læse programområdet A4:A41/B4:B41, så sæsonafslutningen i uge 12 ikke falder uden for indsatsoptællingen.

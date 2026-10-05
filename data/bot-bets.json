@@ -1,0 +1,58 @@
+{
+  "name": "Bot'ens Bet",
+  "currency": "fiktive kr",
+  "bookmaker": "Professorens egne sandsynligheder med 90% tilbagebetaling",
+  "weeks": [
+    {
+      "coupon_date": "2026-10-03",
+      "model_updated": "2026-10-03 14:02 UTC",
+      "stake_kr": 80,
+      "rtp": 0.9,
+      "status": "open",
+      "return_kr": null,
+      "profit_kr": null,
+      "bets": [
+        {
+          "type": "single",
+          "stake_kr": 40,
+          "fake_odds": 1.17,
+          "legs": [
+            {
+              "date": "2026-10-10",
+              "match": "FC Barcelona vs Getafe CF",
+              "selection": "FC Barcelona",
+              "probability": 0.7684,
+              "fake_odds": 1.17
+            }
+          ],
+          "result": "pending",
+          "return_kr": null
+        },
+        {
+          "type": "single",
+          "stake_kr": 40,
+          "fake_odds": 1.22,
+          "legs": [
+            {
+              "date": "2026-10-10",
+              "match": "FC Internazionale Milano vs Parma Calcio 1913",
+              "selection": "FC Internazionale Milano",
+              "probability": 0.7349,
+              "fake_odds": 1.22
+            }
+          ],
+          "result": "pending",
+          "return_kr": null
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "settled_weeks": 0,
+    "stake_kr": 0,
+    "return_kr": 0,
+    "profit_kr": 0,
+    "return_pct": null
+  },
+  "updated": "2026-10-04 18:11 UTC"
+}

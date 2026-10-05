@@ -1,0 +1,199 @@
+{
+  "updated": "2026-10-04 18:11 UTC",
+  "favorites": [
+    {
+      "date": "2026-10-11",
+      "match": "Sport Lisboa e Benfica vs Vitória Guimarães",
+      "selection": "Sport Lisboa e Benfica",
+      "probability": 0.7798,
+      "explanation": {
+        "home_expected_goals": 2.7,
+        "away_expected_goals": 0.77,
+        "home_attack_strength": 1.47,
+        "home_defence_strength": 0.82,
+        "away_attack_strength": 0.77,
+        "away_defence_strength": 1.25,
+        "league_home_goals": 1.46,
+        "league_away_goals": 1.23,
+        "summary": "Modellen forventer 2.70 mål til Sport Lisboa e Benfica mod 0.77 til Vitória Guimarães; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
+    },
+    {
+      "date": "2026-10-10",
+      "match": "FC Barcelona vs Getafe CF",
+      "selection": "FC Barcelona",
+      "probability": 0.7684,
+      "explanation": {
+        "home_expected_goals": 2.25,
+        "away_expected_goals": 0.52,
+        "home_attack_strength": 1.74,
+        "home_defence_strength": 0.73,
+        "away_attack_strength": 0.61,
+        "away_defence_strength": 0.79,
+        "league_home_goals": 1.63,
+        "league_away_goals": 1.18,
+        "summary": "Modellen forventer 2.25 mål til FC Barcelona mod 0.52 til Getafe CF; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
+    },
+    {
+      "date": "2026-10-10",
+      "match": "FC Internazionale Milano vs Parma Calcio 1913",
+      "selection": "FC Internazionale Milano",
+      "probability": 0.7349,
+      "explanation": {
+        "home_expected_goals": 2.37,
+        "away_expected_goals": 0.75,
+        "home_attack_strength": 1.85,
+        "home_defence_strength": 0.94,
+        "away_attack_strength": 0.65,
+        "away_defence_strength": 0.97,
+        "league_home_goals": 1.32,
+        "league_away_goals": 1.21,
+        "summary": "Modellen forventer 2.37 mål til FC Internazionale Milano mod 0.75 til Parma Calcio 1913; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
+    }
+  ],
+  "upsets": [
+    {
+      "date": "2026-10-11",
+      "match": "SBV Excelsior vs FC Groningen",
+      "selection": "FC Groningen",
+      "probability": 0.3697,
+      "explanation": {
+        "home_expected_goals": 1.39,
+        "away_expected_goals": 1.38,
+        "home_attack_strength": 0.8,
+        "home_defence_strength": 0.93,
+        "away_attack_strength": 0.96,
+        "away_defence_strength": 0.97,
+        "league_home_goals": 1.78,
+        "league_away_goals": 1.54,
+        "summary": "Modellen forventer 1.38 mål til FC Groningen mod 1.39 til SBV Excelsior; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      },
+      "uncertain": true
+    },
+    {
+      "date": "2026-10-10",
+      "match": "AFC Ajax vs NEC",
+      "selection": "NEC",
+      "probability": 0.369,
+      "explanation": {
+        "home_expected_goals": 1.86,
+        "away_expected_goals": 1.75,
+        "home_attack_strength": 1.12,
+        "home_defence_strength": 0.91,
+        "away_attack_strength": 1.25,
+        "away_defence_strength": 0.93,
+        "league_home_goals": 1.78,
+        "league_away_goals": 1.54,
+        "summary": "Modellen forventer 1.75 mål til NEC mod 1.86 til AFC Ajax; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      },
+      "uncertain": true
+    },
+    {
+      "date": "2026-10-10",
+      "match": "Chelsea vs Bournemouth",
+      "selection": "Chelsea",
+      "probability": 0.3665,
+      "explanation": {
+        "home_expected_goals": 1.59,
+        "away_expected_goals": 1.67,
+        "home_attack_strength": 1.02,
+        "home_defence_strength": 1.2,
+        "away_attack_strength": 1.12,
+        "away_defence_strength": 1.02,
+        "league_home_goals": 1.52,
+        "league_away_goals": 1.24,
+        "summary": "Modellen forventer 1.59 mål til Chelsea mod 1.67 til Bournemouth; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      },
+      "uncertain": true
+    }
+  ],
+  "bold_upsets": [
+    {
+      "date": "2026-10-10",
+      "match": "1. FC Union Berlin vs SV 07 Elversberg",
+      "selection": "1. FC Union Berlin",
+      "probability": 0.3427,
+      "favorite_probability": 0.4331,
+      "tier": "bold"
+    },
+    {
+      "date": "2026-10-11",
+      "match": "Como 1907 vs AS Roma",
+      "selection": "AS Roma",
+      "probability": 0.3273,
+      "favorite_probability": 0.4173,
+      "tier": "bold"
+    },
+    {
+      "date": "2026-10-11",
+      "match": "Liverpool vs Man City",
+      "selection": "Liverpool",
+      "probability": 0.326,
+      "favorite_probability": 0.4152,
+      "tier": "bold"
+    }
+  ],
+  "model_80kr_portfolio": {
+    "budget_kr": 80,
+    "note": "Probability-based model allocation only; bookmaker odds are not available, so expected value is not claimed.",
+    "bets": [
+      {
+        "type": "single",
+        "stake_kr": 40,
+        "combined_probability": 0.7798,
+        "legs": [
+          {
+            "date": "2026-10-11",
+            "match": "Sport Lisboa e Benfica vs Vitória Guimarães",
+            "selection": "Sport Lisboa e Benfica",
+            "probability": 0.7798
+          }
+        ]
+      },
+      {
+        "type": "single",
+        "stake_kr": 40,
+        "combined_probability": 0.7684,
+        "legs": [
+          {
+            "date": "2026-10-10",
+            "match": "FC Barcelona vs Getafe CF",
+            "selection": "FC Barcelona",
+            "probability": 0.7684
+          }
+        ]
+      }
+    ]
+  },
+  "smart_double": null,
+  "smart_triple": {
+    "combined_probability": 0.4404,
+    "expected_odds_90": 2.04,
+    "note": "Professoren er lidt i tvivl om det her · bedste tilgængelige bud",
+    "legs": [
+      {
+        "role": "best_available",
+        "date": "2026-10-11",
+        "match": "Sport Lisboa e Benfica vs Vitória Guimarães",
+        "selection": "Sport Lisboa e Benfica",
+        "probability": 0.7798
+      },
+      {
+        "role": "best_available",
+        "date": "2026-10-10",
+        "match": "FC Barcelona vs Getafe CF",
+        "selection": "FC Barcelona",
+        "probability": 0.7684
+      },
+      {
+        "role": "best_available",
+        "date": "2026-10-10",
+        "match": "FC Internazionale Milano vs Parma Calcio 1913",
+        "selection": "FC Internazionale Milano",
+        "probability": 0.7349
+      }
+    ]
+  }
+}
