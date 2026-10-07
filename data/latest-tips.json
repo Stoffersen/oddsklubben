@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06 14:38 UTC",
+  "updated": "2026-10-07 14:54 UTC",
   "favorites": [
     {
       "date": "2026-10-11",
@@ -55,58 +55,22 @@
   ],
   "upsets": [
     {
-      "date": "2026-10-11",
-      "match": "SBV Excelsior vs FC Groningen",
-      "selection": "FC Groningen",
-      "probability": 0.3697,
+      "date": "2026-10-14",
+      "match": "Queens Park Rangers FC vs Derby County FC",
+      "selection": "Queens Park Rangers FC",
+      "probability": 0.3709,
       "explanation": {
-        "home_expected_goals": 1.39,
-        "away_expected_goals": 1.38,
-        "home_attack_strength": 0.8,
-        "home_defence_strength": 0.93,
-        "away_attack_strength": 0.96,
-        "away_defence_strength": 0.97,
-        "league_home_goals": 1.78,
-        "league_away_goals": 1.54,
-        "summary": "Modellen forventer 1.38 mål til FC Groningen mod 1.39 til SBV Excelsior; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
-      },
-      "uncertain": true
-    },
-    {
-      "date": "2026-10-13",
-      "match": "Stoke City FC vs Middlesbrough FC",
-      "selection": "Middlesbrough FC",
-      "probability": 0.3695,
-      "explanation": {
-        "home_expected_goals": 1.4,
-        "away_expected_goals": 1.38,
-        "home_attack_strength": 1.08,
-        "home_defence_strength": 1.01,
-        "away_attack_strength": 1.13,
-        "away_defence_strength": 0.88,
+        "home_expected_goals": 1.55,
+        "away_expected_goals": 1.59,
+        "home_attack_strength": 1.04,
+        "home_defence_strength": 1.18,
+        "away_attack_strength": 1.11,
+        "away_defence_strength": 1.02,
         "league_home_goals": 1.47,
         "league_away_goals": 1.22,
-        "summary": "Modellen forventer 1.38 mål til Middlesbrough FC mod 1.40 til Stoke City FC; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+        "summary": "Modellen forventer 1.55 mål til Queens Park Rangers FC mod 1.59 til Derby County FC; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       },
-      "uncertain": true
-    },
-    {
-      "date": "2026-10-10",
-      "match": "AFC Ajax vs NEC",
-      "selection": "NEC",
-      "probability": 0.369,
-      "explanation": {
-        "home_expected_goals": 1.86,
-        "away_expected_goals": 1.75,
-        "home_attack_strength": 1.12,
-        "home_defence_strength": 0.91,
-        "away_attack_strength": 1.25,
-        "away_defence_strength": 0.93,
-        "league_home_goals": 1.78,
-        "league_away_goals": 1.54,
-        "summary": "Modellen forventer 1.75 mål til NEC mod 1.86 til AFC Ajax; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
-      },
-      "uncertain": true
+      "uncertain": false
     }
   ],
   "bold_upsets": [
@@ -153,47 +117,59 @@
         ]
       },
       {
-        "type": "single",
-        "stake_kr": 40,
-        "combined_probability": 0.7684,
+        "type": "double",
+        "stake_kr": 20,
+        "combined_probability": 0.2893,
         "legs": [
           {
-            "date": "2026-10-10",
-            "match": "FC Barcelona vs Getafe CF",
-            "selection": "FC Barcelona",
-            "probability": 0.7684
+            "date": "2026-10-11",
+            "match": "Sport Lisboa e Benfica vs Vitória Guimarães",
+            "selection": "Sport Lisboa e Benfica",
+            "probability": 0.7798
+          },
+          {
+            "date": "2026-10-14",
+            "match": "Queens Park Rangers FC vs Derby County FC",
+            "selection": "Queens Park Rangers FC",
+            "probability": 0.3709
+          }
+        ]
+      },
+      {
+        "type": "single",
+        "stake_kr": 20,
+        "combined_probability": 0.3709,
+        "legs": [
+          {
+            "date": "2026-10-14",
+            "match": "Queens Park Rangers FC vs Derby County FC",
+            "selection": "Queens Park Rangers FC",
+            "probability": 0.3709
           }
         ]
       }
     ]
   },
-  "smart_double": null,
-  "smart_triple": {
-    "combined_probability": 0.4404,
-    "expected_odds_90": 2.04,
-    "note": "Professoren er lidt i tvivl om det her · bedste tilgængelige bud",
+  "smart_double": {
+    "combined_probability": 0.2893,
+    "expected_odds_90": 3.11,
+    "note": null,
     "legs": [
       {
-        "role": "best_available",
+        "role": "solid",
         "date": "2026-10-11",
         "match": "Sport Lisboa e Benfica vs Vitória Guimarães",
         "selection": "Sport Lisboa e Benfica",
         "probability": 0.7798
       },
       {
-        "role": "best_available",
-        "date": "2026-10-10",
-        "match": "FC Barcelona vs Getafe CF",
-        "selection": "FC Barcelona",
-        "probability": 0.7684
-      },
-      {
-        "role": "best_available",
-        "date": "2026-10-10",
-        "match": "FC Internazionale Milano vs Parma Calcio 1913",
-        "selection": "FC Internazionale Milano",
-        "probability": 0.7349
+        "role": "surprise",
+        "date": "2026-10-14",
+        "match": "Queens Park Rangers FC vs Derby County FC",
+        "selection": "Queens Park Rangers FC",
+        "probability": 0.3709
       }
     ]
-  }
+  },
+  "smart_triple": null
 }
