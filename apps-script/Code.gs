@@ -18,8 +18,9 @@ const FIRST_DATA_ROW = 110;
 const MAX_SCAN_ROWS = 489;
 
 
-function doGet() {
+function doGet(e) {
   try {
+    if (e && e.parameter && e.parameter.action === 'analytics') return analytics_(e);
     const props = PropertiesService.getScriptProperties();
     const spreadsheetId = props.getProperty('SPREADSHEET_ID');
     const ss = spreadsheetId ? SpreadsheetApp.openById(spreadsheetId) : SpreadsheetApp.getActiveSpreadsheet();
@@ -261,4 +262,38 @@ function logAppEvent_(payload) {
   var version = String(payload.version || '').trim().slice(0,40);
   var detail = String(payload.detail || '').trim().slice(0,250);
   sheet.appendRow([new Date(), eventName, page, installation, version, detail]);
+}
+
+
+function analytics_(e) {
+  var props = PropertiesService.getScriptProperties();
+  var supplied = String((e && e.parameter && e.parameter.key) || '');
+  var expected = String(props.getProperty('ADMIN_ANALYTICS_KEY') || '');
+  if (!expected || supplied !== expected) return json_({ok:false,error:'Ikke autoriseret'});
+
+  var spreadsheetId = props.getProperty('SPREADSHEET_ID');
+  var ss = spreadsheetId ? SpreadsheetApp.openById(spreadsheetId) : SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) return json_({ok:false,error:'Google Sheet kunne ikke åbnes'});
+  var sheet = ss.getSheetByName(APP_LOG_SHEET_NAME);
+  if (!sheet || sheet.getLastRow() < 2) return json_({ok:true,total:0,unique:0,today:0,last7:0,last30:0,pages:[],recent:[]});
+
+  var lastRow = sheet.getLastRow();
+  var firstRow = Math.max(2,lastRow-4999);
+  var rows = sheet.getRange(firstRow,1,lastRow-firstRow+1,6).getValues();
+  var now = new Date(), todayStart = new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var d7 = new Date(now.getTime()-7*86400000), d30 = new Date(now.getTime()-30*86400000);
+  var unique = {}, pages = {}, today=0, last7=0, last30=0, recent=[];
+  rows.forEach(function(r){
+    var ts=r[0] instanceof Date?r[0]:new Date(r[0]), event=String(r[1]||''), page=String(r[2]||''), id=String(r[3]||'');
+    if (!ts || isNaN(ts.getTime())) return;
+    if(id) unique[id]=1;
+    if(ts>=todayStart) today++;
+    if(ts>=d7) last7++;
+    if(ts>=d30) last30++;
+    if(page) pages[page]=(pages[page]||0)+1;
+    if(recent.length<50) recent.push({time:ts.toISOString(),event:event,page:page});
+  });
+  recent = rows.slice(-50).reverse().map(function(r){var ts=r[0] instanceof Date?r[0]:new Date(r[0]);return {time:ts&&!isNaN(ts.getTime())?ts.toISOString():'',event:String(r[1]||''),page:String(r[2]||'')}});
+  var pageList=Object.keys(pages).map(function(k){return {page:k,count:pages[k]}}).sort(function(a,b){return b.count-a.count});
+  return json_({ok:true,total:rows.length,unique:Object.keys(unique).length,today:today,last7:last7,last30:last30,pages:pageList,recent:recent});
 }
