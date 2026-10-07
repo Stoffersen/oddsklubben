@@ -66,3 +66,6 @@ footer{margin-top:0}
 .topbar nav:target{display:grid;position:absolute;left:10px;right:10px;top:58px;background:#fff;border:1px solid #dde1dc;border-radius:16px;padding:8px;box-shadow:0 16px 35px #163d2720;max-height:70vh;overflow:auto;white-space:normal}
 .topbar nav:target a{padding:11px 12px;border-radius:10px;font-size:11px}
 }
+
+/* Dashboard flow fixes: keep CTAs and copy inside their panels at compact desktop widths */
+.dashboard>.panel{height:auto;align-self:stretch}.dashboard>.panel.wide{overflow:visible}.trophygrid{align-items:stretch}.trophygrid+.tripcta{display:inline-block;margin-top:14px;position:static}.fun{display:flex;flex-direction:column}.fun .note{margin:13px 0 0}.fun>.tripcta{align-self:flex-start;display:inline-block;margin-top:14px;position:static}.tripteaser>.tripcta{position:static;flex:0 0 auto}@media(max-width:1050px) and (min-width:851px){.dashboard{grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr)}.trophygrid{grid-template-columns:1fr 1fr}.trophygrid .champ{grid-column:1/-1;grid-row:auto}.trophygrid+.tripcta{margin-top:12px}.fungrid{grid-template-columns:repeat(2,1fr)}}
