@@ -26,4 +26,13 @@
 <section class="panel tripteaser"><div><span class="eyebrow">ODDSKLUBBEN PÅ TUR</span><h2>16 kampe. 11 stadions. Et helt arkiv.</h2><p>Fra San Siro til Napoli — 16 kampe, 11 stadions og 42 mål. Se kampmapper, turrekorder og hele groundhopping-arkivet.</p></div><a class="tripcta" href="ture.html">Gå til Ture →</a></section><section class="panel fun"><div class="panelhead"><div><span class="eyebrow">STATISTIK VI IKKE VIDSTE VI MANGLEDE</span><h2>Den skæve afdeling</h2></div></div><div class="fungrid"><article><span>👑</span><small>Største pengekasse</small><b>King</b><strong>8.164,69 kr</strong></article><article><span>🧹</span><small>Skraldespandskongen</small><b>Pingvinus</b><strong>7 titler</strong></article><article><span>🧤</span><small>Flest Gyldne Bur</small><b>Kaninus</b><strong>3 titler</strong></article><article><span>🎄</span><small>Jule-specialister</small><b>Kardinalus · Kaninus</b><strong>3 hver</strong></article></div><p class="note">Nu med et helt statistiklaboratorium: pengekaos, pokal-DNA og absurd præcise rekorder.</p><a class="tripcta" href="skaeve.html">Åbn Den skæve afdeling →</a></section>
 </div>
 </main><footer><b>ODDSKLUBBEN</b><span>Anno 2009 · Statistikprototype</span><small>© 2026 Kardinal IT</small></footer>
-</body></html>
+<script>
+(function(){
+  var API="https://script.google.com/macros/s/AKfycbwt1E1CC6EDlvwmblrzM6vtK4WmYCrmpIhj_SV7NUvMmcsNweZXcr0E4M1X83dvsE7WlQ/exec";
+  try{
+    var k="oddsklubben-web-id",id=localStorage.getItem(k);
+    if(!id){id="web-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,10);localStorage.setItem(k,id)}
+    fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({type:"app_log",event:"page_view",page:"website:stats",installation:id,version:"web-1",detail:""})}).catch(function(){});
+  }catch(e){}
+})();
+</script></body></html>
