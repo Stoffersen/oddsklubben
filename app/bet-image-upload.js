@@ -30,7 +30,7 @@
     preview.appendChild(img);
     var help = document.createElement("p");
     help.className = "foot";
-    help.textContent = "Billedet bliver på din enhed. Automatisk tekstaflæsning sker lokalt i browseren, når du trykker Aflæs.";
+    help.textContent = "Billedet bliver på din enhed. Automatisk tekstaflæsning starter på din enhed, så snart billedet er valgt.";
     preview.appendChild(help);
     var form = document.createElement("form");
     form.style.cssText = "display:grid;gap:9px;margin:12px 0";
@@ -56,7 +56,7 @@
     });
     var note = document.createElement("p");
     note.className = "foot";
-    note.textContent = "Tryk på Aflæs billedet automatisk. Kontrollér de aflæste oplysninger før eksport. Intet overføres til klubbens regnskab.";
+    note.textContent = "Billedet aflæses automatisk. Åbn kun felterne, hvis du vil kontrollere eller rette resultatet. Intet overføres til klubbens regnskab.";
     form.appendChild(note);
     var save = document.createElement("button");
     save.type = "submit";
@@ -94,15 +94,20 @@
       setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
       status.textContent = "Kupondata eksporteret. Intet er gemt i klubbens regnskab.";
     });
-    preview.appendChild(form);
+    var review = document.createElement("details");
+    var reviewTitle = document.createElement("summary");
+    reviewTitle.textContent = "Kontrollér eller ret kuponoplysninger";
+    review.appendChild(reviewTitle);
+    review.appendChild(form);
+    preview.appendChild(review);
     var scan = document.createElement("button");
     scan.type = "button";
     scan.className = "home-secondary";
-    scan.textContent = "✨ Aflæs billedet automatisk";
-    preview.insertBefore(scan, form);
+    scan.textContent = "🔄 Prøv aflæsning igen";
+    preview.insertBefore(scan, review);
     var scanStatus = document.createElement("p");
     scanStatus.setAttribute("role", "status");
-    preview.insertBefore(scanStatus, form);
+    preview.insertBefore(scanStatus, review);
     scan.addEventListener("click", async function () {
       scan.disabled = true;
       scanStatus.textContent = "Indlæser billedaflæser og analyserer kuponen …";
@@ -151,9 +156,12 @@
         details.appendChild(pre);
         var prior = preview.querySelector("details");
         if (prior) prior.remove();
-        preview.insertBefore(details, form);
-        scanStatus.textContent = "Aflæsning færdig. Kontrollér felterne før eksport – utydelige eller ukendte værdier efterlades tomme.";
+        preview.insertBefore(details, review);
+        var missing = ["event", "odds", "stake"].filter(function (key) { return !form.elements.namedItem(key).value; });
+        review.open = missing.length > 0;
+        scanStatus.textContent = missing.length ? "Aflæsningen mangler " + missing.join(", ") + ". Åbn felterne og ret det nødvendige." : "Kuponen er aflæst. Du kan åbne oplysningerne for at kontrollere dem og eksportere, hvis du ønsker det.";
       } catch (error) {
+        review.open = true;
         scanStatus.textContent = "Aflæsning mislykkedes: " + error.message + " Du kan prøve igen eller vælge et tydeligere billede.";
       } finally {
         scan.disabled = false;
@@ -171,6 +179,8 @@
       preview.replaceChildren();
     });
     preview.appendChild(clear);
+    // Start OCR automatically after image selection; no extra tap required.
+    scan.click();
   });
   window.addEventListener("pagehide", function () {
     if (objectUrl) URL.revokeObjectURL(objectUrl);
