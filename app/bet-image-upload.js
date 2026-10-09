@@ -226,6 +226,43 @@
     review.appendChild(reviewTitle);
     review.appendChild(form);
     preview.appendChild(review);
+    // AI endpoint is intentionally opt-in; never place API secrets in this app.
+    var aiEndpoint = window.ODDSKLUBBEN_COUPON_AI_ENDPOINT || "";
+    if (aiEndpoint) {
+      var aiButton = document.createElement("button");
+      aiButton.type = "button";
+      aiButton.className = "home-secondary";
+      aiButton.textContent = "✨ Analysér kupon med AI";
+      var aiStatus = document.createElement("p");
+      aiStatus.setAttribute("role", "status");
+      preview.insertBefore(aiButton, review);
+      preview.insertBefore(aiStatus, review);
+      aiButton.addEventListener("click", async function () {
+        if (!window.confirm("Send dette kuponbillede til den tilknyttede AI-tjeneste til analyse?")) return;
+        aiButton.disabled = true;
+        aiStatus.textContent = "AI analyserer kuponen …";
+        try {
+          var payload = new FormData();
+          payload.append("image", file, file.name);
+          var response = await fetch(aiEndpoint, {method:"POST", body:payload, credentials:"omit"});
+          if (!response.ok) throw new Error("AI-tjenesten svarede med fejl " + response.status);
+          var parsed = await response.json();
+          if (!parsed || !parsed.coupon) throw new Error("Ugyldigt svar fra AI-tjenesten");
+          var coupon = parsed.coupon;
+          var map = {bookmaker:"bookmaker", selection:"event", bet_type:"type", decimal_odds:"odds", stake_dkk:"stake", payout_dkk:"payout"};
+          Object.keys(map).forEach(function (key) {
+            if (coupon[key] !== null && coupon[key] !== undefined && coupon[key] !== "") {
+              form.elements.namedItem(map[key]).value = coupon[key];
+            }
+          });
+          review.open = true;
+          draftButton.disabled = false;
+          aiStatus.textContent = "AI-analyse klar. Kontrollér oplysningerne før godkendelse." + (parsed.warnings && parsed.warnings.length ? " Usikkert: " + parsed.warnings.join("; ") : "");
+        } catch (error) {
+          aiStatus.textContent = "AI-analyse mislykkedes: " + error.message;
+        } finally { aiButton.disabled = false; }
+      });
+    }
     var scan = document.createElement("button");
     scan.type = "button";
     scan.className = "home-secondary";
