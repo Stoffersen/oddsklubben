@@ -4,6 +4,78 @@
   var preview = document.getElementById("betImagePreview");
   if (!input || !preview) return;
   var objectUrl = null;
+  var draftKey = "oddsklubben-local-coupon-drafts-v1";
+  var overview = document.createElement("section");
+  overview.style.cssText = "margin:16px 0;padding:12px;border:1px solid #d6ddd6;border-radius:12px";
+  overview.setAttribute("aria-label", "Gemte bettingkuponer");
+  preview.parentNode.appendChild(overview);
+  function getDrafts() {
+    try {
+      var result = JSON.parse(localStorage.getItem(draftKey) || "[]");
+      return Array.isArray(result) ? result.filter(function (r) { return r && typeof r === "object"; }) : [];
+    } catch (_) { return []; }
+  }
+  function downloadDrafts(records) {
+    var blob = new Blob([JSON.stringify({schema_version:1, exported_at:new Date().toISOString(), coupons:records}, null, 2)], {type:"application/json"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "oddsklubben-kuponkladder-" + new Date().toISOString().slice(0,10) + ".json";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+  }
+  function renderDrafts() {
+    overview.replaceChildren();
+    var records = getDrafts();
+    var heading = document.createElement("h3");
+    heading.textContent = "📋 Gemte kuponkladder (" + records.length + ")";
+    overview.appendChild(heading);
+    var hint = document.createElement("p");
+    hint.className = "foot";
+    hint.textContent = "Kun gemt på denne enhed. Ikke synkroniseret med bettingjournalen. Eksportér en sikkerhedskopi, hvis du vil bevare dem.";
+    overview.appendChild(hint);
+    if (!records.length) return;
+    var exportAll = document.createElement("button");
+    exportAll.type = "button";
+    exportAll.className = "home-secondary";
+    exportAll.textContent = "⬇️ Eksportér alle kladder";
+    exportAll.addEventListener("click", function () { downloadDrafts(getDrafts()); });
+    overview.appendChild(exportAll);
+    records.slice().reverse().forEach(function (record) {
+      var item = document.createElement("details");
+      item.style.cssText = "padding:10px 0;border-bottom:1px solid #ddd";
+      var summary = document.createElement("summary");
+      summary.textContent = (record.bookmaker || "Ukendt bookmaker") + " · " + (record.selection || "Ukendt kamp").slice(0,55) + " · " + (record.stake_dkk || "?") + " kr";
+      item.appendChild(summary);
+      var info = document.createElement("p");
+      info.style.cssText = "white-space:pre-wrap;overflow-wrap:anywhere";
+      info.textContent = "Dato: " + (record.created_at || "ukendt") + "\nSpiltype: " + (record.bet_type || "ukendt") + "\nOdds: " + (record.decimal_odds || "?") + "\nIndsats: " + (record.stake_dkk || "?") + " kr\nUdbetaling: " + (record.payout_dkk == null ? "ukendt" : record.payout_dkk + " kr");
+      item.appendChild(info);
+      var exportOne = document.createElement("button");
+      exportOne.type = "button";
+      exportOne.className = "home-secondary";
+      exportOne.textContent = "Eksportér denne kladde";
+      exportOne.addEventListener("click", function () { downloadDrafts([record]); });
+      item.appendChild(exportOne);
+      var remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "home-secondary";
+      remove.textContent = "Slet kladde";
+      remove.addEventListener("click", function () {
+        if (!window.confirm("Slet denne lokale kuponkladde? Det kan ikke fortrydes.")) return;
+        try {
+          localStorage.setItem(draftKey, JSON.stringify(getDrafts().filter(function (r) { return r.id !== record.id; })));
+          renderDrafts();
+        } catch (_) { window.alert("Kunne ikke slette kladden."); }
+      });
+      item.appendChild(remove);
+      overview.appendChild(item);
+    });
+  }
+  renderDrafts();
+
   input.addEventListener("change", function () {
     if (objectUrl) { URL.revokeObjectURL(objectUrl); objectUrl = null; }
     preview.replaceChildren();
@@ -143,6 +215,7 @@
         records.push(record);
         localStorage.setItem(key, JSON.stringify(records.slice(-200)));
         draftStatus.textContent = "Kladde gemt lokalt på denne enhed. Ikke sendt til bettingjournalen.";
+        renderDrafts();
       } catch (error) {
         draftStatus.textContent = "Kunne ikke gemme kladden på denne enhed. Prøv JSON-eksport i stedet.";
       }
