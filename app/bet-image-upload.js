@@ -138,6 +138,8 @@
         setField("odds", odds);
         setField("stake", stake);
         setField("payout", payout);
+        var expected = Number(odds) * Number(stake);
+        var amountWarning = Boolean(expected > 0 && Number(payout) > 0 && Math.abs(expected - Number(payout)) > Math.max(2, expected * 0.08));
         var type = raw.match(/\b(single|singler|double|doubler|triple|tripler|akkumulator|kombination|bet\s*builder)\b/i);
         setField("type", type && type[1]);
         var bookmaker = raw.match(/\b(bet365|danske\s+spil|unibet|betfair|betsson|nordicbet|betway|expekt)\b/i);
@@ -159,8 +161,8 @@
         if (prior) prior.remove();
         preview.insertBefore(details, review);
         var missing = ["event", "odds", "stake"].filter(function (key) { return !form.elements.namedItem(key).value; });
-        review.open = missing.length > 0;
-        scanStatus.textContent = missing.length ? "Aflæsningen mangler " + missing.join(", ") + ". Åbn felterne og ret det nødvendige." : "Kuponen er aflæst. Du kan åbne oplysningerne for at kontrollere dem og eksportere, hvis du ønsker det.";
+        review.open = missing.length > 0 || amountWarning;
+        scanStatus.textContent = amountWarning ? "⚠️ De aflæste beløb stemmer ikke umiddelbart overens. Kontrollér odds, indsats og udbetaling." : missing.length ? "Aflæsningen mangler " + missing.join(", ") + ". Åbn felterne og ret det nødvendige." : "Kuponen er aflæst. Du kan åbne oplysningerne for at kontrollere dem og eksportere, hvis du ønsker det.";
       } catch (error) {
         review.open = true;
         scanStatus.textContent = "Aflæsning mislykkedes: " + error.message + " Du kan prøve igen eller vælge et tydeligere billede.";
