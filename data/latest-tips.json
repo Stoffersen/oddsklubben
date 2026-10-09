@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-08 15:04 UTC",
+  "updated": "2026-10-09 16:25 UTC",
   "favorites": [
     {
       "date": "2026-10-11",
@@ -55,6 +55,24 @@
   ],
   "upsets": [
     {
+      "date": "2026-10-16",
+      "match": "SC Heerenveen vs SBV Excelsior",
+      "selection": "SBV Excelsior",
+      "probability": 0.3716,
+      "explanation": {
+        "home_expected_goals": 1.57,
+        "away_expected_goals": 1.53,
+        "home_attack_strength": 0.93,
+        "home_defence_strength": 0.88,
+        "away_attack_strength": 1.13,
+        "away_defence_strength": 0.95,
+        "league_home_goals": 1.78,
+        "league_away_goals": 1.54,
+        "summary": "Modellen forventer 1.53 mål til SBV Excelsior mod 1.57 til SC Heerenveen; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      },
+      "uncertain": false
+    },
+    {
       "date": "2026-10-14",
       "match": "Queens Park Rangers FC vs Derby County FC",
       "selection": "Queens Park Rangers FC",
@@ -91,11 +109,11 @@
       "tier": "bold"
     },
     {
-      "date": "2026-10-12",
-      "match": "Levante UD vs Sevilla FC",
-      "selection": "Sevilla FC",
-      "probability": 0.3288,
-      "favorite_probability": 0.4391,
+      "date": "2026-10-16",
+      "match": "Burnley vs Wolves",
+      "selection": "Burnley",
+      "probability": 0.3393,
+      "favorite_probability": 0.4238,
       "tier": "bold"
     }
   ],
@@ -119,7 +137,7 @@
       {
         "type": "double",
         "stake_kr": 20,
-        "combined_probability": 0.2893,
+        "combined_probability": 0.2898,
         "legs": [
           {
             "date": "2026-10-11",
@@ -128,30 +146,30 @@
             "probability": 0.7798
           },
           {
-            "date": "2026-10-14",
-            "match": "Queens Park Rangers FC vs Derby County FC",
-            "selection": "Queens Park Rangers FC",
-            "probability": 0.3709
+            "date": "2026-10-16",
+            "match": "SC Heerenveen vs SBV Excelsior",
+            "selection": "SBV Excelsior",
+            "probability": 0.3716
           }
         ]
       },
       {
         "type": "single",
         "stake_kr": 20,
-        "combined_probability": 0.3709,
+        "combined_probability": 0.3716,
         "legs": [
           {
-            "date": "2026-10-14",
-            "match": "Queens Park Rangers FC vs Derby County FC",
-            "selection": "Queens Park Rangers FC",
-            "probability": 0.3709
+            "date": "2026-10-16",
+            "match": "SC Heerenveen vs SBV Excelsior",
+            "selection": "SBV Excelsior",
+            "probability": 0.3716
           }
         ]
       }
     ]
   },
   "smart_double": {
-    "combined_probability": 0.2893,
+    "combined_probability": 0.2898,
     "expected_odds_90": 3.11,
     "note": null,
     "legs": [
@@ -164,10 +182,10 @@
       },
       {
         "role": "surprise",
-        "date": "2026-10-14",
-        "match": "Queens Park Rangers FC vs Derby County FC",
-        "selection": "Queens Park Rangers FC",
-        "probability": 0.3709
+        "date": "2026-10-16",
+        "match": "SC Heerenveen vs SBV Excelsior",
+        "selection": "SBV Excelsior",
+        "probability": 0.3716
       }
     ]
   },
