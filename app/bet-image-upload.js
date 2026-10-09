@@ -83,6 +83,15 @@
         stake_dkk: Number(data.stake),
         payout_dkk: data.payout === "" ? null : Number(data.payout)
       };
+      // Local duplicate check; this is not a central betting-journal lookup.
+      var key = "oddsklubben-exported-coupons-v1";
+      var signature = [bet.bookmaker.toLowerCase(), bet.selection.toLowerCase().replace(/\\s+/g, " ").trim(), bet.decimal_odds.toFixed(2), bet.stake_dkk.toFixed(2)].join("|");
+      var history = [];
+      try { history = JSON.parse(localStorage.getItem(key) || "[]"); if (!Array.isArray(history)) history = []; } catch (_) { history = []; }
+      if (history.includes(signature) && !window.confirm("En kupon med samme bookmaker, kampe, odds og indsats er allerede eksporteret på denne enhed. Eksportér alligevel?")) {
+        status.textContent = "Eksport annulleret: mulig dublet.";
+        return;
+      }
       var blob = new Blob([JSON.stringify(bet, null, 2)], {type:"application/json"});
       var url = URL.createObjectURL(blob);
       var link = document.createElement("a");
@@ -92,7 +101,8 @@
       link.click();
       link.remove();
       setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
-      status.textContent = "Kupondata eksporteret. Intet er gemt i klubbens regnskab.";
+      try { localStorage.setItem(key, JSON.stringify([signature].concat(history.filter(function (s) { return s !== signature; })).slice(0, 200))); } catch (_) { /* Private mode or storage disabled. */ }
+      status.textContent = "Kupondata eksporteret. Mulige dubletter kontrolleres kun på denne enhed; intet er gemt i klubbens regnskab.";
     });
     var review = document.createElement("details");
     var reviewTitle = document.createElement("summary");
