@@ -30,7 +30,7 @@
     preview.appendChild(img);
     var help = document.createElement("p");
     help.className = "foot";
-    help.textContent = "Billedet er ikke sendt til serveren. Automatisk aflæsning og godkendt gemning kræver en sikker backend.";
+    help.textContent = "Billedet bliver på din enhed. Automatisk tekstaflæsning sker lokalt i browseren, når du trykker Aflæs.";
     preview.appendChild(help);
     var form = document.createElement("form");
     form.style.cssText = "display:grid;gap:9px;margin:12px 0";
@@ -56,7 +56,7 @@
     });
     var note = document.createElement("p");
     note.className = "foot";
-    note.textContent = "Foreløbig manuel registrering: Kontrollér kuponen og udfyld felterne. Ingen automatisk billedaflæsning eller overførsel til klubbens regnskab endnu.";
+    note.textContent = "Tryk på Aflæs billedet automatisk. Kontrollér de aflæste oplysninger før eksport. Intet overføres til klubbens regnskab.";
     form.appendChild(note);
     var save = document.createElement("button");
     save.type = "submit";
@@ -95,6 +95,71 @@
       status.textContent = "Kupondata eksporteret. Intet er gemt i klubbens regnskab.";
     });
     preview.appendChild(form);
+    var scan = document.createElement("button");
+    scan.type = "button";
+    scan.className = "home-secondary";
+    scan.textContent = "✨ Aflæs billedet automatisk";
+    preview.insertBefore(scan, form);
+    var scanStatus = document.createElement("p");
+    scanStatus.setAttribute("role", "status");
+    preview.insertBefore(scanStatus, form);
+    scan.addEventListener("click", async function () {
+      scan.disabled = true;
+      scanStatus.textContent = "Indlæser billedaflæser og analyserer kuponen …";
+      try {
+        if (!window.Tesseract) {
+          await new Promise(function (resolve, reject) {
+            var script = document.createElement("script");
+            script.src = "https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js";
+            script.onload = resolve;
+            script.onerror = function () { reject(new Error("Kunne ikke indlæse billedaflæseren. Kontrollér internetforbindelsen.")); };
+            document.head.appendChild(script);
+          });
+        }
+        var result = await window.Tesseract.recognize(file, "dan+eng");
+        var raw = result.data.text || "";
+        if (!raw.trim()) throw new Error("Kunne ikke læse tekst på billedet.");
+        var lines = raw.split(/\r?\n/).map(function (x) { return x.trim(); }).filter(Boolean);
+        function matchNumber(pattern) {
+          var found = raw.match(pattern);
+          return found ? found[1].replace(/\s/g, "").replace(",", ".") : "";
+        }
+        function setField(key, value) {
+          if (value) form.elements.namedItem(key).value = value;
+        }
+        var odds = matchNumber(/(?:samlet\s+odds|total\s+odds|odds\s+i\s+alt|total\s+price|odds)\s*[:=]?\s*(\d{1,4}[,.]\d{1,3})/i);
+        var stake = matchNumber(/(?:indsats|stake|beløb|bet\s+amount)\s*[:=]?\s*(\d+[,.]?\d{0,2})/i);
+        var payout = matchNumber(/(?:udbetaling|gevinst|return|payout|returns|potential\s+winnings)\s*[:=]?\s*(\d+[,.]?\d{0,2})/i);
+        setField("odds", odds);
+        setField("stake", stake);
+        setField("payout", payout);
+        var type = raw.match(/\b(single|singler|double|doubler|triple|tripler|akkumulator|kombination|bet\s*builder)\b/i);
+        setField("type", type && type[1]);
+        var bookmaker = raw.match(/\b(bet365|danske\s+spil|unibet|betfair|betsson|nordicbet|betway|expekt)\b/i);
+        setField("bookmaker", bookmaker && bookmaker[1]);
+        var events = lines.filter(function (line) {
+          return /\s(?:-|–|—|vs\.?|v\.)\s/i.test(line) && !/odds|indsats|gevinst|udbetaling/i.test(line);
+        }).slice(0, 8);
+        setField("event", events.join("; "));
+        var details = document.createElement("details");
+        var summary = document.createElement("summary");
+        summary.textContent = "Se aflæst råtekst";
+        var pre = document.createElement("pre");
+        pre.textContent = raw;
+        pre.style.cssText = "white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px";
+        details.appendChild(summary);
+        details.appendChild(pre);
+        var prior = preview.querySelector("details");
+        if (prior) prior.remove();
+        preview.insertBefore(details, form);
+        scanStatus.textContent = "Aflæsning færdig. Kontrollér felterne før eksport – utydelige eller ukendte værdier efterlades tomme.";
+      } catch (error) {
+        scanStatus.textContent = "Aflæsning mislykkedes: " + error.message + " Du kan prøve igen eller vælge et tydeligere billede.";
+      } finally {
+        scan.disabled = false;
+      }
+    });
+
     var clear = document.createElement("button");
     clear.type = "button";
     clear.className = "home-secondary";
