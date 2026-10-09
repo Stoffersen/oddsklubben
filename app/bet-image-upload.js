@@ -152,9 +152,10 @@
         var pre = document.createElement("pre");
         pre.textContent = raw;
         pre.style.cssText = "white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px";
+        details.setAttribute("data-ocr-raw", "true");
         details.appendChild(summary);
         details.appendChild(pre);
-        var prior = preview.querySelector("details");
+        var prior = preview.querySelector("details[data-ocr-raw]");
         if (prior) prior.remove();
         preview.insertBefore(details, review);
         var missing = ["event", "odds", "stake"].filter(function (key) { return !form.elements.namedItem(key).value; });
