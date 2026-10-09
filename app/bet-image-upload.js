@@ -261,6 +261,11 @@
         var odds = matchNumber(/(?:samlet\s+odds|total\s+odds|odds\s+i\s+alt|total\s+price|odds)\s*[:=]?\s*(\d{1,4}[,.]\d{1,3})/i);
         var stake = matchNumber(/(?:indsats|stake|beløb|bet\s+amount)\s*[:=]?\s*(\d+[,.]?\d{0,2})/i);
         var payout = matchNumber(/(?:udbetaling|gevinst|return|payout|returns|potential\s+winnings)\s*[:=]?\s*(\d+[,.]?\d{0,2})/i);
+        var inferredOdds = false;
+        if (!odds && Number(stake) > 0 && Number(payout) > Number(stake)) {
+          odds = (Number(payout) / Number(stake)).toFixed(2);
+          inferredOdds = true;
+        }
         setField("odds", odds);
         setField("stake", stake);
         setField("payout", payout);
@@ -271,7 +276,9 @@
         var bookmaker = raw.match(/\b(bet365|danske\s+spil|unibet|betfair|betsson|nordicbet|betway|expekt)\b/i);
         setField("bookmaker", bookmaker && bookmaker[1]);
         var events = lines.filter(function (line) {
-          return /\s(?:-|–|—|vs\.?|v\.)\s/i.test(line) && !/odds|indsats|gevinst|udbetaling/i.test(line);
+          if (/fuldtid\s*[-–—]\s*resultat|halvleg\s*[-–—]\s*resultat|full\s*time\s*[-–—]\s*result|kampresultat|double chance|begge hold scorer/i.test(line)) return false;
+          if (/odds|indsats|gevinst|udbetaling|samlet|cash\s*out/i.test(line)) return false;
+          return /\s(?:-|–|—|vs\.?|v\.)\s/i.test(line) && /[a-zæøå]{2,}/i.test(line);
         }).slice(0, 8);
         setField("event", events.join("; "));
         var details = document.createElement("details");
@@ -287,9 +294,9 @@
         if (prior) prior.remove();
         preview.insertBefore(details, review);
         var missing = ["event", "odds", "stake"].filter(function (key) { return !form.elements.namedItem(key).value; });
-        review.open = missing.length > 0 || amountWarning;
+        review.open = missing.length > 0 || amountWarning || inferredOdds;
         draftButton.disabled = false;
-        scanStatus.textContent = amountWarning ? "⚠️ De aflæste beløb stemmer ikke umiddelbart overens. Kontrollér odds, indsats og udbetaling." : missing.length ? "Aflæsningen mangler " + missing.join(", ") + ". Åbn felterne og ret det nødvendige." : "Kuponen er aflæst. Du kan åbne oplysningerne for at kontrollere dem og eksportere, hvis du ønsker det.";
+        scanStatus.textContent = inferredOdds ? "⚠️ Odds er beregnet ud fra indsats og mulig gevinst, ikke aflæst direkte. Kontrollér odds før godkendelse." : amountWarning ? "⚠️ De aflæste beløb stemmer ikke umiddelbart overens. Kontrollér odds, indsats og udbetaling." : missing.length ? "Aflæsningen mangler " + missing.join(", ") + ". Åbn felterne og ret det nødvendige." : "Kuponen er aflæst. Du kan åbne oplysningerne for at kontrollere dem og eksportere, hvis du ønsker det.";
       } catch (error) {
         review.open = true;
         draftButton.disabled = false;
