@@ -104,6 +104,49 @@
       try { localStorage.setItem(key, JSON.stringify([signature].concat(history.filter(function (s) { return s !== signature; })).slice(0, 200))); } catch (_) { /* Private mode or storage disabled. */ }
       status.textContent = "Kupondata eksporteret. Mulige dubletter kontrolleres kun på denne enhed; intet er gemt i klubbens regnskab.";
     });
+    var draftButton = document.createElement("button");
+    draftButton.type = "button";
+    draftButton.className = "home-secondary";
+    draftButton.textContent = "✓ Godkend som kladde på denne enhed";
+    draftButton.disabled = true;
+    form.appendChild(draftButton);
+    var draftStatus = document.createElement("p");
+    draftStatus.setAttribute("role", "status");
+    form.appendChild(draftStatus);
+    draftButton.addEventListener("click", function () {
+      var data = Object.fromEntries(new FormData(form).entries());
+      if (!data.event.trim() || !(Number(data.odds) > 1) || !(Number(data.stake) > 0)) {
+        draftStatus.textContent = "Kontrollér kamp, odds og indsats først.";
+        return;
+      }
+      var record = {
+        id: "coupon-" + Date.now(),
+        created_at: new Date().toISOString(),
+        source: "local-ocr-confirmed",
+        status: "draft",
+        bookmaker: data.bookmaker.trim(),
+        selection: data.event.trim(),
+        bet_type: data.type.trim(),
+        decimal_odds: Number(data.odds),
+        stake_dkk: Number(data.stake),
+        payout_dkk: data.payout === "" ? null : Number(data.payout)
+      };
+      var key = "oddsklubben-local-coupon-drafts-v1";
+      try {
+        var records = JSON.parse(localStorage.getItem(key) || "[]");
+        if (!Array.isArray(records)) records = [];
+        var signature = [record.bookmaker.toLowerCase(), record.selection.toLowerCase(), record.decimal_odds, record.stake_dkk].join("|");
+        var duplicate = records.some(function (item) {
+          return [item.bookmaker.toLowerCase(), item.selection.toLowerCase(), item.decimal_odds, item.stake_dkk].join("|") === signature;
+        });
+        if (duplicate && !window.confirm("Denne kupon ligner en eksisterende kladde. Gem en ny alligevel?")) return;
+        records.push(record);
+        localStorage.setItem(key, JSON.stringify(records.slice(-200)));
+        draftStatus.textContent = "Kladde gemt lokalt på denne enhed. Ikke sendt til bettingjournalen.";
+      } catch (error) {
+        draftStatus.textContent = "Kunne ikke gemme kladden på denne enhed. Prøv JSON-eksport i stedet.";
+      }
+    });
     var review = document.createElement("details");
     var reviewTitle = document.createElement("summary");
     reviewTitle.textContent = "Kontrollér eller ret kuponoplysninger";
@@ -172,9 +215,11 @@
         preview.insertBefore(details, review);
         var missing = ["event", "odds", "stake"].filter(function (key) { return !form.elements.namedItem(key).value; });
         review.open = missing.length > 0 || amountWarning;
+        draftButton.disabled = false;
         scanStatus.textContent = amountWarning ? "⚠️ De aflæste beløb stemmer ikke umiddelbart overens. Kontrollér odds, indsats og udbetaling." : missing.length ? "Aflæsningen mangler " + missing.join(", ") + ". Åbn felterne og ret det nødvendige." : "Kuponen er aflæst. Du kan åbne oplysningerne for at kontrollere dem og eksportere, hvis du ønsker det.";
       } catch (error) {
         review.open = true;
+        draftButton.disabled = false;
         scanStatus.textContent = "Aflæsning mislykkedes: " + error.message + " Du kan prøve igen eller vælge et tydeligere billede.";
       } finally {
         scan.disabled = false;
