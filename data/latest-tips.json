@@ -1,6 +1,23 @@
 {
-  "updated": "2026-10-09 16:25 UTC",
+  "updated": "2026-10-10 14:06 UTC",
   "favorites": [
+    {
+      "date": "2026-10-17",
+      "match": "FC Bayern München vs RB Leipzig",
+      "selection": "FC Bayern München",
+      "probability": 0.8003,
+      "explanation": {
+        "home_expected_goals": 3.46,
+        "away_expected_goals": 1.17,
+        "home_attack_strength": 1.9,
+        "home_defence_strength": 0.84,
+        "away_attack_strength": 0.96,
+        "away_defence_strength": 0.97,
+        "league_home_goals": 1.89,
+        "league_away_goals": 1.45,
+        "summary": "Modellen forventer 3.46 mål til FC Bayern München mod 1.17 til RB Leipzig; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
+    },
     {
       "date": "2026-10-11",
       "match": "Sport Lisboa e Benfica vs Vitória Guimarães",
@@ -34,23 +51,6 @@
         "league_away_goals": 1.18,
         "summary": "Modellen forventer 2.25 mål til FC Barcelona mod 0.52 til Getafe CF; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
-    },
-    {
-      "date": "2026-10-10",
-      "match": "FC Internazionale Milano vs Parma Calcio 1913",
-      "selection": "FC Internazionale Milano",
-      "probability": 0.7349,
-      "explanation": {
-        "home_expected_goals": 2.37,
-        "away_expected_goals": 0.75,
-        "home_attack_strength": 1.85,
-        "home_defence_strength": 0.94,
-        "away_attack_strength": 0.65,
-        "away_defence_strength": 0.97,
-        "league_home_goals": 1.32,
-        "league_away_goals": 1.21,
-        "summary": "Modellen forventer 2.37 mål til FC Internazionale Milano mod 0.75 til Parma Calcio 1913; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
-      }
     }
   ],
   "upsets": [
@@ -69,6 +69,24 @@
         "league_home_goals": 1.78,
         "league_away_goals": 1.54,
         "summary": "Modellen forventer 1.53 mål til SBV Excelsior mod 1.57 til SC Heerenveen; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      },
+      "uncertain": false
+    },
+    {
+      "date": "2026-10-17",
+      "match": "Valencia CF vs Athletic Club",
+      "selection": "Athletic Club",
+      "probability": 0.3711,
+      "explanation": {
+        "home_expected_goals": 1.5,
+        "away_expected_goals": 1.47,
+        "home_attack_strength": 0.82,
+        "home_defence_strength": 1.25,
+        "away_attack_strength": 1.0,
+        "away_defence_strength": 1.13,
+        "league_home_goals": 1.63,
+        "league_away_goals": 1.18,
+        "summary": "Modellen forventer 1.47 mål til Athletic Club mod 1.50 til Valencia CF; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
       },
       "uncertain": false
     },
@@ -124,26 +142,26 @@
       {
         "type": "single",
         "stake_kr": 40,
-        "combined_probability": 0.7798,
+        "combined_probability": 0.8003,
         "legs": [
           {
-            "date": "2026-10-11",
-            "match": "Sport Lisboa e Benfica vs Vitória Guimarães",
-            "selection": "Sport Lisboa e Benfica",
-            "probability": 0.7798
+            "date": "2026-10-17",
+            "match": "FC Bayern München vs RB Leipzig",
+            "selection": "FC Bayern München",
+            "probability": 0.8003
           }
         ]
       },
       {
         "type": "double",
         "stake_kr": 20,
-        "combined_probability": 0.2898,
+        "combined_probability": 0.2974,
         "legs": [
           {
-            "date": "2026-10-11",
-            "match": "Sport Lisboa e Benfica vs Vitória Guimarães",
-            "selection": "Sport Lisboa e Benfica",
-            "probability": 0.7798
+            "date": "2026-10-17",
+            "match": "FC Bayern München vs RB Leipzig",
+            "selection": "FC Bayern München",
+            "probability": 0.8003
           },
           {
             "date": "2026-10-16",
@@ -169,16 +187,16 @@
     ]
   },
   "smart_double": {
-    "combined_probability": 0.2898,
-    "expected_odds_90": 3.11,
+    "combined_probability": 0.2974,
+    "expected_odds_90": 3.03,
     "note": null,
     "legs": [
       {
         "role": "solid",
-        "date": "2026-10-11",
-        "match": "Sport Lisboa e Benfica vs Vitória Guimarães",
-        "selection": "Sport Lisboa e Benfica",
-        "probability": 0.7798
+        "date": "2026-10-17",
+        "match": "FC Bayern München vs RB Leipzig",
+        "selection": "FC Bayern München",
+        "probability": 0.8003
       },
       {
         "role": "surprise",
