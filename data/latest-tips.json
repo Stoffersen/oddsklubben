@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-10 14:06 UTC",
+  "updated": "2026-10-11 14:32 UTC",
   "favorites": [
     {
       "date": "2026-10-17",
@@ -36,24 +36,42 @@
       }
     },
     {
-      "date": "2026-10-10",
-      "match": "FC Barcelona vs Getafe CF",
-      "selection": "FC Barcelona",
-      "probability": 0.7684,
+      "date": "2026-10-17",
+      "match": "Man City vs Ipswich",
+      "selection": "Man City",
+      "probability": 0.7135,
       "explanation": {
-        "home_expected_goals": 2.25,
-        "away_expected_goals": 0.52,
-        "home_attack_strength": 1.74,
-        "home_defence_strength": 0.73,
-        "away_attack_strength": 0.61,
-        "away_defence_strength": 0.79,
-        "league_home_goals": 1.63,
-        "league_away_goals": 1.18,
-        "summary": "Modellen forventer 2.25 mål til FC Barcelona mod 0.52 til Getafe CF; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+        "home_expected_goals": 2.72,
+        "away_expected_goals": 1.11,
+        "home_attack_strength": 1.42,
+        "home_defence_strength": 0.8,
+        "away_attack_strength": 1.12,
+        "away_defence_strength": 1.26,
+        "league_home_goals": 1.52,
+        "league_away_goals": 1.24,
+        "summary": "Modellen forventer 2.72 mål til Man City mod 1.11 til Ipswich; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
     }
   ],
   "upsets": [
+    {
+      "date": "2026-10-18",
+      "match": "FC Lorient vs AS Monaco FC",
+      "selection": "FC Lorient",
+      "probability": 0.3864,
+      "explanation": {
+        "home_expected_goals": 1.71,
+        "away_expected_goals": 1.72,
+        "home_attack_strength": 1.06,
+        "home_defence_strength": 1.12,
+        "away_attack_strength": 1.2,
+        "away_defence_strength": 1.04,
+        "league_home_goals": 1.56,
+        "league_away_goals": 1.27,
+        "summary": "Modellen forventer 1.71 mål til FC Lorient mod 1.72 til AS Monaco FC; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      },
+      "uncertain": false
+    },
     {
       "date": "2026-10-16",
       "match": "SC Heerenveen vs SBV Excelsior",
@@ -89,33 +107,15 @@
         "summary": "Modellen forventer 1.47 mål til Athletic Club mod 1.50 til Valencia CF; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
       },
       "uncertain": false
-    },
-    {
-      "date": "2026-10-14",
-      "match": "Queens Park Rangers FC vs Derby County FC",
-      "selection": "Queens Park Rangers FC",
-      "probability": 0.3709,
-      "explanation": {
-        "home_expected_goals": 1.55,
-        "away_expected_goals": 1.59,
-        "home_attack_strength": 1.04,
-        "home_defence_strength": 1.18,
-        "away_attack_strength": 1.11,
-        "away_defence_strength": 1.02,
-        "league_home_goals": 1.47,
-        "league_away_goals": 1.22,
-        "summary": "Modellen forventer 1.55 mål til Queens Park Rangers FC mod 1.59 til Derby County FC; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
-      },
-      "uncertain": false
     }
   ],
   "bold_upsets": [
     {
-      "date": "2026-10-10",
-      "match": "1. FC Union Berlin vs SV 07 Elversberg",
-      "selection": "1. FC Union Berlin",
-      "probability": 0.3427,
-      "favorite_probability": 0.4331,
+      "date": "2026-10-18",
+      "match": "Borussia Mönchengladbach vs TSG 1899 Hoffenheim",
+      "selection": "TSG 1899 Hoffenheim",
+      "probability": 0.3457,
+      "favorite_probability": 0.441,
       "tier": "bold"
     },
     {
@@ -155,7 +155,7 @@
       {
         "type": "double",
         "stake_kr": 20,
-        "combined_probability": 0.2974,
+        "combined_probability": 0.3092,
         "legs": [
           {
             "date": "2026-10-17",
@@ -164,31 +164,31 @@
             "probability": 0.8003
           },
           {
-            "date": "2026-10-16",
-            "match": "SC Heerenveen vs SBV Excelsior",
-            "selection": "SBV Excelsior",
-            "probability": 0.3716
+            "date": "2026-10-18",
+            "match": "FC Lorient vs AS Monaco FC",
+            "selection": "FC Lorient",
+            "probability": 0.3864
           }
         ]
       },
       {
         "type": "single",
         "stake_kr": 20,
-        "combined_probability": 0.3716,
+        "combined_probability": 0.3864,
         "legs": [
           {
-            "date": "2026-10-16",
-            "match": "SC Heerenveen vs SBV Excelsior",
-            "selection": "SBV Excelsior",
-            "probability": 0.3716
+            "date": "2026-10-18",
+            "match": "FC Lorient vs AS Monaco FC",
+            "selection": "FC Lorient",
+            "probability": 0.3864
           }
         ]
       }
     ]
   },
   "smart_double": {
-    "combined_probability": 0.2974,
-    "expected_odds_90": 3.03,
+    "combined_probability": 0.3092,
+    "expected_odds_90": 2.91,
     "note": null,
     "legs": [
       {
@@ -200,10 +200,10 @@
       },
       {
         "role": "surprise",
-        "date": "2026-10-16",
-        "match": "SC Heerenveen vs SBV Excelsior",
-        "selection": "SBV Excelsior",
-        "probability": 0.3716
+        "date": "2026-10-18",
+        "match": "FC Lorient vs AS Monaco FC",
+        "selection": "FC Lorient",
+        "probability": 0.3864
       }
     ]
   },
