@@ -44,6 +44,18 @@
           "result": "pending",
           "return_kr": null
         }
+      ],
+      "missing_results": [
+        {
+          "date": "2026-10-10",
+          "match": "FC Barcelona vs Getafe CF",
+          "days_overdue": 1
+        },
+        {
+          "date": "2026-10-10",
+          "match": "FC Internazionale Milano vs Parma Calcio 1913",
+          "days_overdue": 1
+        }
       ]
     },
     {
@@ -122,5 +134,5 @@
     "profit_kr": 0,
     "return_pct": null
   },
-  "updated": "2026-10-11 14:32 UTC"
+  "updated": "2026-10-11 19:43 UTC"
 }
