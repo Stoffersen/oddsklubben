@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-11 20:46 UTC",
+  "updated": "2026-10-12 17:09 UTC",
   "favorites": [
     {
       "date": "2026-10-17",
@@ -19,23 +19,6 @@
       }
     },
     {
-      "date": "2026-10-11",
-      "match": "Sport Lisboa e Benfica vs Vitória Guimarães",
-      "selection": "Sport Lisboa e Benfica",
-      "probability": 0.7798,
-      "explanation": {
-        "home_expected_goals": 2.7,
-        "away_expected_goals": 0.77,
-        "home_attack_strength": 1.47,
-        "home_defence_strength": 0.82,
-        "away_attack_strength": 0.77,
-        "away_defence_strength": 1.25,
-        "league_home_goals": 1.46,
-        "league_away_goals": 1.23,
-        "summary": "Modellen forventer 2.70 mål til Sport Lisboa e Benfica mod 0.77 til Vitória Guimarães; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
-      }
-    },
-    {
       "date": "2026-10-17",
       "match": "Man City vs Ipswich",
       "selection": "Man City",
@@ -50,6 +33,23 @@
         "league_home_goals": 1.52,
         "league_away_goals": 1.24,
         "summary": "Modellen forventer 2.72 mål til Man City mod 1.11 til Ipswich; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
+    },
+    {
+      "date": "2026-10-17",
+      "match": "Southampton FC vs Bolton Wanderers FC",
+      "selection": "Southampton FC",
+      "probability": 0.7133,
+      "explanation": {
+        "home_expected_goals": 2.65,
+        "away_expected_goals": 1.05,
+        "home_attack_strength": 1.38,
+        "home_defence_strength": 0.76,
+        "away_attack_strength": 1.13,
+        "away_defence_strength": 1.31,
+        "league_home_goals": 1.47,
+        "league_away_goals": 1.22,
+        "summary": "Modellen forventer 2.65 mål til Southampton FC mod 1.05 til Bolton Wanderers FC; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
     }
   ],
