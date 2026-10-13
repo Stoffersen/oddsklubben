@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-12 17:09 UTC",
+  "updated": "2026-10-13 15:26 UTC",
   "favorites": [
     {
       "date": "2026-10-17",
@@ -119,19 +119,19 @@
       "tier": "bold"
     },
     {
-      "date": "2026-10-12",
-      "match": "Torino FC vs Udinese Calcio",
-      "selection": "Torino FC",
-      "probability": 0.3379,
-      "favorite_probability": 0.4433,
-      "tier": "bold"
-    },
-    {
       "date": "2026-10-16",
       "match": "Burnley vs Wolves",
       "selection": "Burnley",
       "probability": 0.3393,
       "favorite_probability": 0.4238,
+      "tier": "bold"
+    },
+    {
+      "date": "2026-10-17",
+      "match": "Fulham vs Hull",
+      "selection": "Hull",
+      "probability": 0.3341,
+      "favorite_probability": 0.4144,
       "tier": "bold"
     }
   ],
