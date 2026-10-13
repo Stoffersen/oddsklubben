@@ -8,9 +8,9 @@
       "model_updated": "2026-10-03 14:02 UTC",
       "stake_kr": 80,
       "rtp": 0.9,
-      "status": "open",
-      "return_kr": null,
-      "profit_kr": null,
+      "status": "settled",
+      "return_kr": 95.6,
+      "profit_kr": 15.6,
       "bets": [
         {
           "type": "single",
@@ -25,8 +25,8 @@
               "fake_odds": 1.17
             }
           ],
-          "result": "pending",
-          "return_kr": null
+          "result": "won",
+          "return_kr": 46.8
         },
         {
           "type": "single",
@@ -41,20 +41,8 @@
               "fake_odds": 1.22
             }
           ],
-          "result": "pending",
-          "return_kr": null
-        }
-      ],
-      "missing_results": [
-        {
-          "date": "2026-10-10",
-          "match": "FC Barcelona vs Getafe CF",
-          "days_overdue": 3
-        },
-        {
-          "date": "2026-10-10",
-          "match": "FC Internazionale Milano vs Parma Calcio 1913",
-          "days_overdue": 3
+          "result": "won",
+          "return_kr": 48.8
         }
       ]
     },
@@ -128,11 +116,11 @@
     }
   ],
   "totals": {
-    "settled_weeks": 0,
-    "stake_kr": 0,
-    "return_kr": 0,
-    "profit_kr": 0,
-    "return_pct": null
+    "settled_weeks": 1,
+    "stake_kr": 80,
+    "return_kr": 95.6,
+    "profit_kr": 15.6,
+    "return_pct": 119.5
   },
-  "updated": "2026-10-13 16:12 UTC"
+  "updated": "2026-10-13 19:13 UTC"
 }
