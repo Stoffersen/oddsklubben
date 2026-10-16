@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-16 12:56 UTC",
+  "updated": "2026-10-16 13:08 UTC",
   "favorites": [
     {
       "date": "2026-10-17",
@@ -100,7 +100,7 @@
         "away_expected_goals": 1.47,
         "home_attack_strength": 0.82,
         "home_defence_strength": 1.25,
-        "away_attack_strength": 1,
+        "away_attack_strength": 1.0,
         "away_defence_strength": 1.13,
         "league_home_goals": 1.63,
         "league_away_goals": 1.18,
