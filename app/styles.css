@@ -197,3 +197,15 @@
 
 /* Persistent app home navigation */
 .floating-home{position:fixed;z-index:1000;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));display:none;align-items:center;gap:6px;padding:11px 15px;border:1px solid #cfd9d1;border-radius:999px;background:rgba(255,255,255,.96);color:#17472d;font:800 14px/1 system-ui;box-shadow:0 5px 18px rgba(20,55,35,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}.floating-home.show{display:inline-flex}.floating-home:active{transform:translateY(1px)}@media(min-width:851px){.floating-home{display:none!important}}
+
+/* Bot tips: sourced squad status, compact and accessible */
+.squad-coverage{background:#fff;border:1px solid #e0e6df;border-radius:16px;padding:14px;font-size:14px;line-height:1.5}
+.squad-coverage-summary{margin:0 0 7px;color:#243c2b}
+.squad-coverage-note{margin:0;color:#536257;font-size:13px}
+.squad-coverage-details{margin-top:12px;border-top:1px solid #e7ece6;padding-top:10px}
+.squad-coverage-details summary{cursor:pointer;font-weight:750;color:#163d27}
+.squad-coverage-match{padding:10px 0;border-bottom:1px solid #eef1ed}
+.squad-coverage-match:last-child{border-bottom:0}
+.squad-coverage-match strong,.squad-coverage-match small{display:block}
+.squad-coverage-match small{color:#536257}
+.squad-coverage-match a{color:#165a3b;text-decoration:underline}
