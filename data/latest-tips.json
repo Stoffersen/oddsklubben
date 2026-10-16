@@ -1,5 +1,15 @@
 {
-  "updated": "2026-10-16 11:15 UTC",
+  "updated": "2026-10-16 11:24 UTC",
+  "squad_coverage": {
+    "fixtures": 78,
+    "fixtures_with_sourced_player_reports": 0,
+    "fixtures_with_reported_possible_absences": 0,
+    "player_reports": 0,
+    "possible_absences": 0,
+    "coverage_fraction": 0.0,
+    "source_claims_independently_verified": false,
+    "probabilities_adjusted": false
+  },
   "squad_availability": {
     "mode": "evidence_only",
     "probabilities_adjusted": false,
