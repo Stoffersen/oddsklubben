@@ -215,3 +215,12 @@ Opdatér denne håndbog, når projektets datamodel, faste regler eller brugerpr�
 - Kvalitetsbaren er en poleret redaktionel/graphic-novel-illustration med voksne figurer, tekstur, lys og karakter. Simple stregtegninger, clipart-look og barnlig mascot-stil er udtrykkeligt fravalgt.
 - Illustrationerne skal bruges doseret og humoristisk på desktop-hjemmesidens relevante sektioner, mens statistik, arkiver og funktionalitet fortsat er hovedindholdet. De må ikke gøre mobilappen tungere eller ændre dens enkle visuelle retning.
 - **Status:** illustrationerne er konceptuelt godkendt, men endnu ikke implementeret i repoet. Der må ikke dokumenteres eller kommunikeres, at de er live, før rigtige billed-assets er lagt i repoet og deployment er verificeret.
+
+
+## Bot’ens trupstatus på Spilforslag — 2026-10-16
+
+- Spilforslag viser en kompakt `Trupstatus`-sektion med `squad_coverage` fra `data/latest-tips.json`. Den viser dækkede/alle kampe og antal mulige fravær.
+- Hvis `squad_availability.matches` indeholder kildehenviste spilleroplysninger, kan brugeren folde dem ud med spiller, status og HTTPS-kildelink. Tekst og links HTML-escapes før indsættelse.
+- Hvis `squad_coverage` mangler i ældre feed, vises en ukendt-status-forklaring frem for opdigtede tal. Fravær af rapporter er ikke dokumentation for skadesfri trup.
+- Kildeindhold er ikke uafhængigt verificeret, og spillerfravær ændrer ikke sandsynlighederne.
+- Ændringen er kun på `mobile-round-entry`. `main` må ikke ændres uden godkendelse. PWA shell/cache og CSS/JS asset-versioner er løftet. Afvent verificeret grøn deploy før release regnes som færdig.
