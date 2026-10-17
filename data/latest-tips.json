@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-16 13:18 UTC",
+  "updated": "2026-10-17 11:51 UTC",
   "favorites": [
     {
       "date": "2026-10-17",
@@ -73,24 +73,6 @@
       "uncertain": false
     },
     {
-      "date": "2026-10-16",
-      "match": "SC Heerenveen vs SBV Excelsior",
-      "selection": "SBV Excelsior",
-      "probability": 0.3716,
-      "explanation": {
-        "home_expected_goals": 1.57,
-        "away_expected_goals": 1.53,
-        "home_attack_strength": 0.93,
-        "home_defence_strength": 0.88,
-        "away_attack_strength": 1.13,
-        "away_defence_strength": 0.95,
-        "league_home_goals": 1.78,
-        "league_away_goals": 1.54,
-        "summary": "Modellen forventer 1.53 mål til SBV Excelsior mod 1.57 til SC Heerenveen; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
-      },
-      "uncertain": false
-    },
-    {
       "date": "2026-10-17",
       "match": "Valencia CF vs Athletic Club",
       "selection": "Athletic Club",
@@ -119,19 +101,19 @@
       "tier": "bold"
     },
     {
-      "date": "2026-10-16",
-      "match": "Burnley vs Wolves",
-      "selection": "Burnley",
-      "probability": 0.3393,
-      "favorite_probability": 0.4238,
-      "tier": "bold"
-    },
-    {
       "date": "2026-10-17",
       "match": "Fulham vs Hull",
       "selection": "Hull",
       "probability": 0.3341,
       "favorite_probability": 0.4144,
+      "tier": "bold"
+    },
+    {
+      "date": "2026-10-17",
+      "match": "SV 07 Elversberg vs FC Augsburg",
+      "selection": "FC Augsburg",
+      "probability": 0.3199,
+      "favorite_probability": 0.4632,
       "tier": "bold"
     }
   ],
