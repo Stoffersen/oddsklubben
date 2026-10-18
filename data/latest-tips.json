@@ -1,55 +1,55 @@
 {
-  "updated": "2026-10-17 11:51 UTC",
+  "updated": "2026-10-18 08:24 UTC",
   "favorites": [
     {
-      "date": "2026-10-17",
-      "match": "FC Bayern München vs RB Leipzig",
-      "selection": "FC Bayern München",
-      "probability": 0.8003,
+      "date": "2026-10-25",
+      "match": "FC Internazionale Milano vs ACF Fiorentina",
+      "selection": "FC Internazionale Milano",
+      "probability": 0.7398,
       "explanation": {
-        "home_expected_goals": 3.46,
-        "away_expected_goals": 1.17,
-        "home_attack_strength": 1.9,
-        "home_defence_strength": 0.84,
-        "away_attack_strength": 0.96,
-        "away_defence_strength": 0.97,
+        "home_expected_goals": 3.02,
+        "away_expected_goals": 1.2,
+        "home_attack_strength": 1.85,
+        "home_defence_strength": 0.94,
+        "away_attack_strength": 1.05,
+        "away_defence_strength": 1.24,
+        "league_home_goals": 1.32,
+        "league_away_goals": 1.21,
+        "summary": "Modellen forventer 3.02 mål til FC Internazionale Milano mod 1.20 til ACF Fiorentina; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
+    },
+    {
+      "date": "2026-10-18",
+      "match": "Real Madrid CF vs Sevilla FC",
+      "selection": "Real Madrid CF",
+      "probability": 0.69,
+      "explanation": {
+        "home_expected_goals": 2.42,
+        "away_expected_goals": 0.99,
+        "home_attack_strength": 1.5,
+        "home_defence_strength": 0.81,
+        "away_attack_strength": 1.03,
+        "away_defence_strength": 0.99,
+        "league_home_goals": 1.63,
+        "league_away_goals": 1.18,
+        "summary": "Modellen forventer 2.42 mål til Real Madrid CF mod 0.99 til Sevilla FC; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
+    },
+    {
+      "date": "2026-10-18",
+      "match": "Bayer 04 Leverkusen vs SC Freiburg",
+      "selection": "Bayer 04 Leverkusen",
+      "probability": 0.6724,
+      "explanation": {
+        "home_expected_goals": 2.27,
+        "away_expected_goals": 0.94,
+        "home_attack_strength": 1.19,
+        "home_defence_strength": 0.77,
+        "away_attack_strength": 0.84,
+        "away_defence_strength": 1.01,
         "league_home_goals": 1.89,
         "league_away_goals": 1.45,
-        "summary": "Modellen forventer 3.46 mål til FC Bayern München mod 1.17 til RB Leipzig; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
-      }
-    },
-    {
-      "date": "2026-10-17",
-      "match": "Man City vs Ipswich",
-      "selection": "Man City",
-      "probability": 0.7135,
-      "explanation": {
-        "home_expected_goals": 2.72,
-        "away_expected_goals": 1.11,
-        "home_attack_strength": 1.42,
-        "home_defence_strength": 0.8,
-        "away_attack_strength": 1.12,
-        "away_defence_strength": 1.26,
-        "league_home_goals": 1.52,
-        "league_away_goals": 1.24,
-        "summary": "Modellen forventer 2.72 mål til Man City mod 1.11 til Ipswich; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
-      }
-    },
-    {
-      "date": "2026-10-17",
-      "match": "Southampton FC vs Bolton Wanderers FC",
-      "selection": "Southampton FC",
-      "probability": 0.7133,
-      "explanation": {
-        "home_expected_goals": 2.65,
-        "away_expected_goals": 1.05,
-        "home_attack_strength": 1.38,
-        "home_defence_strength": 0.76,
-        "away_attack_strength": 1.13,
-        "away_defence_strength": 1.31,
-        "league_home_goals": 1.47,
-        "league_away_goals": 1.22,
-        "summary": "Modellen forventer 2.65 mål til Southampton FC mod 1.05 til Bolton Wanderers FC; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+        "summary": "Modellen forventer 2.27 mål til Bayer 04 Leverkusen mod 0.94 til SC Freiburg; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
     }
   ],
@@ -73,20 +73,20 @@
       "uncertain": false
     },
     {
-      "date": "2026-10-17",
-      "match": "Valencia CF vs Athletic Club",
-      "selection": "Athletic Club",
-      "probability": 0.3711,
+      "date": "2026-10-25",
+      "match": "PSV vs Feyenoord Rotterdam",
+      "selection": "Feyenoord Rotterdam",
+      "probability": 0.3761,
       "explanation": {
-        "home_expected_goals": 1.5,
-        "away_expected_goals": 1.47,
-        "home_attack_strength": 0.82,
-        "home_defence_strength": 1.25,
-        "away_attack_strength": 1.0,
-        "away_defence_strength": 1.13,
-        "league_home_goals": 1.63,
-        "league_away_goals": 1.18,
-        "summary": "Modellen forventer 1.47 mål til Athletic Club mod 1.50 til Valencia CF; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+        "home_expected_goals": 2.18,
+        "away_expected_goals": 2.05,
+        "home_attack_strength": 1.7,
+        "home_defence_strength": 0.97,
+        "away_attack_strength": 1.37,
+        "away_defence_strength": 0.72,
+        "league_home_goals": 1.78,
+        "league_away_goals": 1.54,
+        "summary": "Modellen forventer 2.05 mål til Feyenoord Rotterdam mod 2.18 til PSV; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
       },
       "uncertain": false
     }
@@ -101,19 +101,19 @@
       "tier": "bold"
     },
     {
-      "date": "2026-10-17",
-      "match": "Fulham vs Hull",
-      "selection": "Hull",
-      "probability": 0.3341,
-      "favorite_probability": 0.4144,
+      "date": "2026-10-18",
+      "match": "PEC Zwolle vs Go Ahead Eagles",
+      "selection": "PEC Zwolle",
+      "probability": 0.3242,
+      "favorite_probability": 0.4321,
       "tier": "bold"
     },
     {
-      "date": "2026-10-17",
-      "match": "SV 07 Elversberg vs FC Augsburg",
-      "selection": "FC Augsburg",
-      "probability": 0.3199,
-      "favorite_probability": 0.4632,
+      "date": "2026-10-25",
+      "match": "TSG 1899 Hoffenheim vs Bayer 04 Leverkusen",
+      "selection": "Bayer 04 Leverkusen",
+      "probability": 0.3195,
+      "favorite_probability": 0.458,
       "tier": "bold"
     }
   ],
@@ -124,26 +124,26 @@
       {
         "type": "single",
         "stake_kr": 40,
-        "combined_probability": 0.8003,
+        "combined_probability": 0.7398,
         "legs": [
           {
-            "date": "2026-10-17",
-            "match": "FC Bayern München vs RB Leipzig",
-            "selection": "FC Bayern München",
-            "probability": 0.8003
+            "date": "2026-10-25",
+            "match": "FC Internazionale Milano vs ACF Fiorentina",
+            "selection": "FC Internazionale Milano",
+            "probability": 0.7398
           }
         ]
       },
       {
         "type": "double",
         "stake_kr": 20,
-        "combined_probability": 0.3092,
+        "combined_probability": 0.2858,
         "legs": [
           {
-            "date": "2026-10-17",
-            "match": "FC Bayern München vs RB Leipzig",
-            "selection": "FC Bayern München",
-            "probability": 0.8003
+            "date": "2026-10-25",
+            "match": "FC Internazionale Milano vs ACF Fiorentina",
+            "selection": "FC Internazionale Milano",
+            "probability": 0.7398
           },
           {
             "date": "2026-10-18",
@@ -169,16 +169,16 @@
     ]
   },
   "smart_double": {
-    "combined_probability": 0.3092,
-    "expected_odds_90": 2.91,
+    "combined_probability": 0.2858,
+    "expected_odds_90": 3.15,
     "note": null,
     "legs": [
       {
         "role": "solid",
-        "date": "2026-10-17",
-        "match": "FC Bayern München vs RB Leipzig",
-        "selection": "FC Bayern München",
-        "probability": 0.8003
+        "date": "2026-10-25",
+        "match": "FC Internazionale Milano vs ACF Fiorentina",
+        "selection": "FC Internazionale Milano",
+        "probability": 0.7398
       },
       {
         "role": "surprise",

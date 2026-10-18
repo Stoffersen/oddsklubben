@@ -187,6 +187,13 @@
           "result": "pending",
           "return_kr": null
         }
+      ],
+      "missing_results": [
+        {
+          "date": "2026-10-17",
+          "match": "FC Bayern München vs RB Leipzig",
+          "days_overdue": 1
+        }
       ]
     }
   ],
@@ -197,5 +204,5 @@
     "profit_kr": 15.6,
     "return_pct": 119.5
   },
-  "updated": "2026-10-18 04:23 UTC"
+  "updated": "2026-10-18 08:24 UTC"
 }
