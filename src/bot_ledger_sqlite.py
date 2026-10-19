@@ -23,6 +23,12 @@ class SQLiteLedger:
             revision_of TEXT REFERENCES settlement_events(settlement_id)
         );
         CREATE INDEX IF NOT EXISTS settlement_bet_idx ON settlement_events(bet_id);
+        -- One initial settlement per bet, and at most one successor per event.
+        -- Database constraints protect the chain even from other SQLite writers.
+        CREATE UNIQUE INDEX IF NOT EXISTS one_initial_settlement_per_bet
+          ON settlement_events(bet_id) WHERE revision_of IS NULL;
+        CREATE UNIQUE INDEX IF NOT EXISTS one_successor_per_settlement
+          ON settlement_events(revision_of) WHERE revision_of IS NOT NULL;
         """)
 
     def close(self):
