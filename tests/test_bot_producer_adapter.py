@@ -64,3 +64,15 @@ class AdapterTests(unittest.TestCase):
                     apply(db,dict(SETTLE,**{field:"   "}))
             self.assertEqual(db.totals()["stake_ore"],0)
             db.close()
+
+    def test_result_provenance_survives_reopen(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/"check.db"
+            db=SQLiteLedger(path)
+            apply(db,LOCK)
+            apply(db,dict(SETTLE,source_ref="source-record"))
+            db.close()
+            db=SQLiteLedger(path)
+            row=db.db.execute("SELECT source,source_ref FROM settlement_provenance").fetchone()
+            self.assertEqual(row,("verified","source-record"))
+            db.close()
