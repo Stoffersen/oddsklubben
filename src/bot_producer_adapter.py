@@ -37,5 +37,5 @@ def apply(ledger, event):
         if event.get("revision_of") is not None and (not isinstance(event["revision_of"], str) or not event["revision_of"].strip() or not isinstance(event.get("reason"), str) or not event["reason"].strip()):
             raise ValueError("reason required for correction")
         return ledger.settle(event["settlement_id"],event["bet_id"],event["result"],
-                             event["return_kr"],event.get("revision_of"))
+                             event["return_kr"],event.get("revision_of"), provenance={"source":event["source"], "observed_at_utc":parse_time(event["observed_at_utc"]).isoformat(), "reason":event.get("reason"), "source_ref":event.get("source_ref")})
     raise ValueError("unsupported event kind")
