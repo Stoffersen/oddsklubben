@@ -13,7 +13,11 @@ Browseren indeholder aldrig Google credentials.
 8. Script lock forhindrer samtidige dobbelt-skrivninger.
 9. Hvis en eksisterende uge/runde-blok har et andet antal rækker end den nye payload, stoppes skrivningen i stedet for at gætte.
 
-## Sikker aktivering
-Backend er dry-run som standard. Script Properties skal have `SPREADSHEET_ID`. Først når `WRITE_ENABLED=true` sættes, kan der skrives. Frontend er endnu ikke koblet til en deployet endpoint-URL.
+## Aktuel aktivering og status (19. oktober 2026)
+Frontend er koblet til en deployet Apps Script-URL i `app/app.js`. Backend er **dry-run som standard**, men skriver, når Script Properties har `SPREADSHEET_ID` og `WRITE_ENABLED=true`.
 
-Det betyder, at koden til live-skrivning nu findes, men den kan ikke ændre Google Sheet i den nuværende tilstand.
+Projektets `AGENTS.md` dokumenterer en tidligere vellykket end-to-end 0-kr-test og aktiveret live-skrivning. Det er **ikke** en live-kontrol af den aktuelle Script Property. Ved ny session skal backendens GET (`writeEnabled`) og respons på en autoriseret faktisk gemning (`status: "written"`) bruges som bevis; undgå testskrivning til produktionsark uden tilladelse.
+
+Appen viser forbindelsesstatus i `#sheetWriteStatus`. Kun `status:"written"` udløser teksten `Gemt i Google Sheet`. Efter skrivning anvendes `SpreadsheetApp.flush()`, `sortStandings_(ss)` og endnu en `flush()` til genberegning og sortering af de relevante blokke i `Tabellen`. Om alle stillingsformler er semantisk korrekte kræver særskilt kontrol.
+
+Denne sektion erstatter den forældede besked om, at frontend endnu ikke var koblet på.
