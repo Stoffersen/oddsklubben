@@ -1,7 +1,7 @@
 name: Bot ledger integrity tests
 on:
   pull_request:
-    branches: [mobile-round-entry, prototype/bot-ledger-idempotency-20261019, test/bot-ledger-contract-e2e-20261019, prototype/sqlite-bot-ledger-20261019, plan/bot-ledger-rollout-20261019]
+    branches: [mobile-round-entry, prototype/bot-ledger-idempotency-20261019, test/bot-ledger-contract-e2e-20261019, prototype/sqlite-bot-ledger-20261019, plan/bot-ledger-rollout-20261019, hardening/bot-ledger-revision-chain-20261019]
     paths:
       - 'data/bot-bets.json'
       - 'tests/test_bot_ledger_integrity.py'
@@ -9,6 +9,8 @@ on:
       - 'tests/test_bot_contract_path.py'
       - 'tests/test_bot_ledger_sqlite.py'
       - 'tests/test_bot_ledger_backup.py'
+      - 'tests/test_bot_shadow_reconcile.py'
+      - 'src/bot_shadow_reconcile.py'
       - 'src/bot_ledger_backup.py'
       - 'src/bot_ledger_sqlite.py'
       - 'src/bot_ledger_reference.py'
