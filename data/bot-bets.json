@@ -51,11 +51,11 @@
       "model_updated": "2026-10-11 14:32 UTC",
       "stake_kr": 80,
       "rtp": 0.9,
-      "status": "open",
+      "status": "settled",
       "risk_mode": "normal",
       "risk_note": "Saldoen er omkring neutral: Bot’en bruger sin normale modelportefølje.",
-      "return_kr": null,
-      "profit_kr": null,
+      "return_kr": 143.6,
+      "profit_kr": 63.6,
       "bets": [
         {
           "type": "single",
@@ -70,8 +70,8 @@
               "fake_odds": 1.12
             }
           ],
-          "result": "pending",
-          "return_kr": null
+          "result": "won",
+          "return_kr": 44.8
         },
         {
           "type": "double",
@@ -93,8 +93,8 @@
               "fake_odds": 2.33
             }
           ],
-          "result": "pending",
-          "return_kr": null
+          "result": "won",
+          "return_kr": 52.2
         },
         {
           "type": "single",
@@ -109,20 +109,8 @@
               "fake_odds": 2.33
             }
           ],
-          "result": "pending",
-          "return_kr": null
-        }
-      ],
-      "missing_results": [
-        {
-          "date": "2026-10-17",
-          "match": "FC Bayern München vs RB Leipzig",
-          "days_overdue": 2
-        },
-        {
-          "date": "2026-10-18",
-          "match": "FC Lorient vs AS Monaco FC",
-          "days_overdue": 1
+          "result": "won",
+          "return_kr": 46.6
         }
       ]
     },
@@ -131,11 +119,11 @@
       "model_updated": "2026-10-17 11:51 UTC",
       "stake_kr": 80,
       "rtp": 0.9,
-      "status": "open",
+      "status": "settled",
       "risk_mode": "normal",
       "risk_note": "Saldoen er omkring neutral: Bot’en bruger sin normale modelportefølje.",
-      "return_kr": null,
-      "profit_kr": null,
+      "return_kr": 143.6,
+      "profit_kr": 63.6,
       "bets": [
         {
           "type": "single",
@@ -150,8 +138,8 @@
               "fake_odds": 1.12
             }
           ],
-          "result": "pending",
-          "return_kr": null
+          "result": "won",
+          "return_kr": 44.8
         },
         {
           "type": "double",
@@ -173,8 +161,8 @@
               "fake_odds": 2.33
             }
           ],
-          "result": "pending",
-          "return_kr": null
+          "result": "won",
+          "return_kr": 52.2
         },
         {
           "type": "single",
@@ -189,30 +177,18 @@
               "fake_odds": 2.33
             }
           ],
-          "result": "pending",
-          "return_kr": null
-        }
-      ],
-      "missing_results": [
-        {
-          "date": "2026-10-17",
-          "match": "FC Bayern München vs RB Leipzig",
-          "days_overdue": 2
-        },
-        {
-          "date": "2026-10-18",
-          "match": "FC Lorient vs AS Monaco FC",
-          "days_overdue": 1
+          "result": "won",
+          "return_kr": 46.6
         }
       ]
     }
   ],
   "totals": {
-    "settled_weeks": 1,
-    "stake_kr": 80,
-    "return_kr": 95.6,
-    "profit_kr": 15.6,
-    "return_pct": 119.5
+    "settled_weeks": 3,
+    "stake_kr": 240,
+    "return_kr": 382.8,
+    "profit_kr": 142.8,
+    "return_pct": 159.5
   },
-  "updated": "2026-10-19 13:01 UTC"
+  "updated": "2026-10-19 14:13 UTC"
 }
