@@ -5,12 +5,18 @@ Amounts are integer øre to avoid binary rounding. Ledger operations are immutab
 from the perspective of callers; repeated events are ignored after consistency checks.
 """
 from dataclasses import dataclass
-from decimal import Decimal, ROUND_HALF_UP
+from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 
 VALID_RESULTS = {"pending", "won", "lost", "void"}
 
 def ore(value):
-    return int((Decimal(str(value)) * 100).quantize(Decimal("1"), rounding=ROUND_HALF_UP))
+    try:
+        amount = Decimal(str(value))
+        if not amount.is_finite():
+            raise ValueError("amount must be finite")
+        return int((amount * 100).quantize(Decimal("1"), rounding=ROUND_HALF_UP))
+    except (InvalidOperation, OverflowError) as exc:
+        raise ValueError("invalid money amount") from exc
 
 @dataclass(frozen=True)
 class Bet:
@@ -28,8 +34,8 @@ class Ledger:
         if not coupon_id or not bet_id:
             raise ValueError("stable coupon_id and bet_id required")
         bet = Bet(coupon_id, bet_id, ore(stake_kr))
-        if bet.stake_ore < 0:
-            raise ValueError("negative stake")
+        if bet.stake_ore <= 0:
+            raise ValueError("stake must be positive")
         previous = self.bets.get(bet_id)
         if previous is not None and previous != bet:
             raise ValueError("bet_id collision with different terms")
