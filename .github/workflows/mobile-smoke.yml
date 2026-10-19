@@ -1,0 +1,23 @@
+name: Mobile app smoke checks
+on:
+  pull_request:
+    branches: [mobile-round-entry]
+    paths:
+      - 'app/app.js'
+      - 'index.html'
+      - 'sw.js'
+      - 'tests/test_mobile_home_smoke.py'
+      - '.github/workflows/mobile-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check app/app.js
+      - run: python -m unittest tests/test_mobile_home_smoke.py -v
