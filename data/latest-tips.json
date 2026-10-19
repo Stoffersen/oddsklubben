@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-18 12:19 UTC",
+  "updated": "2026-10-19 14:13 UTC",
   "favorites": [
     {
       "date": "2026-10-25",
@@ -19,59 +19,41 @@
       }
     },
     {
-      "date": "2026-10-18",
-      "match": "Real Madrid CF vs Sevilla FC",
-      "selection": "Real Madrid CF",
-      "probability": 0.69,
+      "date": "2026-10-23",
+      "match": "VfB Stuttgart vs Borussia Mönchengladbach",
+      "selection": "VfB Stuttgart",
+      "probability": 0.67,
       "explanation": {
-        "home_expected_goals": 2.42,
-        "away_expected_goals": 0.99,
-        "home_attack_strength": 1.5,
-        "home_defence_strength": 0.81,
-        "away_attack_strength": 1.03,
-        "away_defence_strength": 0.99,
-        "league_home_goals": 1.63,
-        "league_away_goals": 1.18,
-        "summary": "Modellen forventer 2.42 mål til Real Madrid CF mod 0.99 til Sevilla FC; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+        "home_expected_goals": 2.04,
+        "away_expected_goals": 0.77,
+        "home_attack_strength": 0.99,
+        "home_defence_strength": 0.75,
+        "away_attack_strength": 0.71,
+        "away_defence_strength": 1.1,
+        "league_home_goals": 1.89,
+        "league_away_goals": 1.45,
+        "summary": "Modellen forventer 2.04 mål til VfB Stuttgart mod 0.77 til Borussia Mönchengladbach; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
     },
     {
-      "date": "2026-10-18",
-      "match": "Bayer 04 Leverkusen vs SC Freiburg",
-      "selection": "Bayer 04 Leverkusen",
-      "probability": 0.6724,
+      "date": "2026-10-25",
+      "match": "Sparta Rotterdam vs AFC Ajax",
+      "selection": "AFC Ajax",
+      "probability": 0.6477,
       "explanation": {
-        "home_expected_goals": 2.27,
-        "away_expected_goals": 0.94,
-        "home_attack_strength": 1.19,
-        "home_defence_strength": 0.77,
-        "away_attack_strength": 0.84,
-        "away_defence_strength": 1.01,
-        "league_home_goals": 1.89,
-        "league_away_goals": 1.45,
-        "summary": "Modellen forventer 2.27 mål til Bayer 04 Leverkusen mod 0.94 til SC Freiburg; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+        "home_expected_goals": 1.0,
+        "away_expected_goals": 2.21,
+        "home_attack_strength": 0.79,
+        "home_defence_strength": 1.13,
+        "away_attack_strength": 1.27,
+        "away_defence_strength": 0.71,
+        "league_home_goals": 1.78,
+        "league_away_goals": 1.54,
+        "summary": "Modellen forventer 2.21 mål til AFC Ajax mod 1.00 til Sparta Rotterdam; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
       }
     }
   ],
   "upsets": [
-    {
-      "date": "2026-10-18",
-      "match": "FC Lorient vs AS Monaco FC",
-      "selection": "FC Lorient",
-      "probability": 0.3864,
-      "explanation": {
-        "home_expected_goals": 1.71,
-        "away_expected_goals": 1.72,
-        "home_attack_strength": 1.06,
-        "home_defence_strength": 1.12,
-        "away_attack_strength": 1.2,
-        "away_defence_strength": 1.04,
-        "league_home_goals": 1.56,
-        "league_away_goals": 1.27,
-        "summary": "Modellen forventer 1.71 mål til FC Lorient mod 1.72 til AS Monaco FC; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
-      },
-      "uncertain": false
-    },
     {
       "date": "2026-10-25",
       "match": "PSV vs Feyenoord Rotterdam",
@@ -93,27 +75,27 @@
   ],
   "bold_upsets": [
     {
-      "date": "2026-10-18",
-      "match": "Borussia Mönchengladbach vs TSG 1899 Hoffenheim",
-      "selection": "TSG 1899 Hoffenheim",
-      "probability": 0.3457,
-      "favorite_probability": 0.441,
-      "tier": "bold"
-    },
-    {
-      "date": "2026-10-18",
-      "match": "PEC Zwolle vs Go Ahead Eagles",
-      "selection": "PEC Zwolle",
-      "probability": 0.3242,
-      "favorite_probability": 0.4321,
-      "tier": "bold"
-    },
-    {
       "date": "2026-10-25",
       "match": "TSG 1899 Hoffenheim vs Bayer 04 Leverkusen",
       "selection": "Bayer 04 Leverkusen",
       "probability": 0.3195,
       "favorite_probability": 0.458,
+      "tier": "bold"
+    },
+    {
+      "date": "2026-10-25",
+      "match": "Liverpool vs Brighton",
+      "selection": "Brighton",
+      "probability": 0.3235,
+      "favorite_probability": 0.429,
+      "tier": "bold"
+    },
+    {
+      "date": "2026-10-23",
+      "match": "Bolton Wanderers FC vs Middlesbrough FC",
+      "selection": "Bolton Wanderers FC",
+      "probability": 0.3264,
+      "favorite_probability": 0.4111,
       "tier": "bold"
     }
   ],
@@ -137,7 +119,7 @@
       {
         "type": "double",
         "stake_kr": 20,
-        "combined_probability": 0.2858,
+        "combined_probability": 0.2782,
         "legs": [
           {
             "date": "2026-10-25",
@@ -146,31 +128,31 @@
             "probability": 0.7398
           },
           {
-            "date": "2026-10-18",
-            "match": "FC Lorient vs AS Monaco FC",
-            "selection": "FC Lorient",
-            "probability": 0.3864
+            "date": "2026-10-25",
+            "match": "PSV vs Feyenoord Rotterdam",
+            "selection": "Feyenoord Rotterdam",
+            "probability": 0.3761
           }
         ]
       },
       {
         "type": "single",
         "stake_kr": 20,
-        "combined_probability": 0.3864,
+        "combined_probability": 0.3761,
         "legs": [
           {
-            "date": "2026-10-18",
-            "match": "FC Lorient vs AS Monaco FC",
-            "selection": "FC Lorient",
-            "probability": 0.3864
+            "date": "2026-10-25",
+            "match": "PSV vs Feyenoord Rotterdam",
+            "selection": "Feyenoord Rotterdam",
+            "probability": 0.3761
           }
         ]
       }
     ]
   },
   "smart_double": {
-    "combined_probability": 0.2858,
-    "expected_odds_90": 3.15,
+    "combined_probability": 0.2782,
+    "expected_odds_90": 3.24,
     "note": null,
     "legs": [
       {
@@ -182,10 +164,10 @@
       },
       {
         "role": "surprise",
-        "date": "2026-10-18",
-        "match": "FC Lorient vs AS Monaco FC",
-        "selection": "FC Lorient",
-        "probability": 0.3864
+        "date": "2026-10-25",
+        "match": "PSV vs Feyenoord Rotterdam",
+        "selection": "Feyenoord Rotterdam",
+        "probability": 0.3761
       }
     ]
   },
