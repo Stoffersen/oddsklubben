@@ -15,15 +15,15 @@ def apply(ledger, event):
         raise ValueError("unsupported schema")
     kind = event.get("event_type")
     if kind == "lock":
-        keys = ("coupon_id","bet_id","stake_kr","fixture_id","locked_at_utc","kickoff_utc")
+        keys = ("lock_request_id","coupon_id","bet_id","stake_kr","fixture_id","locked_at_utc","kickoff_utc")
         if any(k not in event or event[k] is None or event[k] == "" for k in keys):
             raise ValueError("missing lock field")
-        for identity in ("coupon_id", "bet_id", "fixture_id"):
+        for identity in ("lock_request_id", "coupon_id", "bet_id", "fixture_id"):
             if not isinstance(event[identity], str) or not event[identity].strip():
                 raise ValueError("invalid identity")
         if parse_time(event["locked_at_utc"]) >= parse_time(event["kickoff_utc"]):
             raise ValueError("cannot lock after kickoff")
-        return ledger.lock(event["coupon_id"],event["bet_id"],event["stake_kr"])
+        return ledger.lock_request(event["lock_request_id"], event["coupon_id"], event["bet_id"], event["stake_kr"], event["fixture_id"], event["kickoff_utc"], event["locked_at_utc"])
     if kind == "settle":
         keys = ("settlement_id","bet_id","result","return_kr","source","observed_at_utc")
         if any(k not in event for k in keys):
