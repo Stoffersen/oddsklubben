@@ -22,6 +22,13 @@ class SQLiteLedger:
             return_ore INTEGER NOT NULL CHECK(return_ore >= 0),
             revision_of TEXT REFERENCES settlement_events(settlement_id)
         );
+        CREATE TABLE IF NOT EXISTS settlement_provenance (
+            settlement_id TEXT PRIMARY KEY REFERENCES settlement_events(settlement_id),
+            source TEXT NOT NULL CHECK(length(trim(source)) > 0),
+            observed_at_utc TEXT NOT NULL,
+            reason TEXT,
+            source_ref TEXT
+        );
         CREATE INDEX IF NOT EXISTS settlement_bet_idx ON settlement_events(bet_id);
         -- One initial settlement per bet, and at most one successor per event.
         -- Database constraints protect the chain even from other SQLite writers.
@@ -54,10 +61,15 @@ class SQLiteLedger:
             self.db.execute("ROLLBACK")
             raise
 
-    def settle(self, settlement_id, bet_id, result, return_kr, revision_of=None):
+    def settle(self, settlement_id, bet_id, result, return_kr, revision_of=None, *, provenance=None):
         amount = ore(return_kr)
         if not settlement_id or not bet_id or result not in ("won","lost","void") or amount < 0:
             raise ValueError("invalid settlement")
+        if provenance is not None:
+            if not isinstance(provenance, dict) or not isinstance(provenance.get("source"), str) or not provenance["source"].strip() or not isinstance(provenance.get("observed_at_utc"), str) or not provenance["observed_at_utc"].strip():
+                raise ValueError("invalid provenance")
+            if revision_of is not None and (not isinstance(provenance.get("reason"), str) or not provenance["reason"].strip()):
+                raise ValueError("correction needs audit reason")
         self.db.execute("BEGIN IMMEDIATE")
         try:
             bet = self.db.execute("SELECT stake_ore FROM bets WHERE bet_id=?", (bet_id,)).fetchone()
@@ -70,12 +82,18 @@ class SQLiteLedger:
             if existing:
                 if existing != event:
                     raise ValueError("conflicting settlement_id replay")
+                saved = self.db.execute("SELECT source, observed_at_utc, reason, source_ref FROM settlement_provenance WHERE settlement_id=?", (settlement_id,)).fetchone()
+                incoming = None if provenance is None else (provenance["source"], provenance["observed_at_utc"], provenance.get("reason"), provenance.get("source_ref"))
+                if saved != incoming:
+                    raise ValueError("conflicting settlement provenance replay")
                 self.db.execute("COMMIT")
                 return False
             last = self.db.execute("SELECT settlement_id FROM settlement_events WHERE bet_id=? ORDER BY rowid DESC LIMIT 1", (bet_id,)).fetchone()
             if (last[0] if last else None) != revision_of:
                 raise ValueError("revision reference mismatch")
             self.db.execute("INSERT INTO settlement_events VALUES (?,?,?,?,?)", (settlement_id,bet_id,result,amount,revision_of))
+            if provenance is not None:
+                self.db.execute("INSERT INTO settlement_provenance VALUES (?,?,?,?,?)", (settlement_id,provenance["source"],provenance["observed_at_utc"],provenance.get("reason"),provenance.get("source_ref")))
             self.db.execute("COMMIT")
             return True
         except BaseException:
