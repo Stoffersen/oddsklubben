@@ -180,15 +180,18 @@
           "result": "won",
           "return_kr": 46.6
         }
-      ]
+      ],
+      "excluded_from_totals": true,
+      "duplicate_of": "2026-10-11",
+      "exclusion_reason": "Identical coupon to 2026-10-11; historic record only, no independent stake or return"
     }
   ],
   "totals": {
-    "settled_weeks": 3,
-    "stake_kr": 240,
-    "return_kr": 382.8,
-    "profit_kr": 142.8,
-    "return_pct": 159.5
+    "settled_weeks": 2,
+    "stake_kr": 160,
+    "return_kr": 239.2,
+    "profit_kr": 79.2,
+    "return_pct": 149.5
   },
   "updated": "2026-10-19 14:13 UTC"
 }
