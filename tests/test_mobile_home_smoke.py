@@ -17,7 +17,7 @@ class MobileHomeSmoke(unittest.TestCase):
         self.assertIn('document.getElementById("cards").addEventListener("input"',script)
         self.assertIn('localStorage.setItem("oddsklubben-draft-"+data.week',script)
         self.assertIn('if(!restoreDraft_(x.w))restoreSaved_(x)',script)
-        self.assertIn('if(out.status==="written")localStorage.removeItem(',script)
+        self.assertIn('if(out.status==="written"&&localStorage.getItem(',script)
 
     def test_cache_versions_match(self):
         page=(ROOT/"index.html").read_text()
