@@ -33,5 +33,21 @@ class SQLiteLedgerTests(unittest.TestCase):
             self.assertEqual(db.totals()["profit_ore"],-2000)
             db.close()
 
+    def test_database_blocks_forked_revision_chains(self):
+        import sqlite3
+        with tempfile.TemporaryDirectory() as d:
+            db=SQLiteLedger(Path(d)/"x.db")
+            db.lock("coupon","bet",20)
+            db.settle("first","bet","lost",0)
+            db.settle("second","bet","won",30,revision_of="first")
+            with self.assertRaises(sqlite3.IntegrityError):
+                db.db.execute("INSERT INTO settlement_events VALUES (?,?,?,?,?)",
+                              ("fork","bet","won",50,"first"))
+            with self.assertRaises(sqlite3.IntegrityError):
+                db.db.execute("INSERT INTO settlement_events VALUES (?,?,?,?,?)",
+                              ("second-root","bet","lost",0,None))
+            self.assertEqual(db.totals()["return_ore"],3000)
+            db.close()
+
 if __name__=="__main__":
     unittest.main()
