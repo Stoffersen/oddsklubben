@@ -1,7 +1,7 @@
 name: Stats website preview
 on:
   push:
-    branches: [main, stats-website]
+    branches: [stats-website]
   workflow_dispatch:
 permissions:
   contents: read
