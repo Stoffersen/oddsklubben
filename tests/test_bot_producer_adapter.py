@@ -51,3 +51,16 @@ class AdapterTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 apply(db,dict(SETTLE,revision_of="s0"))
             db.close()
+
+    def test_identity_fields_must_be_nonblank_strings(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            db=SQLiteLedger(Path(tmp)/"x.db")
+            for field in ("coupon_id","bet_id","fixture_id"):
+                for value in ("   ",123,False):
+                    with self.subTest(field=field,value=value), self.assertRaises(ValueError):
+                        apply(db,dict(LOCK,**{field:value}))
+            for field in ("settlement_id","bet_id","source"):
+                with self.subTest(field=field), self.assertRaises(ValueError):
+                    apply(db,dict(SETTLE,**{field:"   "}))
+            self.assertEqual(db.totals()["stake_ore"],0)
+            db.close()
