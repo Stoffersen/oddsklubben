@@ -4,6 +4,8 @@ DB operations use BEGIN IMMEDIATE, unique event IDs and an append-only audit log
 Do not use this module as a production service without deployment/storage review.
 """
 import sqlite3
+import hashlib
+import json
 from src.bot_ledger_reference import ore
 
 class SQLiteLedger:
@@ -15,6 +17,12 @@ class SQLiteLedger:
         CREATE TABLE IF NOT EXISTS bets (
             bet_id TEXT PRIMARY KEY, coupon_id TEXT NOT NULL,
             stake_ore INTEGER NOT NULL CHECK(stake_ore > 0)
+        );
+        CREATE TABLE IF NOT EXISTS lock_requests (
+            request_id TEXT PRIMARY KEY,
+            payload_sha256 TEXT NOT NULL,
+            coupon_id TEXT NOT NULL,
+            bet_id TEXT NOT NULL UNIQUE REFERENCES bets(bet_id)
         );
         CREATE TABLE IF NOT EXISTS settlement_events (
             settlement_id TEXT PRIMARY KEY, bet_id TEXT NOT NULL REFERENCES bets(bet_id),
@@ -57,6 +65,40 @@ class SQLiteLedger:
                 result = True
             self.db.execute("COMMIT")
             return result
+        except BaseException:
+            self.db.execute("ROLLBACK")
+            raise
+
+    def lock_request(self, request_id, coupon_id, bet_id, stake_kr, fixture_id, kickoff_utc, locked_at_utc):
+        """Atomic lock command with durable replay key. Caller validates kickoff policy."""
+        if not isinstance(request_id, str) or not request_id.strip():
+            raise ValueError("invalid request ID")
+        if any(not isinstance(x, str) or not x.strip() for x in
+               (coupon_id, bet_id, fixture_id, kickoff_utc, locked_at_utc)):
+            raise ValueError("invalid lock metadata")
+        stake = ore(stake_kr)
+        if stake <= 0:
+            raise ValueError("invalid stake")
+        payload = [coupon_id, bet_id, stake, fixture_id, kickoff_utc, locked_at_utc]
+        digest = hashlib.sha256(json.dumps(payload, separators=(",", ":")).encode()).hexdigest()
+        self.db.execute("BEGIN IMMEDIATE")
+        try:
+            prior = self.db.execute(
+                "SELECT payload_sha256,coupon_id,bet_id FROM lock_requests WHERE request_id=?",
+                (request_id,)).fetchone()
+            if prior:
+                if prior != (digest, coupon_id, bet_id):
+                    raise ValueError("conflicting lock request replay")
+                self.db.execute("COMMIT")
+                return {"created":False, "coupon_id":prior[1], "bet_id":prior[2]}
+            existing = self.db.execute("SELECT coupon_id,stake_ore FROM bets WHERE bet_id=?", (bet_id,)).fetchone()
+            if existing:
+                raise ValueError("bet ID already belongs to another lock protocol")
+            self.db.execute("INSERT INTO bets VALUES (?,?,?)", (bet_id,coupon_id,stake))
+            self.db.execute("INSERT INTO lock_requests VALUES (?,?,?,?)",
+                            (request_id,digest,coupon_id,bet_id))
+            self.db.execute("COMMIT")
+            return {"created":True, "coupon_id":coupon_id, "bet_id":bet_id}
         except BaseException:
             self.db.execute("ROLLBACK")
             raise
