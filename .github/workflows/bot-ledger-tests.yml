@@ -5,6 +5,8 @@ on:
     paths:
       - 'data/bot-bets.json'
       - 'tests/test_bot_ledger_integrity.py'
+      - 'tests/test_bot_ledger_reference.py'
+      - 'src/bot_ledger_reference.py'
       - '.github/workflows/bot-ledger-tests.yml'
   workflow_dispatch:
 permissions:
