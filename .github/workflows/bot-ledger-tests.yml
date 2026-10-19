@@ -1,7 +1,7 @@
 name: Bot ledger integrity tests
 on:
   pull_request:
-    branches: [mobile-round-entry, prototype/bot-ledger-idempotency-20261019, test/bot-ledger-contract-e2e-20261019, prototype/sqlite-bot-ledger-20261019, plan/bot-ledger-rollout-20261019, hardening/bot-ledger-revision-chain-20261019, test/bot-shadow-reconciliation-20261019, test/bot-dual-shadow-comparison-20261019, prototype/bot-producer-adapter-20261019, hardening/bot-producer-event-validation-20261019, hardening/bot-settlement-provenance-20261019, hardening/bot-lock-request-idempotency-20261019]
+    branches: [mobile-round-entry, prototype/bot-ledger-idempotency-20261019, test/bot-ledger-contract-e2e-20261019, prototype/sqlite-bot-ledger-20261019, plan/bot-ledger-rollout-20261019, hardening/bot-ledger-revision-chain-20261019, test/bot-shadow-reconciliation-20261019, test/bot-dual-shadow-comparison-20261019, prototype/bot-producer-adapter-20261019, hardening/bot-producer-event-validation-20261019, hardening/bot-settlement-provenance-20261019, hardening/bot-lock-request-idempotency-20261019, test/bot-lock-concurrency-20261019]
     paths:
       - 'data/bot-bets.json'
       - 'tests/test_bot_ledger_integrity.py'
@@ -13,6 +13,8 @@ on:
       - 'tests/test_bot_shadow_compare.py'
       - 'tests/test_bot_producer_adapter.py'
       - 'tests/test_bot_lock_concurrency.py'
+      - 'tests/test_bot_event_snapshot_e2e.py'
+      - 'src/bot_snapshot_projection.py'
       - 'src/bot_producer_adapter.py'
       - 'src/bot_shadow_compare.py'
       - 'src/bot_shadow_reconcile.py'
