@@ -117,6 +117,11 @@
         {
           "date": "2026-10-17",
           "match": "FC Bayern München vs RB Leipzig",
+          "days_overdue": 2
+        },
+        {
+          "date": "2026-10-18",
+          "match": "FC Lorient vs AS Monaco FC",
           "days_overdue": 1
         }
       ]
@@ -192,6 +197,11 @@
         {
           "date": "2026-10-17",
           "match": "FC Bayern München vs RB Leipzig",
+          "days_overdue": 2
+        },
+        {
+          "date": "2026-10-18",
+          "match": "FC Lorient vs AS Monaco FC",
           "days_overdue": 1
         }
       ]
@@ -204,5 +214,5 @@
     "profit_kr": 15.6,
     "return_pct": 119.5
   },
-  "updated": "2026-10-18 23:05 UTC"
+  "updated": "2026-10-19 04:32 UTC"
 }
