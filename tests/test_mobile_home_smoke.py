@@ -12,6 +12,13 @@ class MobileHomeSmoke(unittest.TestCase):
         self.assertIn("pos=initialPosition();render();updateHomeNextRound_()",script)
         self.assertIn('document.querySelector("#home .next-round")',script)
 
+    def test_entry_drafts_autosave_and_clear_only_on_live_write(self):
+        script=(ROOT/"app/app.js").read_text()
+        self.assertIn('document.getElementById("cards").addEventListener("input"',script)
+        self.assertIn('localStorage.setItem("oddsklubben-draft-"+data.week',script)
+        self.assertIn('if(!restoreDraft_(x.w))restoreSaved_(x)',script)
+        self.assertIn('if(out.status==="written"&&localStorage.getItem(',script)
+
     def test_cache_versions_match(self):
         page=(ROOT/"index.html").read_text()
         worker=(ROOT/"sw.js").read_text()
