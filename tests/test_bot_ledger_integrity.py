@@ -9,12 +9,12 @@ DATA = Path(__file__).resolve().parents[1] / "data" / "bot-bets.json"
 
 def signature(week):
     """Canonical economic coupon signature, independent of publish date."""
-    return tuple(sorted((
+    return tuple(sorted([(
         b.get("type"),
         float(b.get("stake_kr", 0)),
         tuple(sorted((l.get("date"), l.get("match"), l.get("selection"))
                      for l in b.get("legs", [])))
-    ) for b in week.get("bets", [])), key=repr))
+    ) for b in week.get("bets", [])], key=repr))
 
 class BotLedgerIntegrity(unittest.TestCase):
     @classmethod
