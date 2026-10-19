@@ -31,5 +31,26 @@ class LedgerTests(unittest.TestCase):
         l=Ledger();l.lock("a","x",40);l.lock("b","y",40)
         self.assertEqual(l.totals()["stake_ore"],8000)
 
+    def test_invalid_money_never_mutates_ledger(self):
+        ledger = Ledger()
+        for value in ("NaN", "Infinity", "-1", "0", "garbage"):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                ledger.lock("c", "b", value)
+        self.assertEqual(ledger.totals()["stake_ore"], 0)
+        ledger.lock("c", "b", 20)
+        for value in ("NaN", "Infinity", "-5"):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                ledger.settle("event", "b", "won", value)
+        self.assertEqual(ledger.totals()["return_ore"], 0)
+
+    def test_revision_cannot_rewrite_an_unrelated_bet(self):
+        ledger = Ledger()
+        ledger.lock("c", "a", 20)
+        ledger.lock("c", "b", 20)
+        ledger.settle("e1", "a", "lost", 0)
+        with self.assertRaises(ValueError):
+            ledger.settle("e2", "b", "won", 30, revision_of="e1")
+        self.assertEqual(ledger.totals()["settled_bets"], 1)
+
 if __name__=="__main__":
     unittest.main()
