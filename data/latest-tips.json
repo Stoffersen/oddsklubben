@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-19 15:08 UTC",
+  "updated": "2026-10-20 13:11 UTC",
   "favorites": [
     {
       "date": "2026-10-25",
@@ -36,20 +36,20 @@
       }
     },
     {
-      "date": "2026-10-25",
-      "match": "Sparta Rotterdam vs AFC Ajax",
-      "selection": "AFC Ajax",
-      "probability": 0.6477,
+      "date": "2026-10-27",
+      "match": "AS Roma vs Cagliari Calcio",
+      "selection": "AS Roma",
+      "probability": 0.6505,
       "explanation": {
-        "home_expected_goals": 1.0,
-        "away_expected_goals": 2.21,
-        "home_attack_strength": 0.79,
-        "home_defence_strength": 1.13,
-        "away_attack_strength": 1.27,
-        "away_defence_strength": 0.71,
-        "league_home_goals": 1.78,
-        "league_away_goals": 1.54,
-        "summary": "Modellen forventer 2.21 mål til AFC Ajax mod 1.00 til Sparta Rotterdam; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+        "home_expected_goals": 1.87,
+        "away_expected_goals": 0.7,
+        "home_attack_strength": 1.41,
+        "home_defence_strength": 0.65,
+        "away_attack_strength": 0.89,
+        "away_defence_strength": 1.0,
+        "league_home_goals": 1.32,
+        "league_away_goals": 1.21,
+        "summary": "Modellen forventer 1.87 mål til AS Roma mod 0.70 til Cagliari Calcio; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
     }
   ],
