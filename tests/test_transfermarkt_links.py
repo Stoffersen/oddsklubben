@@ -7,11 +7,11 @@ HTML=(Path(__file__).resolve().parents[1]/"spillere.html").read_text(encoding="u
 class TransfermarktLinks(unittest.TestCase):
     def test_links_use_regular_navigation(self):
         self.assertIn('id="dialogProfile" rel="noopener"',HTML)
-        self.assertIn('href="\'+profile+\'" rel="noopener"',HTML)
+        self.assertIn("href=\"'+profile+'\" rel=\"noopener\"",HTML)
         self.assertNotIn('target="_blank" rel="noopener"',HTML)
 
     def test_profiles_use_explicit_https_urls(self):
-        urls=re.findall(r'https://www\\.transfermarkt\\.com/[^"]+',HTML)
+        urls=re.findall(r'https://www\.transfermarkt\.com/[^"]+',HTML)
         self.assertGreater(len(urls),100)
         self.assertTrue(all("/spieler/" in url for url in urls))
 
