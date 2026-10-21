@@ -1,0 +1,17 @@
+name: Transfermarkt link checks
+on:
+  pull_request:
+    branches: [mobile-round-entry]
+    paths:
+      - 'spillere.html'
+      - 'tests/test_transfermarkt_links.py'
+      - '.github/workflows/transfermarkt-links.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m unittest discover -s tests -p 'test_transfermarkt_links.py' -v
