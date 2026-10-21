@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-20 13:11 UTC",
+  "updated": "2026-10-21 13:23 UTC",
   "favorites": [
     {
       "date": "2026-10-25",
@@ -19,6 +19,23 @@
       }
     },
     {
+      "date": "2026-10-28",
+      "match": "Venezia FC vs FC Internazionale Milano",
+      "selection": "FC Internazionale Milano",
+      "probability": 0.7286,
+      "explanation": {
+        "home_expected_goals": 0.93,
+        "away_expected_goals": 2.58,
+        "home_attack_strength": 0.82,
+        "home_defence_strength": 1.43,
+        "away_attack_strength": 1.48,
+        "away_defence_strength": 0.85,
+        "league_home_goals": 1.32,
+        "league_away_goals": 1.21,
+        "summary": "Modellen forventer 2.58 mål til FC Internazionale Milano mod 0.93 til Venezia FC; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      }
+    },
+    {
       "date": "2026-10-23",
       "match": "VfB Stuttgart vs Borussia Mönchengladbach",
       "selection": "VfB Stuttgart",
@@ -33,23 +50,6 @@
         "league_home_goals": 1.89,
         "league_away_goals": 1.45,
         "summary": "Modellen forventer 2.04 mål til VfB Stuttgart mod 0.77 til Borussia Mönchengladbach; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
-      }
-    },
-    {
-      "date": "2026-10-27",
-      "match": "AS Roma vs Cagliari Calcio",
-      "selection": "AS Roma",
-      "probability": 0.6505,
-      "explanation": {
-        "home_expected_goals": 1.87,
-        "away_expected_goals": 0.7,
-        "home_attack_strength": 1.41,
-        "home_defence_strength": 0.65,
-        "away_attack_strength": 0.89,
-        "away_defence_strength": 1.0,
-        "league_home_goals": 1.32,
-        "league_away_goals": 1.21,
-        "summary": "Modellen forventer 1.87 mål til AS Roma mod 0.70 til Cagliari Calcio; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
     }
   ],
