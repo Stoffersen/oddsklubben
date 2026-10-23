@@ -1,6 +1,23 @@
 {
-  "updated": "2026-10-22 13:21 UTC",
+  "updated": "2026-10-23 13:00 UTC",
   "favorites": [
+    {
+      "date": "2026-10-30",
+      "match": "Casa Pia AC vs Sporting Clube de Portugal",
+      "selection": "Sporting Clube de Portugal",
+      "probability": 0.7926,
+      "explanation": {
+        "home_expected_goals": 0.76,
+        "away_expected_goals": 2.78,
+        "home_attack_strength": 0.75,
+        "home_defence_strength": 1.42,
+        "away_attack_strength": 1.59,
+        "away_defence_strength": 0.7,
+        "league_home_goals": 1.46,
+        "league_away_goals": 1.23,
+        "summary": "Modellen forventer 2.78 mål til Sporting Clube de Portugal mod 0.76 til Casa Pia AC; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      }
+    },
     {
       "date": "2026-10-25",
       "match": "FC Internazionale Milano vs ACF Fiorentina",
@@ -34,23 +51,6 @@
         "league_away_goals": 1.21,
         "summary": "Modellen forventer 2.58 mål til FC Internazionale Milano mod 0.93 til Venezia FC; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
       }
-    },
-    {
-      "date": "2026-10-23",
-      "match": "VfB Stuttgart vs Borussia Mönchengladbach",
-      "selection": "VfB Stuttgart",
-      "probability": 0.67,
-      "explanation": {
-        "home_expected_goals": 2.04,
-        "away_expected_goals": 0.77,
-        "home_attack_strength": 0.99,
-        "home_defence_strength": 0.75,
-        "away_attack_strength": 0.71,
-        "away_defence_strength": 1.1,
-        "league_home_goals": 1.89,
-        "league_away_goals": 1.45,
-        "summary": "Modellen forventer 2.04 mål til VfB Stuttgart mod 0.77 til Borussia Mönchengladbach; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
-      }
     }
   ],
   "upsets": [
@@ -71,9 +71,35 @@
         "summary": "Modellen forventer 2.05 mål til Feyenoord Rotterdam mod 2.18 til PSV; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
       },
       "uncertain": false
+    },
+    {
+      "date": "2026-10-30",
+      "match": "Lille OSC vs Racing Club de Lens",
+      "selection": "Racing Club de Lens",
+      "probability": 0.3729,
+      "explanation": {
+        "home_expected_goals": 1.41,
+        "away_expected_goals": 1.4,
+        "home_attack_strength": 0.93,
+        "home_defence_strength": 0.85,
+        "away_attack_strength": 1.29,
+        "away_defence_strength": 0.96,
+        "league_home_goals": 1.56,
+        "league_away_goals": 1.27,
+        "summary": "Modellen forventer 1.40 mål til Racing Club de Lens mod 1.41 til Lille OSC; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      },
+      "uncertain": false
     }
   ],
   "bold_upsets": [
+    {
+      "date": "2026-10-30",
+      "match": "SV 07 Elversberg vs 1. FSV Mainz 05",
+      "selection": "SV 07 Elversberg",
+      "probability": 0.3294,
+      "favorite_probability": 0.4531,
+      "tier": "bold"
+    },
     {
       "date": "2026-10-25",
       "match": "TSG 1899 Hoffenheim vs Bayer 04 Leverkusen",
@@ -89,14 +115,6 @@
       "probability": 0.3235,
       "favorite_probability": 0.429,
       "tier": "bold"
-    },
-    {
-      "date": "2026-10-23",
-      "match": "Bolton Wanderers FC vs Middlesbrough FC",
-      "selection": "Bolton Wanderers FC",
-      "probability": 0.3264,
-      "favorite_probability": 0.4111,
-      "tier": "bold"
     }
   ],
   "model_80kr_portfolio": {
@@ -106,26 +124,26 @@
       {
         "type": "single",
         "stake_kr": 40,
-        "combined_probability": 0.7398,
+        "combined_probability": 0.7926,
         "legs": [
           {
-            "date": "2026-10-25",
-            "match": "FC Internazionale Milano vs ACF Fiorentina",
-            "selection": "FC Internazionale Milano",
-            "probability": 0.7398
+            "date": "2026-10-30",
+            "match": "Casa Pia AC vs Sporting Clube de Portugal",
+            "selection": "Sporting Clube de Portugal",
+            "probability": 0.7926
           }
         ]
       },
       {
         "type": "double",
         "stake_kr": 20,
-        "combined_probability": 0.2782,
+        "combined_probability": 0.2981,
         "legs": [
           {
-            "date": "2026-10-25",
-            "match": "FC Internazionale Milano vs ACF Fiorentina",
-            "selection": "FC Internazionale Milano",
-            "probability": 0.7398
+            "date": "2026-10-30",
+            "match": "Casa Pia AC vs Sporting Clube de Portugal",
+            "selection": "Sporting Clube de Portugal",
+            "probability": 0.7926
           },
           {
             "date": "2026-10-25",
@@ -151,16 +169,16 @@
     ]
   },
   "smart_double": {
-    "combined_probability": 0.2782,
-    "expected_odds_90": 3.24,
+    "combined_probability": 0.2981,
+    "expected_odds_90": 3.02,
     "note": null,
     "legs": [
       {
         "role": "solid",
-        "date": "2026-10-25",
-        "match": "FC Internazionale Milano vs ACF Fiorentina",
-        "selection": "FC Internazionale Milano",
-        "probability": 0.7398
+        "date": "2026-10-30",
+        "match": "Casa Pia AC vs Sporting Clube de Portugal",
+        "selection": "Sporting Clube de Portugal",
+        "probability": 0.7926
       },
       {
         "role": "surprise",
