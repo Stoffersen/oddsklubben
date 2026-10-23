@@ -19,6 +19,11 @@ class MobileHomeSmoke(unittest.TestCase):
         self.assertIn('if(!restoreDraft_(x.w))restoreSaved_(x)',script)
         self.assertIn('if(out.status==="written"&&localStorage.getItem(',script)
 
+    def test_current_season_is_not_claimed_as_winner(self):
+        page=(ROOT/"index.html").read_text()
+        self.assertIn('<small>2026 · 2</small><strong>⏳ Sæson i gang</strong><b>Afventer</b>',page)
+        self.assertIn('<small>2026 · 1</small><strong>🙏 Kardinalus</strong>',page)
+
     def test_cache_versions_match(self):
         page=(ROOT/"index.html").read_text()
         worker=(ROOT/"sw.js").read_text()
