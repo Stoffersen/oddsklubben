@@ -60,7 +60,7 @@ document.getElementById("cards").addEventListener("input",function(e){
 });
 document.getElementById("save").onclick=()=>{if(!validate())return;const data=summary();document.getElementById("notice").innerHTML=`<div class="confirm"><strong>Klar til at gemme uge ${data.week}</strong><span>Kontrollér oplysningerne og tryk Bekræft.</span><button id="confirmSave">Bekræft og gem</button><button id="cancelSave" class="secondary">Ret oplysninger</button></div>`;document.getElementById("cancelSave").onclick=()=>document.getElementById("notice").textContent="";function saveRoundParts_(data){const normal=data.entries.filter(e=>e.match!=="Toto Cup"),toto=data.entries.filter(e=>e.match==="Toto Cup"),parts=[];if(normal.length)parts.push({week:data.week,round:data.round,entries:normal});if(toto.length)parts.push({week:data.week,round:"Toto Cup",entries:toto});return parts.reduce((p,part)=>p.then(()=>fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(part)}).then(r=>r.json()).then(out=>{if(!out.ok)throw Error(part.round+": "+(out.error||"Fejl"));return out.status==="written"}).then(written=>({written}))),Promise.resolve({written:true})).then(out=>({json:()=>Promise.resolve({ok:true,status:out.written?"written":"dry-run"})}))}
 document.getElementById("confirmSave").onclick=()=>{localStorage.setItem("oddsklubben-draft-"+data.week,JSON.stringify(data));const btn=document.getElementById("confirmSave");btn.disabled=true;btn.textContent="Gemmer…";if(!API_URL){document.getElementById("notice").innerHTML='<div class="success">✓ Gemt som lokal kladde.<br><small>Backend er endnu ikke deployet.</small></div>';return}saveRoundParts_(data).then(function(res){return res.json()}).then(function(out){if(!out.ok)throw new Error(out.error||"Ukendt fejl");if(out.status==="written"&&localStorage.getItem("oddsklubben-draft-"+data.week)===JSON.stringify(data))localStorage.removeItem("oddsklubben-draft-"+data.week);if(out.status==="written"){window.refreshManagerStandings();window.refreshAllTimeLeader();}document.getElementById("notice").innerHTML=`<div class="success">✓ ${out.status==="written"?"Gemt i Google Sheet":"Test godkendt (dry-run)"}.<br><small>Uge ${data.week} · ${data.round}${backendWriteEnabled?"":" · live-skrivning er slukket"}</small></div>`}).catch(function(err){document.getElementById("notice").innerHTML=`<div class="error">Kunne ikke gemme: ${String(err.message||err)}<br><small>Din lokale kladde er bevaret.</small></div>`})}};render();updateHomeNextRound_();
-fetch(API_URL).then(function(res){return res.json()}).then(function(out){if(out && out.ok && Array.isArray(out.program) && out.program.length){backendWriteEnabled=out.writeEnabled===true;var status=document.getElementById("sheetWriteStatus");if(status)status.textContent=backendWriteEnabled?"✓ Google Sheet-forbindelse aktiv · gemning skriver til arket":"⚠️ Google Sheet er forbundet · gemning er i testtilstand";program=out.program;savedEntries=Array.isArray(out.saved)?out.saved:[];paintManagerFromSaved_(savedEntries);paintAllTimeFromSaved_(savedEntries);paintSeasonBalance_(savedEntries);paintWeeklyFinance_(savedEntries);paintHattricks_(savedEntries);pos=initialPosition();render();updateHomeNextRound_();if(window.renderSeasonProgram)window.renderSeasonProgram()}else{var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"}}).catch(function(){var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"});
+fetch(API_URL).then(function(res){return res.json()}).then(function(out){if(out && out.ok && Array.isArray(out.program) && out.program.length){backendWriteEnabled=out.writeEnabled===true;var status=document.getElementById("sheetWriteStatus");if(status)status.textContent=backendWriteEnabled?"✓ Google Sheet-forbindelse aktiv · gemning skriver til arket":"⚠️ Google Sheet er forbundet · gemning er i testtilstand";program=out.program;savedEntries=Array.isArray(out.saved)?out.saved:[];paintManagerFromSaved_(savedEntries);paintAllTimeFromSaved_(savedEntries);paintSeasonBalance_(savedEntries);paintWeeklyFinance_(savedEntries);paintHattricks_(savedEntries);paintGoalOfYear_(savedEntries);pos=initialPosition();render();updateHomeNextRound_();if(window.renderSeasonProgram)window.renderSeasonProgram()}else{var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"}}).catch(function(){var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"});
 function weeklyFinance_(rows){
   var names=Object.keys(players),weeks=new Map();
   (rows||[]).forEach(function(e){
@@ -144,6 +144,20 @@ function paintWeeklyFinance_(rows){
     ma("text",{x:cx,y:d.balance>=0?Math.max(12,yy-6):Math.min(bottom+14,yy+12),"text-anchor":"middle",fill:"#26382c","font-size":10},fmt.format(d.balance));
     ma("text",{x:cx,y:221,"text-anchor":"middle",fill:"#50645a","font-size":d.name==="TOTAL"?10:16},d.name==="TOTAL"?"TOTAL":players[d.name].split(" ")[0]);
   });
+}
+function paintGoalOfYear_(rows){
+  var panel=document.getElementById("extras");
+  if(!panel||!Array.isArray(rows))return;
+  var best=null;
+  rows.forEach(function(e){
+    var name=String(e.player||"").replace(/^[^A-Za-zÆØÅæøå]+/,"").trim();
+    var amount=e.money===null||e.money===undefined?null:parseMoney(String(e.money));
+    if(!players[name]||amount===null)return;
+    if(!best||amount>best.amount)best={name:name,amount:amount};
+  });
+  var target=Array.from(panel.querySelectorAll(".extra-row")).find(function(el){return el.textContent.includes("Årets Mål")});
+  if(!target)return;
+  target.querySelector("strong").textContent=best?players[best.name]+" · "+new Intl.NumberFormat("da-DK",{minimumFractionDigits:2,maximumFractionDigits:2}).format(best.amount)+" kr":"–";
 }
 function paintHattricks_(rows){
   var panel=document.getElementById("extras");
@@ -291,7 +305,7 @@ window.refreshManagerStandings=function(){
     return res.json();
   }).then(function(out){
     if(!out||!out.ok||!Array.isArray(out.saved))throw new Error("mangler data");
-    paintManagerFromSaved_(out.saved);paintSeasonBalance_(out.saved);paintWeeklyFinance_(out.saved);paintHattricks_(out.saved);
+    paintManagerFromSaved_(out.saved);paintSeasonBalance_(out.saved);paintWeeklyFinance_(out.saved);paintHattricks_(out.saved);paintGoalOfYear_(out.saved);
   }).catch(function(){
     var mood=document.querySelector("#money .mood");
     if(mood)mood.textContent="Kunne ikke hente aktuel stilling · prøv igen senere";
