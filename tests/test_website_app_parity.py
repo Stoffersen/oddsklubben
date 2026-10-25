@@ -20,9 +20,9 @@ class WebsiteAppParity(unittest.TestCase):
         web=(ROOT/"stats.html").read_text(encoding="utf-8")
         self.assertIn('id="manager-bars"',web)
         self.assertIn("Array.isArray(data.saved)",web)
-        self.assertIn("data.saved.forEach",web)
-        self.assertIn('title.textContent=labels[name]',web)
-        self.assertIn('status.textContent="Data utilgængelige"',web)
+        self.assertIn("stats-site/live-season.js",web)
+        self.assertIn('id="website-alltime-bars"',web)
+        self.assertIn('id="website-goal-of-year"',web)
 
 if __name__=="__main__":
     unittest.main()
