@@ -93,26 +93,42 @@ function weeklyFinanceSvg_(host,w,h){
 function paintWeeklyFinance_(rows){
   var club=document.getElementById("weeklyClubChart"),member=document.getElementById("weeklyMemberChart");
   if(!club||!member||!Array.isArray(rows))return;
-  var stats=weeklyFinance_(rows),series=stats.series,fmt=new Intl.NumberFormat("da-DK",{maximumFractionDigits:2});
-  if(!series.length){club.textContent="Ingen registrerede spilleuger endnu.";member.textContent="Ingen registrerede spilleuger endnu.";return}
-  var W=380,H=238,l=45,r=13,t=17,b=42,baseY=H-b;
+  var stats=weeklyFinance_(rows),fmt=new Intl.NumberFormat("da-DK",{maximumFractionDigits:2});
+  // The full 2026/27 calendar is shown even before every week has been played.
+  // Only recorded weeks affect member balances; the purple line is the planned stake.
+  var seasonWeeks=[43,44,45,46,47,48,49,50,51,52,1,2,3,4,5,6,7,8,9,10,11,12];
+  var actualByWeek=new Map(stats.series.map(function(d){return [d.week,d]}));
+  var accumulated=0,series=seasonWeeks.map(function(w,i){
+    var saved=actualByWeek.get(w),win=saved?saved.win:0;
+    accumulated+=win;
+    return {week:w,win:win,total:accumulated,stake:(i+1)*400,recorded:!!saved};
+  });
+  var W=430,H=245,l=49,r=13,t=17,b=50,baseY=H-b;
   var chart=weeklyFinanceSvg_(club,W,H),add=chart.add;
-  chart.svg.setAttribute("aria-label","Ugentlige gevinster, akkumulerede gevinster og indsats for "+series.length+" uger");
-  var high=Math.max(400, ...series.flatMap(function(x){return [x.win,x.total,x.stake]}))*1.1;
+  chart.svg.setAttribute("aria-label","Alle 22 spilleuger i 2026/27. Faktiske ugegevinster, akkumulerede gevinster og planlagt indsats");
+  var high=Math.max(400,...series.flatMap(function(x){return [x.win,x.total,x.stake]}))*1.08;
   var y=function(v){return baseY-(v/high)*(baseY-t)};
-  [0,.5,1].forEach(function(f){var yy=y(high*f);add("line",{x1:l,y1:yy,x2:W-r,y2:yy,stroke:"#dbe2dd"});add("text",{x:l-5,y:yy+4,"text-anchor":"end",fill:"#667469","font-size":10},fmt.format(high*f))});
-  var step=(W-l-r)/series.length,bw=Math.min(23,step*.57);
+  [0,.5,1].forEach(function(f){var yy=y(high*f);add("line",{x1:l,y1:yy,x2:W-r,y2:yy,stroke:"#dbe2dd"});add("text",{x:l-6,y:yy+4,"text-anchor":"end",fill:"#667469","font-size":10},fmt.format(high*f))});
+  var step=(W-l-r)/series.length,bw=Math.min(12,step*.68);
   series.forEach(function(d,i){
-    var x=l+step*(i+.5),height=baseY-y(d.win);
-    var bar=add("rect",{x:x-bw/2,y:y(d.win),width:bw,height:Math.max(0,height),rx:2,fill:"#2874b4"});
-    add("title",{},"Uge "+d.week+": "+fmt.format(d.win)+" kr vundet",bar);
-    add("text",{x:x,y:H-18,"text-anchor":"middle",fill:"#607068","font-size":series.length>15?8:10},"U"+d.week);
+    var x=l+step*(i+.5);
+    if(d.win>0){
+      var bar=add("rect",{x:x-bw/2,y:y(d.win),width:bw,height:baseY-y(d.win),rx:2,fill:"#2874b4"});
+      add("title",{},"Uge "+d.week+": "+fmt.format(d.win)+" kr vundet",bar);
+    }
+    add("text",{x:x,y:H-26,"text-anchor":"end",transform:"rotate(-55 "+x+" "+(H-26)+")",fill:"#607068","font-size":10},"U"+d.week);
   });
   [{key:"total",color:"#d85c55"},{key:"stake",color:"#884fce"}].forEach(function(k){
     var points=series.map(function(d,i){return (l+step*(i+.5))+","+y(d[k.key])}).join(" ");
-    add("polyline",{points:points,fill:"none",stroke:k.color,"stroke-width":3,"stroke-linejoin":"round"});
-    series.forEach(function(d,i){var p=add("circle",{cx:l+step*(i+.5),cy:y(d[k.key]),r:3,fill:k.color});add("title",{},"Uge "+d.week+": "+fmt.format(d[k.key])+" kr",p)});
+    add("polyline",{points:points,fill:"none",stroke:k.color,"stroke-width":2.5,"stroke-linejoin":"round"});
+    series.forEach(function(d,i){
+      var dot=add("circle",{cx:l+step*(i+.5),cy:y(d[k.key]),r:2.3,fill:k.color});
+      add("title",{},"Uge "+d.week+": "+fmt.format(d[k.key])+" kr "+(k.key==="stake"?"planlagt indsats":"akkumuleret gevinst"),dot);
+    });
   });
+  var note=document.createElement("p");
+  note.textContent="Blå: registrerede gevinster · Rød: faktisk samlet gevinst (videreføres) · Lilla: planlagt indsats, 400 kr pr. uge.";
+  club.appendChild(note);
   var M=weeklyFinanceSvg_(member,W,236),ma=M.add;M.svg.setAttribute("aria-label","Sæsonsaldo for hver spiller og Oddsklubben samlet");
   var entries=stats.members.concat([{name:"TOTAL",balance:stats.total}]);
   var min=Math.min(0,...entries.map(function(x){return x.balance})),max=Math.max(0,...entries.map(function(x){return x.balance}));
