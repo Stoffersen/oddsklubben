@@ -243,3 +243,33 @@ Opdatér denne håndbog, når projektets datamodel, faste regler eller brugerpr�
 **Seneste UI-rettelse (18/10):** `#sheetWriteStatus` i `index.html` og GET-statuslogik i `app/app.js` er publiceret med opdateret PWA-cache. Den viste tekst bygger på backendens `writeEnabled`-felt; den er ikke et bevis på, at en konkret brugerindtastning er skrevet, før backend svarer `written`.
 
 **Kontrol-/forbedringspunkter:** Overvåg datafriskhed for bets, verificér aktuelt feed og deployments; test validering med både gamle og fremtidige kampdatoer; tilføj automatisk testdækning uden at skrive til produktionsark; kontroller hvilken branch der reelt ejer Pages-deployment, da flere workflows peger på samme Pages-miljø. Undgå at forveksle grøn deployment med friske data eller valideret beregning.
+
+
+## Læringer og driftregler — 25. oktober 2026 (PR #26–#43)
+
+Disse observationer er verificeret i forbindelse med brugerens faktiske indtastning af Supercup/Toto Cup i uge 43 og udviklingen af 2026/27-appen. Udvikl kun på `mobile-round-entry`, og behold `main` urørt. Kør smoke tests og kontrollér både PR og deployment efter merge. Ændringer i frontend skal versionsløfte JS/CSS-links og service-worker-cache, hvor relevant.
+
+### Sæson, indsatser, grafer og rækkefølge
+- Sæsonen 2026/27 starter uge 43 (2026), fortsætter til uge 52 og derefter uge 1–12 (2027). Registrerede data kommer fra `📲 Rundeindtastning` gennem Apps Script `saved`; fremtidige skabelonrækker tælles **ikke** som spillede uger. Registreret `0` kr **er** en gyldig udfyldning; blank er ikke 0.
+- Indsatsen er **80 kr. pr. medlem pr. spilleuge**, altså **400 kr. samlet pr. uge**, ikke pr. konkurrence. Supercup og Toto Cup i samme uge må **aldrig** give dobbelt indsats.
+- Tre grafer på **Aktuel stilling** skal vises efter selve den valgte stilling på **alle fire faner** (Liga, Manager, Mål, Mere), kun én fælles instans af hver: **1) Balance pr. medlem & total, 2) Saldo uge for uge, 3) Gevinster & indsats**. Selve grafernes layout/beregninger skal ikke ændres, hvis brugeren blot ønsker ny rækkefølge.
+- `Balance pr. medlem & total` viser akkumuleret gevinst minus 80 kr. pr. medlem for hver **registreret** spilleuge; TOTAL er summen af fem medlemmers saldo. `Saldo uge for uge` følger de registrerede uger.
+- `Gevinster & indsats` skal have **fast x-akse over alle 22 spilleuger** fra sæsonstart: 43–52 og 1–12. Blå søjler er **faktisk** ugentlig gevinst (0 for kommende uger); rød linje er faktisk akkumuleret gevinst, der flader ud ved fremtidige uger; lilla linje er **planlagt** akkumuleret indsats (400 kr. pr. uge gennem hele sæsonen), tydeligt mærket planlagt. Bland ikke denne prognose med faktisk betalt indsats.
+- Dynamiske tal skal opdateres ved appens GET-indlæsning og efter bekræftet succesfuld skrivning, aldrig kun ved fuldførelse af en hel runde. Et tomt beløb må ikke ødelægge allerede gemte data.
+
+### Rundeindtastning og Toto Cup
+- Uge 43 har **Supercup** (Kardinalus–King) og **Toto Cup** (Pingvinus, Gorilla, Kaninus). I UI kan aktiviteterne være på samme visning, men i `📲 Rundeindtastning` er **Supercup og Toto Cup to forskellige rundenavne**. Gemning må ikke sende Toto Cup-spillere i payload med `round:"Supercup"`; Apps Script `mergeEntries_` matcher entydigt på uge + runde + kamp + spiller og vil ellers fejle med “Kunne ikke finde eksisterende række”.
+- Appen sender derfor gemning opdelt i to payloads/aktiviteter. Undgå at vise ubetinget succes eller slette lokal kladde, hvis kun en del lykkes; håndtér delvis fejl og sikre genforsøg uden at nulstille/overskrive andre spilleres data.
+- `0` kr er gyldig gevinst for Toto Cup og øvrige runder; ingen gevinst er ikke det samme som manglende indtastning. Respektér at resultater kun hører til deres specifikke kamp.
+- Forventede faktisk gemte uge-43-tal pr. 25/10: **Supercup: Kardinalus 98,94 kr; King 57,15 kr; resultat 3-1. Toto Cup: Pingvinus 0 kr, Gorilla 0 kr, Kaninus 0 kr.** Kontroller altid live-data ved senere arbejde; disse er et dateret øjebliksbillede.
+
+### Hattrick og Årets Mål
+- 3 mål af en spiller i samme kamp er **ét hattrick**, også i Supercup. Kardinalus' 3-1-sejr over King i uge 43 giver **1 hattrick**. `Tabellen!B27` er sat til **1**, og `Tabellen!C27` (“Højeste”) er sat til **98,94 kr** — den hidtil eneste og højeste hattrick-gevinst. Ændr ikke tilbage til 0 ved senere opdateringer.
+- Hattrick-tæller i appens **Mere** skal læse resultater og vise føreren inkl. navn/antal, ikke statisk `0`. Fejl i PR #41 skyldtes et **dobbelt escapet regex-literal i JavaScript** (`/^(\\d+)\\s*.../` genkendte ikke `3-1`). PR #43 rettede til `/^(\d+)\s*[-–]\s*(\d+)$/` og kampdeling `/\s+[–-]\s+/`. Test både faktisk match, spilleridentitet, dubletter og korrekte opdateringer; tekst-tilstedeværelsestests alene fanger ikke regexfejl.
+- `Tabellen` har sektionen **Årets Mål** ved `A38:B39`; uge 43 viser **🙏 Kardinalus, 98,94 kr**. Appens **Mere → Årets Mål** er nu dynamisk beregnet ud fra højeste registrerede spillergevinst i `saved` (PR #42). Bevar denne automatiske opdatering. Behandl eventuelle uafgjorte højeste gevinster eksplicit i fremtidige ændringer i stedet for at skjule en delt førsteplads.
+- Vigtigt: Google Sheets hattrickfelter (Antal/Højeste) er **manuelle værdier**, ikke formler. Appens dynamiske visning opdaterer **ikke** automatisk `Tabellen!B:C` for fremtidige hattricks. Undgå at love, at regnskabet i selve arket automatisk følger appen, før automatisk opdatering i backend er implementeret og testet.
+
+### Udviklingskvalitet
+- Bevar arbejdsdelingen mellem `📅 Program 26-27` (program), `📲 Rundeindtastning` (resultater/gevinst), `Tabellen` (stillings- og særregnskab) og appvisninger. Foretag kun minimal, målrettet Sheet-redigering ved brugerens udtrykkelige ønske; inspicér celler/formler før skrivning og kontrollér efter.
+- Dæk ikke kun at nye funktionsnavne eksisterer, men test konkret tal-eksempler (Supercup 3-1 -> Kardinalus hattrick; Toto Cup tre `0`-indtastninger; alle 22 sæsonuger; en indsats pr. uge; kombineret uge på tværs af aktiviteter).
+- Historiske `All Time Leader`-beløb og pokaltal skal bevares; tidligere i denne periode blev afsluttet sæson `2026_2` tilføjet til historik, og Supercup-trofæet lagt til Kardinalus. Undgå at lægge igangværende sæson sammen med afsluttede sæsoner som dobbelt optælling.
