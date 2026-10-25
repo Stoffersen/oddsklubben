@@ -78,6 +78,12 @@ class MobileHomeSmoke(unittest.TestCase):
         self.assertIn("accumulated+=win",script)
         self.assertIn("planlagt indsats",script)
 
+    def test_toto_cup_saves_in_own_round(self):
+        script=(ROOT/"app/app.js").read_text()
+        self.assertIn('round:"Toto Cup",entries:toto',script)
+        self.assertIn('e.match==="Toto Cup"',script)
+        self.assertIn('saveRoundParts_(data).then',script)
+
     def test_cache_versions_match(self):
         page=(ROOT/"index.html").read_text()
         worker=(ROOT/"sw.js").read_text()
