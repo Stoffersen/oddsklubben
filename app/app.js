@@ -66,7 +66,7 @@ function paintSeasonBalance_(rows){
   var names=Object.keys(players),weeks=new Map();
   rows.forEach(function(e){
     var w=Number(e.week),name=String(e.player||"").replace(/^[^A-Za-zÆØÅæøå]+/,"").trim();
-    if(!Number.isInteger(w)||!(w>=43||w<=12)||!names.includes(name))return;
+    if(!Number.isInteger(w)||!((w>=43&&w<=53)||(w>=1&&w<=12))||!names.includes(name))return;
     var value=e.money===null||e.money===undefined?"":String(e.money).trim();
     var amount=value?parseMoney(value):null;
     if(amount===null&&!String(e.result||"").trim())return;
