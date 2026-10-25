@@ -206,3 +206,12 @@
 .balance-empty:has(svg) p{font-size:11px;color:#617068;margin:4px 2px 0}
 
 .balance-legend span:nth-child(1){color:#1b6e52}.balance-legend span:nth-child(2){color:#a36e19}.balance-legend span:nth-child(3){color:#2874b4}.balance-legend span:nth-child(4){color:#a24e77}.balance-legend span:nth-child(5){color:#744eb2}
+
+/* Weekly finance charts, compact on phone */
+.weekly-finance-card{margin-top:14px}
+.weekly-finance-plot{width:100%;min-height:175px;overflow:hidden}
+.weekly-finance-plot svg{width:100%;height:auto;display:block}
+.weekly-finance-plot p{color:#67746b;font-size:13px;text-align:center;padding:18px 0}
+.weekly-finance-legend{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:#4e6054;margin-top:7px}
+.weekly-finance-legend span{display:inline-flex;align-items:center;gap:5px}
+.weekly-finance-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
