@@ -101,6 +101,13 @@ class MobileHomeSmoke(unittest.TestCase):
         self.assertIn("paintHattricks_(savedEntries)",script)
         self.assertIn("paintHattricks_(out.saved)",script)
 
+    def test_goal_of_year_uses_saved_amounts(self):
+        script=(ROOT/"app/app.js").read_text()
+        self.assertIn("function paintGoalOfYear_(rows)",script)
+        self.assertIn("amount>best.amount",script)
+        self.assertIn("paintGoalOfYear_(savedEntries)",script)
+        self.assertIn("paintGoalOfYear_(out.saved)",script)
+
     def test_cache_versions_match(self):
         page=(ROOT/"index.html").read_text()
         worker=(ROOT/"sw.js").read_text()
