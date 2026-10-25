@@ -11,10 +11,13 @@ class WebsiteAppParity(unittest.TestCase):
         self.assertIn("🙏 Kardinalus · 72",web)
         self.assertIn("<th>Pokaler Total</th><td class=\"best\">72</td>",web)
         self.assertIn("<th>Super Cup</th><td class=\"champ\">13</td>",web)
-        self.assertIn("<b>201</b><span>registrerede pokaler",web)
+        self.assertIn("<b>202</b><span>registrerede pokaler",web)
         self.assertIn("<strong>🙏 Kardinalus</strong><span><b>72</b> pokaler i alt",app)
-        self.assertIn("201 aktive spillerpokaler",stats)
+        self.assertIn("202 aktive spillerpokaler",stats)
         self.assertNotIn("Kardinalus · 71",web)
+        self.assertIn("🐰 Kaninus · 41",web)
+        self.assertIn("<th>Toto Cup</th><td>1</td><td>1</td><td>1</td><td>3</td><td class=\"champ\">1</td>",web)
+        self.assertIn("<span>🐰 Kaninus</span><strong>41</strong>",app)
 
     def test_manager_fetch_uses_live_saved_data_and_safe_dom(self):
         web=(ROOT/"stats.html").read_text(encoding="utf-8")
