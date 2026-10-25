@@ -50,6 +50,14 @@ class MobileHomeSmoke(unittest.TestCase):
         self.assertIn('element("polyline"',script)
         self.assertIn("host.replaceChildren(svg)",script)
 
+    def test_all_time_updates_from_current_sheet_entries(self):
+        script=(ROOT/"app/app.js").read_text()
+        page=(ROOT/"index.html").read_text()
+        self.assertIn("function paintAllTimeFromSaved_(rows)",script)
+        self.assertIn("King:8164.69,Pingvinus:7359.51,Kardinalus:7196.87",script)
+        self.assertIn("paintAllTimeFromSaved_(savedEntries)",script)
+        self.assertIn("window.refreshAllTimeLeader()",page)
+
     def test_cache_versions_match(self):
         page=(ROOT/"index.html").read_text()
         worker=(ROOT/"sw.js").read_text()
