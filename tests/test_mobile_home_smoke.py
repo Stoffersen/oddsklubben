@@ -24,6 +24,17 @@ class MobileHomeSmoke(unittest.TestCase):
         self.assertIn('<small>2026 · 2</small><strong>🐧 Pingvinus</strong><b>1.702,50</b>',page)
         self.assertNotIn('2026 · 2</small><strong>⏳',page)
 
+    def test_manager_refreshes_from_sheet_data(self):
+        script=(ROOT/"app/app.js").read_text()
+        page=(ROOT/"index.html").read_text()
+        self.assertIn('window.refreshManagerStandings=function()',script)
+        self.assertIn('paintManagerFromSaved_(out.saved)',script)
+        self.assertIn('if(window.refreshManagerStandings)window.refreshManagerStandings()',page)
+
+    def test_money_view_no_longer_claims_new_season(self):
+        page=(ROOT/"index.html").read_text()
+        self.assertIn('id="money"',page)
+
     def test_cache_versions_match(self):
         page=(ROOT/"index.html").read_text()
         worker=(ROOT/"sw.js").read_text()
