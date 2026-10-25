@@ -19,7 +19,7 @@ class WebsiteAppParity(unittest.TestCase):
     def test_manager_fetch_uses_live_saved_data_and_safe_dom(self):
         web=(ROOT/"stats.html").read_text(encoding="utf-8")
         self.assertIn('id="manager-bars"',web)
-        self.assertIn("Array.isArray(data.saved)",web)
+        self.assertIn("Array.isArray(out.saved)",(ROOT/"stats-site/live-season.js").read_text(encoding="utf-8"))
         self.assertIn("stats-site/live-season.js",web)
         self.assertIn('id="website-alltime-bars"',web)
         self.assertIn('id="website-goal-of-year"',web)
