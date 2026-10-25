@@ -273,3 +273,9 @@ Disse observationer er verificeret i forbindelse med brugerens faktiske indtastn
 - Bevar arbejdsdelingen mellem `📅 Program 26-27` (program), `📲 Rundeindtastning` (resultater/gevinst), `Tabellen` (stillings- og særregnskab) og appvisninger. Foretag kun minimal, målrettet Sheet-redigering ved brugerens udtrykkelige ønske; inspicér celler/formler før skrivning og kontrollér efter.
 - Dæk ikke kun at nye funktionsnavne eksisterer, men test konkret tal-eksempler (Supercup 3-1 -> Kardinalus hattrick; Toto Cup tre `0`-indtastninger; alle 22 sæsonuger; en indsats pr. uge; kombineret uge på tværs af aktiviteter).
 - Historiske `All Time Leader`-beløb og pokaltal skal bevares; tidligere i denne periode blev afsluttet sæson `2026_2` tilføjet til historik, og Supercup-trofæet lagt til Kardinalus. Undgå at lægge igangværende sæson sammen med afsluttede sæsoner som dobbelt optælling.
+
+## Pokalarkiv – Toto Cup uge 43 (25. oktober 2026)
+
+- Brugeren har oplyst, at Kaninus vandt Toto Cup i uge 43. Pokaloversigterne i app (`index.html`) og på desktop (`pokaler.html`, `stats.html`) er afstemt med denne afgørelse: Kaninus 1 Toto Cup, 41 pokaler, samlet 202 aktive spillerpokaler.
+- De tre Toto Cup-spillere havde registreret 0 kr. hver; den økonomiske opgørelse fastlægger derfor ikke vinderen. Ændr ikke gemte gevinster eller slutningsregler for at udlede vinderen.
+- Google Sheet `All Time Pokaler` er ikke redigeret ved denne UI-rettelse. Kontrollér den autoritative pokalcelle særskilt ved næste regnskabsafstemning.
