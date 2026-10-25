@@ -59,7 +59,75 @@ document.getElementById("cards").addEventListener("input",function(e){
   try{var data=summary();localStorage.setItem("oddsklubben-draft-"+data.week,JSON.stringify(data))}catch(_){}
 });
 document.getElementById("save").onclick=()=>{if(!validate())return;const data=summary();document.getElementById("notice").innerHTML=`<div class="confirm"><strong>Klar til at gemme uge ${data.week}</strong><span>Kontrollér oplysningerne og tryk Bekræft.</span><button id="confirmSave">Bekræft og gem</button><button id="cancelSave" class="secondary">Ret oplysninger</button></div>`;document.getElementById("cancelSave").onclick=()=>document.getElementById("notice").textContent="";document.getElementById("confirmSave").onclick=()=>{localStorage.setItem("oddsklubben-draft-"+data.week,JSON.stringify(data));const btn=document.getElementById("confirmSave");btn.disabled=true;btn.textContent="Gemmer…";if(!API_URL){document.getElementById("notice").innerHTML='<div class="success">✓ Gemt som lokal kladde.<br><small>Backend er endnu ikke deployet.</small></div>';return}fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)}).then(function(res){return res.json()}).then(function(out){if(!out.ok)throw new Error(out.error||"Ukendt fejl");if(out.status==="written"&&localStorage.getItem("oddsklubben-draft-"+data.week)===JSON.stringify(data))localStorage.removeItem("oddsklubben-draft-"+data.week);if(out.status==="written"){window.refreshManagerStandings();window.refreshAllTimeLeader();}document.getElementById("notice").innerHTML=`<div class="success">✓ ${out.status==="written"?"Gemt i Google Sheet":"Test godkendt (dry-run)"}.<br><small>Uge ${data.week} · ${data.round}${backendWriteEnabled?"":" · live-skrivning er slukket"}</small></div>`}).catch(function(err){document.getElementById("notice").innerHTML=`<div class="error">Kunne ikke gemme: ${String(err.message||err)}<br><small>Din lokale kladde er bevaret.</small></div>`})}};render();updateHomeNextRound_();
-fetch(API_URL).then(function(res){return res.json()}).then(function(out){if(out && out.ok && Array.isArray(out.program) && out.program.length){backendWriteEnabled=out.writeEnabled===true;var status=document.getElementById("sheetWriteStatus");if(status)status.textContent=backendWriteEnabled?"✓ Google Sheet-forbindelse aktiv · gemning skriver til arket":"⚠️ Google Sheet er forbundet · gemning er i testtilstand";program=out.program;savedEntries=Array.isArray(out.saved)?out.saved:[];paintManagerFromSaved_(savedEntries);paintAllTimeFromSaved_(savedEntries);paintSeasonBalance_(savedEntries);pos=initialPosition();render();updateHomeNextRound_();if(window.renderSeasonProgram)window.renderSeasonProgram()}else{var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"}}).catch(function(){var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"});
+fetch(API_URL).then(function(res){return res.json()}).then(function(out){if(out && out.ok && Array.isArray(out.program) && out.program.length){backendWriteEnabled=out.writeEnabled===true;var status=document.getElementById("sheetWriteStatus");if(status)status.textContent=backendWriteEnabled?"✓ Google Sheet-forbindelse aktiv · gemning skriver til arket":"⚠️ Google Sheet er forbundet · gemning er i testtilstand";program=out.program;savedEntries=Array.isArray(out.saved)?out.saved:[];paintManagerFromSaved_(savedEntries);paintAllTimeFromSaved_(savedEntries);paintSeasonBalance_(savedEntries);paintWeeklyFinance_(savedEntries);pos=initialPosition();render();updateHomeNextRound_();if(window.renderSeasonProgram)window.renderSeasonProgram()}else{var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"}}).catch(function(){var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"});
+function weeklyFinance_(rows){
+  var names=Object.keys(players),weeks=new Map();
+  (rows||[]).forEach(function(e){
+    var w=Number(e.week),n=String(e.player||"").replace(/^[^A-Za-zÆØÅæøå]+/,"").trim();
+    if(!Number.isInteger(w)||!((w>=43&&w<=53)||(w>=1&&w<=12))||!names.includes(n))return;
+    var raw=String(e.money==null?"":e.money).trim(),amount=raw?parseMoney(raw):null;
+    if(amount===null&&!String(e.result||"").trim())return;
+    if(!weeks.has(w))weeks.set(w,Object.fromEntries(names.map(function(x){return [x,0]})));
+    if(amount!==null)weeks.get(w)[n]+=amount;
+  });
+  var ordered=[...weeks.keys()].sort(function(a,b){return (a>=43?a:a+53)-(b>=43?b:b+53)});
+  var member=Object.fromEntries(names.map(function(x){return [x,0]})),cumulative=0;
+  var series=ordered.map(function(w,i){
+    var win=names.reduce(function(v,n){member[n]+=weeks.get(w)[n]-80;return v+weeks.get(w)[n]},0);
+    cumulative+=win;
+    return {week:w,win:win,total:cumulative,stake:(i+1)*400};
+  });
+  return {series:series,members:names.map(function(n){return {name:n,balance:member[n]}}),total:names.reduce(function(v,n){return v+member[n]},0)};
+}
+function weeklyFinanceSvg_(host,w,h){
+  var svg=document.createElementNS("http://www.w3.org/2000/svg","svg");
+  svg.setAttribute("viewBox","0 0 "+w+" "+h);svg.setAttribute("role","img");
+  function add(tag,attrs,caption,parent){
+    var node=document.createElementNS("http://www.w3.org/2000/svg",tag);
+    Object.keys(attrs||{}).forEach(function(k){node.setAttribute(k,attrs[k])});
+    if(caption!==undefined)node.textContent=caption;
+    (parent||svg).appendChild(node);return node;
+  }
+  host.replaceChildren(svg);return {svg:svg,add:add};
+}
+function paintWeeklyFinance_(rows){
+  var club=document.getElementById("weeklyClubChart"),member=document.getElementById("weeklyMemberChart");
+  if(!club||!member||!Array.isArray(rows))return;
+  var stats=weeklyFinance_(rows),series=stats.series,fmt=new Intl.NumberFormat("da-DK",{maximumFractionDigits:2});
+  if(!series.length){club.textContent="Ingen registrerede spilleuger endnu.";member.textContent="Ingen registrerede spilleuger endnu.";return}
+  var W=380,H=238,l=45,r=13,t=17,b=42,baseY=H-b;
+  var chart=weeklyFinanceSvg_(club,W,H),add=chart.add;
+  chart.svg.setAttribute("aria-label","Ugentlige gevinster, akkumulerede gevinster og indsats for "+series.length+" uger");
+  var high=Math.max(400, ...series.flatMap(function(x){return [x.win,x.total,x.stake]}))*1.1;
+  var y=function(v){return baseY-(v/high)*(baseY-t)};
+  [0,.5,1].forEach(function(f){var yy=y(high*f);add("line",{x1:l,y1:yy,x2:W-r,y2:yy,stroke:"#dbe2dd"});add("text",{x:l-5,y:yy+4,"text-anchor":"end",fill:"#667469","font-size":10},fmt.format(high*f))});
+  var step=(W-l-r)/series.length,bw=Math.min(23,step*.57);
+  series.forEach(function(d,i){
+    var x=l+step*(i+.5),height=baseY-y(d.win);
+    var bar=add("rect",{x:x-bw/2,y:y(d.win),width:bw,height:Math.max(0,height),rx:2,fill:"#2874b4"});
+    add("title",{},"Uge "+d.week+": "+fmt.format(d.win)+" kr vundet",bar);
+    add("text",{x:x,y:H-18,"text-anchor":"middle",fill:"#607068","font-size":series.length>15?8:10},"U"+d.week);
+  });
+  [{key:"total",color:"#d85c55"},{key:"stake",color:"#884fce"}].forEach(function(k){
+    var points=series.map(function(d,i){return (l+step*(i+.5))+","+y(d[k.key])}).join(" ");
+    add("polyline",{points:points,fill:"none",stroke:k.color,"stroke-width":3,"stroke-linejoin":"round"});
+    series.forEach(function(d,i){var p=add("circle",{cx:l+step*(i+.5),cy:y(d[k.key]),r:3,fill:k.color});add("title",{},"Uge "+d.week+": "+fmt.format(d[k.key])+" kr",p)});
+  });
+  var M=weeklyFinanceSvg_(member,W,236),ma=M.add;M.svg.setAttribute("aria-label","Sæsonsaldo for hver spiller og Oddsklubben samlet");
+  var entries=stats.members.concat([{name:"TOTAL",balance:stats.total}]);
+  var min=Math.min(0,...entries.map(function(x){return x.balance})),max=Math.max(0,...entries.map(function(x){return x.balance}));
+  var pad=Math.max(80,(max-min)*.12),lower=min-pad,upper=max+pad,top=15,bottom=188;
+  var my=function(v){return top+(upper-v)*(bottom-top)/(upper-lower)},zy=my(0);
+  ma("line",{x1:30,y1:zy,x2:W-10,y2:zy,stroke:"#7b8980","stroke-width":1.5});
+  var colors={Kardinalus:"#1b6e52",King:"#a36e19",Pingvinus:"#2874b4",Kaninus:"#a24e77",Gorilla:"#744eb2",TOTAL:"#3d6651"};
+  entries.forEach(function(d,i){
+    var cx=32+(i+.5)*(W-43)/entries.length,yy=my(d.balance),height=Math.abs(yy-zy);
+    var bar=ma("rect",{x:cx-17,y:Math.min(yy,zy),width:34,height:height,rx:3,fill:colors[d.name]});
+    ma("title",{},d.name+": "+fmt.format(d.balance)+" kr",bar);
+    ma("text",{x:cx,y:d.balance>=0?Math.max(12,yy-6):Math.min(bottom+14,yy+12),"text-anchor":"middle",fill:"#26382c","font-size":10},fmt.format(d.balance));
+    ma("text",{x:cx,y:221,"text-anchor":"middle",fill:"#50645a","font-size":d.name==="TOTAL"?10:16},d.name==="TOTAL"?"TOTAL":players[d.name].split(" ")[0]);
+  });
+}
 function paintSeasonBalance_(rows){
   var host=document.querySelector(".balance-empty");
   if(!host||!Array.isArray(rows))return;
@@ -184,7 +252,7 @@ window.refreshManagerStandings=function(){
     return res.json();
   }).then(function(out){
     if(!out||!out.ok||!Array.isArray(out.saved))throw new Error("mangler data");
-    paintManagerFromSaved_(out.saved);paintSeasonBalance_(out.saved);
+    paintManagerFromSaved_(out.saved);paintSeasonBalance_(out.saved);paintWeeklyFinance_(out.saved);
   }).catch(function(){
     var mood=document.querySelector("#money .mood");
     if(mood)mood.textContent="Kunne ikke hente aktuel stilling · prøv igen senere";
