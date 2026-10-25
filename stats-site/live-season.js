@@ -86,6 +86,7 @@ function renderAwards(rows){
 function render(rows,program){
  var current=listed(rows),all={};names.forEach(function(n){all[n]=historical[n]+current[n]});
  renderBars(find("manager-bars"),current," kr");renderBars(find("website-alltime-bars"),all,"");
+ var kpi=find("website-alltime-kpi");if(kpi){var lead=names.slice().sort(function(a,b){return all[b]-all[a]});kpi.querySelector("strong").textContent=icons[lead[0]]+" "+lead[0];kpi.querySelector("b").textContent=fmt.format(all[lead[0]])+" kr";kpi.querySelector("span").textContent=fmt.format(all[lead[0]]-all[lead[1]])+" kr foran nr. 2"}
  renderStandings(rows);renderProgram(program);renderAwards(rows);
  var s=find("manager-source");if(s)s.textContent="Opdateret fra appens data";
  var updated=find("website-live-status");if(updated)updated.textContent="Aktuelle data fra Google Sheet";
