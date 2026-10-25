@@ -108,6 +108,15 @@ class MobileHomeSmoke(unittest.TestCase):
         self.assertIn("paintGoalOfYear_(savedEntries)",script)
         self.assertIn("paintGoalOfYear_(out.saved)",script)
 
+    def test_hattrick_regex_matches_score_and_teams(self):
+        script=(ROOT/"app/app.js").read_text()
+        start=script.index("function paintHattricks_(rows)")
+        end=script.index("function paintSeasonBalance_(rows)",start)
+        section=script[start:end]
+        self.assertIn(r"/^(\d+)\s*[-–]\s*(\d+)$/",section)
+        self.assertIn(r"/\s+[–-]\s+/",section)
+        self.assertNotIn(r"/^(\\d+)\\s*",section)
+
     def test_cache_versions_match(self):
         page=(ROOT/"index.html").read_text()
         worker=(ROOT/"sw.js").read_text()
