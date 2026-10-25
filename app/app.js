@@ -58,8 +58,8 @@ document.getElementById("cards").addEventListener("input",function(e){
   if(!e.target.matches('input[data-kind="money"],input[data-kind="result"]'))return;
   try{var data=summary();localStorage.setItem("oddsklubben-draft-"+data.week,JSON.stringify(data))}catch(_){}
 });
-document.getElementById("save").onclick=()=>{if(!validate())return;const data=summary();document.getElementById("notice").innerHTML=`<div class="confirm"><strong>Klar til at gemme uge ${data.week}</strong><span>Kontrollér oplysningerne og tryk Bekræft.</span><button id="confirmSave">Bekræft og gem</button><button id="cancelSave" class="secondary">Ret oplysninger</button></div>`;document.getElementById("cancelSave").onclick=()=>document.getElementById("notice").textContent="";document.getElementById("confirmSave").onclick=()=>{localStorage.setItem("oddsklubben-draft-"+data.week,JSON.stringify(data));const btn=document.getElementById("confirmSave");btn.disabled=true;btn.textContent="Gemmer…";if(!API_URL){document.getElementById("notice").innerHTML='<div class="success">✓ Gemt som lokal kladde.<br><small>Backend er endnu ikke deployet.</small></div>';return}fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)}).then(function(res){return res.json()}).then(function(out){if(!out.ok)throw new Error(out.error||"Ukendt fejl");if(out.status==="written"&&localStorage.getItem("oddsklubben-draft-"+data.week)===JSON.stringify(data))localStorage.removeItem("oddsklubben-draft-"+data.week);if(out.status==="written")window.refreshManagerStandings();document.getElementById("notice").innerHTML=`<div class="success">✓ ${out.status==="written"?"Gemt i Google Sheet":"Test godkendt (dry-run)"}.<br><small>Uge ${data.week} · ${data.round}${backendWriteEnabled?"":" · live-skrivning er slukket"}</small></div>`}).catch(function(err){document.getElementById("notice").innerHTML=`<div class="error">Kunne ikke gemme: ${String(err.message||err)}<br><small>Din lokale kladde er bevaret.</small></div>`})}};render();updateHomeNextRound_();
-fetch(API_URL).then(function(res){return res.json()}).then(function(out){if(out && out.ok && Array.isArray(out.program) && out.program.length){backendWriteEnabled=out.writeEnabled===true;var status=document.getElementById("sheetWriteStatus");if(status)status.textContent=backendWriteEnabled?"✓ Google Sheet-forbindelse aktiv · gemning skriver til arket":"⚠️ Google Sheet er forbundet · gemning er i testtilstand";program=out.program;savedEntries=Array.isArray(out.saved)?out.saved:[];paintManagerFromSaved_(savedEntries);paintSeasonBalance_(savedEntries);pos=initialPosition();render();updateHomeNextRound_();if(window.renderSeasonProgram)window.renderSeasonProgram()}else{var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"}}).catch(function(){var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"});
+document.getElementById("save").onclick=()=>{if(!validate())return;const data=summary();document.getElementById("notice").innerHTML=`<div class="confirm"><strong>Klar til at gemme uge ${data.week}</strong><span>Kontrollér oplysningerne og tryk Bekræft.</span><button id="confirmSave">Bekræft og gem</button><button id="cancelSave" class="secondary">Ret oplysninger</button></div>`;document.getElementById("cancelSave").onclick=()=>document.getElementById("notice").textContent="";document.getElementById("confirmSave").onclick=()=>{localStorage.setItem("oddsklubben-draft-"+data.week,JSON.stringify(data));const btn=document.getElementById("confirmSave");btn.disabled=true;btn.textContent="Gemmer…";if(!API_URL){document.getElementById("notice").innerHTML='<div class="success">✓ Gemt som lokal kladde.<br><small>Backend er endnu ikke deployet.</small></div>';return}fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)}).then(function(res){return res.json()}).then(function(out){if(!out.ok)throw new Error(out.error||"Ukendt fejl");if(out.status==="written"&&localStorage.getItem("oddsklubben-draft-"+data.week)===JSON.stringify(data))localStorage.removeItem("oddsklubben-draft-"+data.week);if(out.status==="written"){window.refreshManagerStandings();window.refreshAllTimeLeader();}document.getElementById("notice").innerHTML=`<div class="success">✓ ${out.status==="written"?"Gemt i Google Sheet":"Test godkendt (dry-run)"}.<br><small>Uge ${data.week} · ${data.round}${backendWriteEnabled?"":" · live-skrivning er slukket"}</small></div>`}).catch(function(err){document.getElementById("notice").innerHTML=`<div class="error">Kunne ikke gemme: ${String(err.message||err)}<br><small>Din lokale kladde er bevaret.</small></div>`})}};render();updateHomeNextRound_();
+fetch(API_URL).then(function(res){return res.json()}).then(function(out){if(out && out.ok && Array.isArray(out.program) && out.program.length){backendWriteEnabled=out.writeEnabled===true;var status=document.getElementById("sheetWriteStatus");if(status)status.textContent=backendWriteEnabled?"✓ Google Sheet-forbindelse aktiv · gemning skriver til arket":"⚠️ Google Sheet er forbundet · gemning er i testtilstand";program=out.program;savedEntries=Array.isArray(out.saved)?out.saved:[];paintManagerFromSaved_(savedEntries);paintAllTimeFromSaved_(savedEntries);paintSeasonBalance_(savedEntries);pos=initialPosition();render();updateHomeNextRound_();if(window.renderSeasonProgram)window.renderSeasonProgram()}else{var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"}}).catch(function(){var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"});
 function paintSeasonBalance_(rows){
   var host=document.querySelector(".balance-empty");
   if(!host||!Array.isArray(rows))return;
@@ -119,6 +119,43 @@ function paintSeasonBalance_(rows){
   note.textContent="Registrerede uger: "+ordered.map(function(w){return "uge "+w}).join(", ")+". Saldo = gevinster − 80 kr pr. spiller pr. uge.";
   host.appendChild(note);
 }
+/* Completed seasons through 2026_2; current season amounts come only from saved entries. */
+function paintAllTimeFromSaved_(rows){
+  if(!Array.isArray(rows))return;
+  var base={King:8164.69,Pingvinus:7359.51,Kardinalus:7196.87,Gorilla:6360.16,Kaninus:6126.99};
+  var totals=Object.keys(base).map(function(name){return {name:name,total:base[name]};});
+  rows.forEach(function(e){
+    var name=String(e.player||"").replace(/^[^A-Za-zÆØÅæøå]+/,"").trim();
+    var item=totals.find(function(x){return x.name===name});
+    if(!item||e.money===null||e.money===undefined||String(e.money).trim()==="")return;
+    var amount=parseMoney(String(e.money));
+    if(amount!==null)item.total+=amount;
+  });
+  totals.sort(function(a,b){return b.total-a.total});
+  var fmt=new Intl.NumberFormat("da-DK",{minimumFractionDigits:2,maximumFractionDigits:2});
+  var cards=document.querySelectorAll("#allTime .alltime-hero, #allTime .alltime-card");
+  cards.forEach(function(card,i){
+    var item=totals[i];if(!item)return;
+    var nameEl=card.querySelector(".hero-copy strong");
+    var amountEl=card.querySelector(".hero-copy span b");
+    if(nameEl)nameEl.textContent=players[item.name];
+    if(amountEl)amountEl.textContent=fmt.format(item.total)+(i===0?" kr":"");
+  });
+  document.querySelectorAll("#atRank .alltime-rank").forEach(function(row,i){
+    var item=totals[i+3];if(!item)return;
+    row.querySelector("span").textContent=players[item.name];
+    row.querySelector("strong").textContent=fmt.format(item.total);
+  });
+  var delta=totals[0].total-totals[1].total;
+  var whisper=document.querySelector("#atRank .alltime-whisper");
+  if(whisper)whisper.textContent=players[totals[0].name]+" er "+fmt.format(delta)+" kr foran "+totals[1].name+".";
+}
+window.refreshAllTimeLeader=function(){
+  if(!API_URL)return Promise.resolve();
+  return fetch(API_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(res){return res.json()}).then(function(out){
+    if(out&&out.ok&&Array.isArray(out.saved))paintAllTimeFromSaved_(out.saved);
+  }).catch(function(){});
+};
 function paintManagerFromSaved_(rows){
   var panel=document.getElementById("money");
   if(!panel||!Array.isArray(rows))return;
