@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-24 12:22 UTC",
+  "updated": "2026-10-25 12:54 UTC",
   "favorites": [
     {
       "date": "2026-10-31",
@@ -36,39 +36,39 @@
       }
     },
     {
-      "date": "2026-10-25",
-      "match": "FC Internazionale Milano vs ACF Fiorentina",
-      "selection": "FC Internazionale Milano",
-      "probability": 0.7398,
+      "date": "2026-11-01",
+      "match": "FC Barcelona vs Deportivo Alavés",
+      "selection": "FC Barcelona",
+      "probability": 0.779,
       "explanation": {
-        "home_expected_goals": 3.02,
-        "away_expected_goals": 1.2,
-        "home_attack_strength": 1.85,
-        "home_defence_strength": 0.94,
-        "away_attack_strength": 1.05,
-        "away_defence_strength": 1.24,
-        "league_home_goals": 1.32,
-        "league_away_goals": 1.21,
-        "summary": "Modellen forventer 3.02 mål til FC Internazionale Milano mod 1.20 til ACF Fiorentina; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+        "home_expected_goals": 2.71,
+        "away_expected_goals": 0.79,
+        "home_attack_strength": 1.74,
+        "home_defence_strength": 0.73,
+        "away_attack_strength": 0.92,
+        "away_defence_strength": 0.96,
+        "league_home_goals": 1.63,
+        "league_away_goals": 1.18,
+        "summary": "Modellen forventer 2.71 mål til FC Barcelona mod 0.79 til Deportivo Alavés; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
     }
   ],
   "upsets": [
     {
-      "date": "2026-10-25",
-      "match": "PSV vs Feyenoord Rotterdam",
-      "selection": "Feyenoord Rotterdam",
-      "probability": 0.3761,
+      "date": "2026-11-01",
+      "match": "Levante UD vs Club Atlético de Madrid",
+      "selection": "Club Atlético de Madrid",
+      "probability": 0.3795,
       "explanation": {
-        "home_expected_goals": 2.18,
-        "away_expected_goals": 2.05,
-        "home_attack_strength": 1.7,
-        "home_defence_strength": 0.97,
-        "away_attack_strength": 1.37,
-        "away_defence_strength": 0.72,
-        "league_home_goals": 1.78,
-        "league_away_goals": 1.54,
-        "summary": "Modellen forventer 2.05 mål til Feyenoord Rotterdam mod 2.18 til PSV; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+        "home_expected_goals": 1.68,
+        "away_expected_goals": 1.65,
+        "home_attack_strength": 1.07,
+        "home_defence_strength": 1.21,
+        "away_attack_strength": 1.16,
+        "away_defence_strength": 0.96,
+        "league_home_goals": 1.63,
+        "league_away_goals": 1.18,
+        "summary": "Modellen forventer 1.65 mål til Club Atlético de Madrid mod 1.68 til Levante UD; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
       },
       "uncertain": false
     },
@@ -119,19 +119,19 @@
       "tier": "bold"
     },
     {
-      "date": "2026-10-30",
-      "match": "SV 07 Elversberg vs 1. FSV Mainz 05",
-      "selection": "SV 07 Elversberg",
-      "probability": 0.3294,
-      "favorite_probability": 0.4531,
+      "date": "2026-11-01",
+      "match": "Telstar 1963 vs FC Utrecht",
+      "selection": "FC Utrecht",
+      "probability": 0.3414,
+      "favorite_probability": 0.4403,
       "tier": "bold"
     },
     {
-      "date": "2026-10-31",
-      "match": "Burnley vs Portsmouth FC",
-      "selection": "Portsmouth FC",
-      "probability": 0.3328,
-      "favorite_probability": 0.417,
+      "date": "2026-11-01",
+      "match": "Paris FC vs AS Monaco FC",
+      "selection": "AS Monaco FC",
+      "probability": 0.3368,
+      "favorite_probability": 0.4311,
       "tier": "bold"
     }
   ],
@@ -155,7 +155,7 @@
       {
         "type": "double",
         "stake_kr": 20,
-        "combined_probability": 0.312,
+        "combined_probability": 0.3149,
         "legs": [
           {
             "date": "2026-10-31",
@@ -164,31 +164,31 @@
             "probability": 0.8297
           },
           {
-            "date": "2026-10-25",
-            "match": "PSV vs Feyenoord Rotterdam",
-            "selection": "Feyenoord Rotterdam",
-            "probability": 0.3761
+            "date": "2026-11-01",
+            "match": "Levante UD vs Club Atlético de Madrid",
+            "selection": "Club Atlético de Madrid",
+            "probability": 0.3795
           }
         ]
       },
       {
         "type": "single",
         "stake_kr": 20,
-        "combined_probability": 0.3761,
+        "combined_probability": 0.3795,
         "legs": [
           {
-            "date": "2026-10-25",
-            "match": "PSV vs Feyenoord Rotterdam",
-            "selection": "Feyenoord Rotterdam",
-            "probability": 0.3761
+            "date": "2026-11-01",
+            "match": "Levante UD vs Club Atlético de Madrid",
+            "selection": "Club Atlético de Madrid",
+            "probability": 0.3795
           }
         ]
       }
     ]
   },
   "smart_double": {
-    "combined_probability": 0.312,
-    "expected_odds_90": 2.88,
+    "combined_probability": 0.3149,
+    "expected_odds_90": 2.86,
     "note": null,
     "legs": [
       {
@@ -200,10 +200,10 @@
       },
       {
         "role": "surprise",
-        "date": "2026-10-25",
-        "match": "PSV vs Feyenoord Rotterdam",
-        "selection": "Feyenoord Rotterdam",
-        "probability": 0.3761
+        "date": "2026-11-01",
+        "match": "Levante UD vs Club Atlético de Madrid",
+        "selection": "Club Atlético de Madrid",
+        "probability": 0.3795
       }
     ]
   },
