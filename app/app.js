@@ -103,12 +103,12 @@ function paintSeasonBalance_(rows){
   element("line",{x1:left,y1:zero,x2:width-right,y2:zero,stroke:"#a8b1a9","stroke-dasharray":"3 3"});
   [min,max].forEach(function(v){element("text",{x:left-7,y:yy(v)+4,"text-anchor":"end",fill:"#607068","font-size":"10"},Math.round(v)+"")});
   ordered.forEach(function(w,i){element("text",{x:xx(i),y:height-8,"text-anchor":"middle",fill:"#607068","font-size":"10"},"U"+w)});
-  var colors=["#1b6e52","#a36e19","#2874b4","#a24e77","#744eb2"];
+  var colors={Kardinalus:"#1b6e52",King:"#a36e19",Pingvinus:"#2874b4",Kaninus:"#a24e77",Gorilla:"#744eb2"};
   series.forEach(function(line,i){
     var points=line.values.map(function(v,j){return xx(j)+","+yy(v)}).join(" ");
-    if(line.values.length>1)element("polyline",{points:points,fill:"none",stroke:colors[i],"stroke-width":"2.5","stroke-linejoin":"round"});
+    if(line.values.length>1)element("polyline",{points:points,fill:"none",stroke:colors[line.name],"stroke-width":"2.5","stroke-linejoin":"round"});
     line.values.forEach(function(v,j){
-      var point=element("circle",{cx:xx(j),cy:yy(v),r:3.5,fill:colors[i]});
+      var point=element("circle",{cx:xx(j),cy:yy(v),r:3.5,fill:colors[line.name]});
       var tip=document.createElementNS("http://www.w3.org/2000/svg","title");
       tip.textContent=line.name+" · uge "+ordered[j]+": "+v.toFixed(2).replace(".",",")+" kr";
       point.appendChild(tip);
