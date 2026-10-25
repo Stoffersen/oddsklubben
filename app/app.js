@@ -58,8 +58,42 @@ document.getElementById("cards").addEventListener("input",function(e){
   if(!e.target.matches('input[data-kind="money"],input[data-kind="result"]'))return;
   try{var data=summary();localStorage.setItem("oddsklubben-draft-"+data.week,JSON.stringify(data))}catch(_){}
 });
-document.getElementById("save").onclick=()=>{if(!validate())return;const data=summary();document.getElementById("notice").innerHTML=`<div class="confirm"><strong>Klar til at gemme uge ${data.week}</strong><span>Kontrollér oplysningerne og tryk Bekræft.</span><button id="confirmSave">Bekræft og gem</button><button id="cancelSave" class="secondary">Ret oplysninger</button></div>`;document.getElementById("cancelSave").onclick=()=>document.getElementById("notice").textContent="";document.getElementById("confirmSave").onclick=()=>{localStorage.setItem("oddsklubben-draft-"+data.week,JSON.stringify(data));const btn=document.getElementById("confirmSave");btn.disabled=true;btn.textContent="Gemmer…";if(!API_URL){document.getElementById("notice").innerHTML='<div class="success">✓ Gemt som lokal kladde.<br><small>Backend er endnu ikke deployet.</small></div>';return}fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)}).then(function(res){return res.json()}).then(function(out){if(!out.ok)throw new Error(out.error||"Ukendt fejl");if(out.status==="written"&&localStorage.getItem("oddsklubben-draft-"+data.week)===JSON.stringify(data))localStorage.removeItem("oddsklubben-draft-"+data.week);document.getElementById("notice").innerHTML=`<div class="success">✓ ${out.status==="written"?"Gemt i Google Sheet":"Test godkendt (dry-run)"}.<br><small>Uge ${data.week} · ${data.round}${backendWriteEnabled?"":" · live-skrivning er slukket"}</small></div>`}).catch(function(err){document.getElementById("notice").innerHTML=`<div class="error">Kunne ikke gemme: ${String(err.message||err)}<br><small>Din lokale kladde er bevaret.</small></div>`})}};render();updateHomeNextRound_();
-fetch(API_URL).then(function(res){return res.json()}).then(function(out){if(out && out.ok && Array.isArray(out.program) && out.program.length){backendWriteEnabled=out.writeEnabled===true;var status=document.getElementById("sheetWriteStatus");if(status)status.textContent=backendWriteEnabled?"✓ Google Sheet-forbindelse aktiv · gemning skriver til arket":"⚠️ Google Sheet er forbundet · gemning er i testtilstand";program=out.program;savedEntries=Array.isArray(out.saved)?out.saved:[];pos=initialPosition();render();updateHomeNextRound_();if(window.renderSeasonProgram)window.renderSeasonProgram()}else{var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"}}).catch(function(){var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"});
+document.getElementById("save").onclick=()=>{if(!validate())return;const data=summary();document.getElementById("notice").innerHTML=`<div class="confirm"><strong>Klar til at gemme uge ${data.week}</strong><span>Kontrollér oplysningerne og tryk Bekræft.</span><button id="confirmSave">Bekræft og gem</button><button id="cancelSave" class="secondary">Ret oplysninger</button></div>`;document.getElementById("cancelSave").onclick=()=>document.getElementById("notice").textContent="";document.getElementById("confirmSave").onclick=()=>{localStorage.setItem("oddsklubben-draft-"+data.week,JSON.stringify(data));const btn=document.getElementById("confirmSave");btn.disabled=true;btn.textContent="Gemmer…";if(!API_URL){document.getElementById("notice").innerHTML='<div class="success">✓ Gemt som lokal kladde.<br><small>Backend er endnu ikke deployet.</small></div>';return}fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)}).then(function(res){return res.json()}).then(function(out){if(!out.ok)throw new Error(out.error||"Ukendt fejl");if(out.status==="written"&&localStorage.getItem("oddsklubben-draft-"+data.week)===JSON.stringify(data))localStorage.removeItem("oddsklubben-draft-"+data.week);if(out.status==="written")window.refreshManagerStandings();document.getElementById("notice").innerHTML=`<div class="success">✓ ${out.status==="written"?"Gemt i Google Sheet":"Test godkendt (dry-run)"}.<br><small>Uge ${data.week} · ${data.round}${backendWriteEnabled?"":" · live-skrivning er slukket"}</small></div>`}).catch(function(err){document.getElementById("notice").innerHTML=`<div class="error">Kunne ikke gemme: ${String(err.message||err)}<br><small>Din lokale kladde er bevaret.</small></div>`})}};render();updateHomeNextRound_();
+fetch(API_URL).then(function(res){return res.json()}).then(function(out){if(out && out.ok && Array.isArray(out.program) && out.program.length){backendWriteEnabled=out.writeEnabled===true;var status=document.getElementById("sheetWriteStatus");if(status)status.textContent=backendWriteEnabled?"✓ Google Sheet-forbindelse aktiv · gemning skriver til arket":"⚠️ Google Sheet er forbundet · gemning er i testtilstand";program=out.program;savedEntries=Array.isArray(out.saved)?out.saved:[];paintManagerFromSaved_(savedEntries);pos=initialPosition();render();updateHomeNextRound_();if(window.renderSeasonProgram)window.renderSeasonProgram()}else{var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"}}).catch(function(){var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"});
+function paintManagerFromSaved_(rows){
+  var panel=document.getElementById("money");
+  if(!panel||!Array.isArray(rows))return;
+  var scores=Object.keys(players).map(function(name){return {name:name,total:0}});
+  rows.forEach(function(e){
+    var player=String(e.player||"").replace(/^[^A-Za-zÆØÅæøå]+/,"").trim();
+    var item=scores.find(function(x){return x.name===player});
+    if(!item||e.money===null||e.money===undefined||String(e.money).trim()==="")return;
+    var amount=parseMoney(String(e.money));
+    if(amount!==null)item.total+=amount;
+  });
+  scores.sort(function(a,b){return b.total-a.total});
+  var number=new Intl.NumberFormat("da-DK",{minimumFractionDigits:2,maximumFractionDigits:2});
+  panel.querySelectorAll(".srow").forEach(function(row,i){
+    var item=scores[i];if(!item)return;
+    row.querySelector("b").textContent=String(i+1);
+    row.querySelector("span").textContent=players[item.name];
+    row.querySelector("strong").textContent=number.format(item.total);
+  });
+  var mood=panel.querySelector(".mood");
+  if(mood)mood.textContent="Beløb fra Google Sheet · opdateres ved åbning";
+}
+window.refreshManagerStandings=function(){
+  return fetch(API_URL+"?t="+Date.now(),{cache:"no-store"}).then(function(res){
+    if(!res.ok)throw new Error("forbindelse");
+    return res.json();
+  }).then(function(out){
+    if(!out||!out.ok||!Array.isArray(out.saved))throw new Error("mangler data");
+    paintManagerFromSaved_(out.saved);
+  }).catch(function(){
+    var mood=document.querySelector("#money .mood");
+    if(mood)mood.textContent="Kunne ikke hente aktuel stilling · prøv igen senere";
+  });
+};
 logApp_("app_open","app:forside","");
 function programKind_(x){var r=String(x.r||"").toLowerCase();if(r.indexOf("pokal")>=0)return"cup";if(r.indexOf("runde")===0)return"league";if(r.indexOf("supercup")>=0||r.indexOf("toto")>=0||r.indexOf("julecup")>=0)return"special";return"other"}
 function prettyMatch_(m){return String(m||"").replace("Kardinalus","🙏 Kardinalus").replace("Pingvinus","🐧 Pingvinus").replace("Kaninus","🐰 Kaninus").replace("Gorilla","🦍 Gorilla").replace("King","👑 King")}
