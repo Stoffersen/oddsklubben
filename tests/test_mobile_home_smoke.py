@@ -93,6 +93,14 @@ class MobileHomeSmoke(unittest.TestCase):
         self.assertEqual(html.count('id="weeklyMemberChart"'),1)
         self.assertEqual(html.count('id="weeklyClubChart"'),1)
 
+    def test_hattricks_come_from_saved_scores(self):
+        script=(ROOT/"app/app.js").read_text()
+        self.assertIn("function paintHattricks_(rows)",script)
+        self.assertIn("v.home>=3",script)
+        self.assertIn("v.away>=3",script)
+        self.assertIn("paintHattricks_(savedEntries)",script)
+        self.assertIn("paintHattricks_(out.saved)",script)
+
     def test_cache_versions_match(self):
         page=(ROOT/"index.html").read_text()
         worker=(ROOT/"sw.js").read_text()
