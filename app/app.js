@@ -165,12 +165,12 @@ function paintHattricks_(rows){
   var results=new Map();
   rows.forEach(function(e){
     var key=String(e.week)+"|"+String(e.round)+"|"+String(e.match);
-    var score=String(e.result||"").trim().match(/^(\\d+)\\s*[-–]\\s*(\\d+)$/);
+    var score=String(e.result||"").trim().match(/^(\d+)\s*[-–]\s*(\d+)$/);
     if(score)results.set(key,{match:String(e.match),home:Number(score[1]),away:Number(score[2])});
   });
   var counts=Object.fromEntries(Object.keys(players).map(function(n){return [n,0]}));
   results.forEach(function(v){
-    var teams=v.match.split(/\\s+[–-]\\s+/).map(function(n){return n.trim()});
+    var teams=v.match.split(/\s+[–-]\s+/).map(function(n){return n.trim()});
     if(teams.length!==2)return;
     if(counts[teams[0]]!==undefined&&v.home>=3)counts[teams[0]]++;
     if(counts[teams[1]]!==undefined&&v.away>=3)counts[teams[1]]++;
