@@ -41,6 +41,15 @@ class MobileHomeSmoke(unittest.TestCase):
         self.assertIn('<b>72</b> pokaler i alt',page)
         self.assertIn('inkl. Supercup 2026/27',page)
 
+    def test_season_chart_uses_saved_entries(self):
+        script=(ROOT/"app/app.js").read_text()
+        self.assertIn("function paintSeasonBalance_(rows)",script)
+        self.assertIn("paintSeasonBalance_(out.saved)",script)
+        self.assertIn("paintSeasonBalance_(savedEntries)",script)
+        self.assertIn("balances[n]+=weeks.get(w)[n]-80",script)
+        self.assertIn('element("polyline"',script)
+        self.assertIn("host.replaceChildren(svg)",script)
+
     def test_cache_versions_match(self):
         page=(ROOT/"index.html").read_text()
         worker=(ROOT/"sw.js").read_text()
