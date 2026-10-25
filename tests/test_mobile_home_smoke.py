@@ -84,6 +84,15 @@ class MobileHomeSmoke(unittest.TestCase):
         self.assertIn('e.match==="Toto Cup"',script)
         self.assertIn('saveRoundParts_(data).then',script)
 
+    def test_charts_outside_standings_tab_panels(self):
+        html=(ROOT/"index.html").read_text()
+        start=html.index('<div id="extras" class="standing-panel">')
+        end=html.index('<p class="foot">Kilde: Tabellen</p>',start)
+        section=html[start:end]
+        self.assertLess(section.index('</div><div class="league-development">'),section.index('id="weeklyClubChart"'))
+        self.assertEqual(html.count('id="weeklyMemberChart"'),1)
+        self.assertEqual(html.count('id="weeklyClubChart"'),1)
+
     def test_cache_versions_match(self):
         page=(ROOT/"index.html").read_text()
         worker=(ROOT/"sw.js").read_text()
