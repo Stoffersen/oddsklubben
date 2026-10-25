@@ -198,3 +198,11 @@
 /* Persistent app home navigation */
 .floating-home{position:fixed;z-index:1000;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));display:none;align-items:center;gap:6px;padding:11px 15px;border:1px solid #cfd9d1;border-radius:999px;background:rgba(255,255,255,.96);color:#17472d;font:800 14px/1 system-ui;box-shadow:0 5px 18px rgba(20,55,35,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}.floating-home.show{display:inline-flex}.floating-home:active{transform:translateY(1px)}@media(min-width:851px){.floating-home{display:none!important}}
 
+
+/* Live season balance series */
+.balance-empty:has(svg){display:block;text-align:left}
+.balance-empty svg{width:100%;height:auto;display:block;overflow:visible}
+.balance-empty svg text{font-family:inherit}
+.balance-empty:has(svg) p{font-size:11px;color:#617068;margin:4px 2px 0}
+
+.balance-legend span:nth-child(1){color:#1b6e52}.balance-legend span:nth-child(2){color:#a36e19}.balance-legend span:nth-child(3){color:#2874b4}.balance-legend span:nth-child(4){color:#a24e77}.balance-legend span:nth-child(5){color:#744eb2}
