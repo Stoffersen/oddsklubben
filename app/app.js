@@ -104,17 +104,28 @@ function paintWeeklyFinance_(rows){
     accumulated+=win;
     return {week:w,win:win,total:accumulated,stake:(i+1)*400,recorded:!!saved};
   });
-  var W=430,H=245,l=49,r=13,t=17,b=50,baseY=H-b;
+  var W=430,H=245,l=49,r=49,t=17,b=50,baseY=H-b;
   var chart=weeklyFinanceSvg_(club,W,H),add=chart.add;
   chart.svg.setAttribute("aria-label","Alle 22 spilleuger i 2026/27. Faktiske ugegevinster, akkumulerede gevinster og planlagt indsats");
-  var high=Math.max(400,...series.flatMap(function(x){return [x.win,x.total,x.stake]}))*1.08;
+  // Independent right-hand scale keeps weekly blue winnings visible.
+  // Cumulative lines still use only the left-hand kroner scale.
+  var high=Math.max(400,...series.flatMap(function(x){return [x.total,x.stake]}))*1.08;
+  var weeklyHigh=Math.max(100,...series.map(function(x){return x.win}))*1.15;
   var y=function(v){return baseY-(v/high)*(baseY-t)};
-  [0,.5,1].forEach(function(f){var yy=y(high*f);add("line",{x1:l,y1:yy,x2:W-r,y2:yy,stroke:"#dbe2dd"});add("text",{x:l-6,y:yy+4,"text-anchor":"end",fill:"#667469","font-size":10},fmt.format(high*f))});
+  var weeklyY=function(v){return baseY-(v/weeklyHigh)*(baseY-t)};
+  [0,.5,1].forEach(function(f){
+    var yy=y(high*f);
+    add("line",{x1:l,y1:yy,x2:W-r,y2:yy,stroke:"#dbe2dd"});
+    add("text",{x:l-6,y:yy+4,"text-anchor":"end",fill:"#667469","font-size":10},fmt.format(high*f));
+    add("text",{x:W-r+6,y:yy+4,"text-anchor":"start",fill:"#2874b4","font-size":10},fmt.format(weeklyHigh*f));
+  });
+  add("text",{x:l,y:11,fill:"#667469","font-size":10},"Samlet kr.");
+  add("text",{x:W-r+4,y:11,fill:"#2874b4","font-size":10},"Ugens kr.");
   var step=(W-l-r)/series.length,bw=Math.min(12,step*.68);
   series.forEach(function(d,i){
     var x=l+step*(i+.5);
     if(d.win>0){
-      var bar=add("rect",{x:x-bw/2,y:y(d.win),width:bw,height:baseY-y(d.win),rx:2,fill:"#2874b4"});
+      var bar=add("rect",{x:x-bw/2,y:weeklyY(d.win),width:bw,height:baseY-weeklyY(d.win),rx:2,fill:"#2874b4"});
       add("title",{},"Uge "+d.week+": "+fmt.format(d.win)+" kr vundet",bar);
     }
     add("text",{x:x,y:H-26,"text-anchor":"end",transform:"rotate(-55 "+x+" "+(H-26)+")",fill:"#607068","font-size":10},"U"+d.week);
@@ -128,7 +139,7 @@ function paintWeeklyFinance_(rows){
     });
   });
   var note=document.createElement("p");
-  note.textContent="Blå: registrerede gevinster · Rød: faktisk samlet gevinst (videreføres) · Lilla: planlagt indsats, 400 kr pr. uge.";
+  note.textContent="Blå søjler: ugens gevinst (højre akse) · Rød: samlet gevinst (venstre akse) · Lilla: planlagt indsats, 400 kr pr. uge (venstre akse).";
   club.appendChild(note);
   var M=weeklyFinanceSvg_(member,W,236),ma=M.add;M.svg.setAttribute("aria-label","Sæsonsaldo for hver spiller og Oddsklubben samlet");
   var entries=stats.members.concat([{name:"TOTAL",balance:stats.total}]);
