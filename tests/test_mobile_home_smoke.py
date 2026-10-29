@@ -70,6 +70,19 @@ class MobileHomeSmoke(unittest.TestCase):
         self.assertIn('paintWeeklyFinance_(savedEntries)',script)
         self.assertIn('paintWeeklyFinance_(out.saved)',script)
 
+    def test_weekly_winnings_use_right_axis_only(self):
+        script=(ROOT/"app/app.js").read_text()
+        start=script.index("function paintWeeklyFinance_(rows)")
+        end=script.index("function paintGoalOfYear_(rows)",start)
+        section=script[start:end]
+        self.assertIn("var weeklyHigh=Math.max(100,",section)
+        self.assertIn("var weeklyY=function(v)",section)
+        self.assertIn("y:weeklyY(d.win)",section)
+        self.assertIn("height:baseY-weeklyY(d.win)",section)
+        self.assertIn("y(d[k.key])",section)
+        self.assertIn("Ugens kr.",section)
+        self.assertIn("Samlet kr.",section)
+
     def test_full_season_club_chart(self):
         script=(ROOT/"app/app.js").read_text()
         self.assertIn("var seasonWeeks=[43,44,45,46,47,48,49,50,51,52,1,2,3,4,5,6,7,8,9,10,11,12]",script)
