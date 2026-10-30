@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-29 14:47 UTC",
+  "updated": "2026-10-30 14:45 UTC",
   "favorites": [
     {
       "date": "2026-10-31",
@@ -19,23 +19,6 @@
       }
     },
     {
-      "date": "2026-10-30",
-      "match": "Casa Pia AC vs Sporting Clube de Portugal",
-      "selection": "Sporting Clube de Portugal",
-      "probability": 0.7926,
-      "explanation": {
-        "home_expected_goals": 0.76,
-        "away_expected_goals": 2.78,
-        "home_attack_strength": 0.75,
-        "home_defence_strength": 1.42,
-        "away_attack_strength": 1.59,
-        "away_defence_strength": 0.7,
-        "league_home_goals": 1.46,
-        "league_away_goals": 1.23,
-        "summary": "Modellen forventer 2.78 mål til Sporting Clube de Portugal mod 0.76 til Casa Pia AC; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
-      }
-    },
-    {
       "date": "2026-11-01",
       "match": "FC Barcelona vs Deportivo Alavés",
       "selection": "FC Barcelona",
@@ -50,6 +33,23 @@
         "league_home_goals": 1.63,
         "league_away_goals": 1.18,
         "summary": "Modellen forventer 2.71 mål til FC Barcelona mod 0.79 til Deportivo Alavés; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
+    },
+    {
+      "date": "2026-10-31",
+      "match": "FC Porto vs GD Estoril Praia",
+      "selection": "FC Porto",
+      "probability": 0.7188,
+      "explanation": {
+        "home_expected_goals": 2.09,
+        "away_expected_goals": 0.61,
+        "home_attack_strength": 1.26,
+        "home_defence_strength": 0.52,
+        "away_attack_strength": 0.95,
+        "away_defence_strength": 1.13,
+        "league_home_goals": 1.46,
+        "league_away_goals": 1.23,
+        "summary": "Modellen forventer 2.09 mål til FC Porto mod 0.61 til GD Estoril Praia; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
     }
   ],
@@ -69,24 +69,6 @@
         "league_home_goals": 1.63,
         "league_away_goals": 1.18,
         "summary": "Modellen forventer 1.65 mål til Club Atlético de Madrid mod 1.68 til Levante UD; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
-      },
-      "uncertain": false
-    },
-    {
-      "date": "2026-10-30",
-      "match": "Lille OSC vs Racing Club de Lens",
-      "selection": "Racing Club de Lens",
-      "probability": 0.3729,
-      "explanation": {
-        "home_expected_goals": 1.41,
-        "away_expected_goals": 1.4,
-        "home_attack_strength": 0.93,
-        "home_defence_strength": 0.85,
-        "away_attack_strength": 1.29,
-        "away_defence_strength": 0.96,
-        "league_home_goals": 1.56,
-        "league_away_goals": 1.27,
-        "summary": "Modellen forventer 1.40 mål til Racing Club de Lens mod 1.41 til Lille OSC; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
       },
       "uncertain": false
     },
