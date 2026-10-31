@@ -1,21 +1,21 @@
 {
-  "updated": "2026-10-30 14:45 UTC",
+  "updated": "2026-10-31 14:00 UTC",
   "favorites": [
     {
-      "date": "2026-10-31",
-      "match": "PSV vs Willem II Tilburg",
-      "selection": "PSV",
-      "probability": 0.8297,
+      "date": "2026-11-07",
+      "match": "Sporting Clube de Portugal vs Moreirense FC",
+      "selection": "Sporting Clube de Portugal",
+      "probability": 0.785,
       "explanation": {
-        "home_expected_goals": 3.96,
-        "away_expected_goals": 1.31,
-        "home_attack_strength": 1.7,
-        "home_defence_strength": 0.97,
-        "away_attack_strength": 0.87,
-        "away_defence_strength": 1.31,
-        "league_home_goals": 1.78,
-        "league_away_goals": 1.54,
-        "summary": "Modellen forventer 3.96 mål til PSV mod 1.31 til Willem II Tilburg; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+        "home_expected_goals": 2.75,
+        "away_expected_goals": 0.78,
+        "home_attack_strength": 1.68,
+        "home_defence_strength": 0.79,
+        "away_attack_strength": 0.81,
+        "away_defence_strength": 1.12,
+        "league_home_goals": 1.46,
+        "league_away_goals": 1.23,
+        "summary": "Modellen forventer 2.75 mål til Sporting Clube de Portugal mod 0.78 til Moreirense FC; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
     },
     {
@@ -36,20 +36,20 @@
       }
     },
     {
-      "date": "2026-10-31",
-      "match": "FC Porto vs GD Estoril Praia",
-      "selection": "FC Porto",
-      "probability": 0.7188,
+      "date": "2026-11-07",
+      "match": "1. FSV Mainz 05 vs FC Bayern München",
+      "selection": "FC Bayern München",
+      "probability": 0.72,
       "explanation": {
-        "home_expected_goals": 2.09,
-        "away_expected_goals": 0.61,
-        "home_attack_strength": 1.26,
-        "home_defence_strength": 0.52,
-        "away_attack_strength": 0.95,
-        "away_defence_strength": 1.13,
-        "league_home_goals": 1.46,
-        "league_away_goals": 1.23,
-        "summary": "Modellen forventer 2.09 mål til FC Porto mod 0.61 til GD Estoril Praia; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+        "home_expected_goals": 0.91,
+        "away_expected_goals": 2.5,
+        "home_attack_strength": 0.75,
+        "home_defence_strength": 1.05,
+        "away_attack_strength": 1.65,
+        "away_defence_strength": 0.65,
+        "league_home_goals": 1.89,
+        "league_away_goals": 1.45,
+        "summary": "Modellen forventer 2.50 mål til FC Bayern München mod 0.91 til 1. FSV Mainz 05; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
       }
     }
   ],
@@ -73,33 +73,25 @@
       "uncertain": false
     },
     {
-      "date": "2026-10-31",
-      "match": "Moreirense FC vs CF Estrela da Amadora",
-      "selection": "CF Estrela da Amadora",
-      "probability": 0.3716,
+      "date": "2026-11-07",
+      "match": "Wrexham AFC vs Wolves",
+      "selection": "Wrexham AFC",
+      "probability": 0.3702,
       "explanation": {
-        "home_expected_goals": 1.62,
-        "away_expected_goals": 1.57,
-        "home_attack_strength": 0.87,
-        "home_defence_strength": 1.17,
-        "away_attack_strength": 1.09,
-        "away_defence_strength": 1.27,
-        "league_home_goals": 1.46,
-        "league_away_goals": 1.23,
-        "summary": "Modellen forventer 1.57 mål til CF Estrela da Amadora mod 1.62 til Moreirense FC; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+        "home_expected_goals": 1.71,
+        "away_expected_goals": 1.8,
+        "home_attack_strength": 1.09,
+        "home_defence_strength": 1.19,
+        "away_attack_strength": 1.25,
+        "away_defence_strength": 1.07,
+        "league_home_goals": 1.47,
+        "league_away_goals": 1.22,
+        "summary": "Modellen forventer 1.71 mål til Wrexham AFC mod 1.80 til Wolves; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       },
       "uncertain": false
     }
   ],
   "bold_upsets": [
-    {
-      "date": "2026-10-31",
-      "match": "SC Cambuur-Leeuwarden vs Go Ahead Eagles",
-      "selection": "SC Cambuur-Leeuwarden",
-      "probability": 0.3498,
-      "favorite_probability": 0.4388,
-      "tier": "bold"
-    },
     {
       "date": "2026-11-01",
       "match": "Telstar 1963 vs FC Utrecht",
@@ -115,6 +107,14 @@
       "probability": 0.3368,
       "favorite_probability": 0.4311,
       "tier": "bold"
+    },
+    {
+      "date": "2026-11-07",
+      "match": "SC Paderborn 07 vs Eintracht Frankfurt",
+      "selection": "Eintracht Frankfurt",
+      "probability": 0.3315,
+      "favorite_probability": 0.451,
+      "tier": "bold"
     }
   ],
   "model_80kr_portfolio": {
@@ -124,26 +124,26 @@
       {
         "type": "single",
         "stake_kr": 40,
-        "combined_probability": 0.8297,
+        "combined_probability": 0.785,
         "legs": [
           {
-            "date": "2026-10-31",
-            "match": "PSV vs Willem II Tilburg",
-            "selection": "PSV",
-            "probability": 0.8297
+            "date": "2026-11-07",
+            "match": "Sporting Clube de Portugal vs Moreirense FC",
+            "selection": "Sporting Clube de Portugal",
+            "probability": 0.785
           }
         ]
       },
       {
         "type": "double",
         "stake_kr": 20,
-        "combined_probability": 0.3149,
+        "combined_probability": 0.298,
         "legs": [
           {
-            "date": "2026-10-31",
-            "match": "PSV vs Willem II Tilburg",
-            "selection": "PSV",
-            "probability": 0.8297
+            "date": "2026-11-07",
+            "match": "Sporting Clube de Portugal vs Moreirense FC",
+            "selection": "Sporting Clube de Portugal",
+            "probability": 0.785
           },
           {
             "date": "2026-11-01",
@@ -169,16 +169,16 @@
     ]
   },
   "smart_double": {
-    "combined_probability": 0.3149,
-    "expected_odds_90": 2.86,
+    "combined_probability": 0.298,
+    "expected_odds_90": 3.02,
     "note": null,
     "legs": [
       {
         "role": "solid",
-        "date": "2026-10-31",
-        "match": "PSV vs Willem II Tilburg",
-        "selection": "PSV",
-        "probability": 0.8297
+        "date": "2026-11-07",
+        "match": "Sporting Clube de Portugal vs Moreirense FC",
+        "selection": "Sporting Clube de Portugal",
+        "probability": 0.785
       },
       {
         "role": "surprise",
