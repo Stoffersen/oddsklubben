@@ -190,11 +190,11 @@
       "model_updated": "2026-10-24 12:22 UTC",
       "stake_kr": 80,
       "rtp": 0.9,
-      "status": "open",
+      "status": "settled",
       "risk_mode": "normal",
       "risk_note": "Saldoen er omkring neutral: Bot’en bruger sin normale modelportefølje.",
-      "return_kr": null,
-      "profit_kr": null,
+      "return_kr": 44.4,
+      "profit_kr": -35.6,
       "bets": [
         {
           "type": "single",
@@ -209,8 +209,8 @@
               "fake_odds": 1.08
             }
           ],
-          "result": "pending",
-          "return_kr": null
+          "result": "won",
+          "return_kr": 21.6
         },
         {
           "type": "single",
@@ -225,8 +225,8 @@
               "fake_odds": 1.14
             }
           ],
-          "result": "pending",
-          "return_kr": null
+          "result": "won",
+          "return_kr": 22.8
         },
         {
           "type": "single",
@@ -241,8 +241,8 @@
               "fake_odds": 2.41
             }
           ],
-          "result": "pending",
-          "return_kr": null
+          "result": "lost",
+          "return_kr": 0
         },
         {
           "type": "single",
@@ -257,30 +257,8 @@
               "fake_odds": 2.42
             }
           ],
-          "result": "pending",
-          "return_kr": null
-        }
-      ],
-      "missing_results": [
-        {
-          "date": "2026-10-30",
-          "match": "Casa Pia AC vs Sporting Clube de Portugal",
-          "days_overdue": 2
-        },
-        {
-          "date": "2026-10-30",
-          "match": "Lille OSC vs Racing Club de Lens",
-          "days_overdue": 2
-        },
-        {
-          "date": "2026-10-31",
-          "match": "Moreirense FC vs CF Estrela da Amadora",
-          "days_overdue": 1
-        },
-        {
-          "date": "2026-10-31",
-          "match": "PSV vs Willem II Tilburg",
-          "days_overdue": 1
+          "result": "lost",
+          "return_kr": 0
         }
       ]
     },
@@ -363,11 +341,11 @@
     }
   ],
   "totals": {
-    "settled_weeks": 2,
-    "stake_kr": 160,
-    "return_kr": 239.2,
-    "profit_kr": 79.2,
-    "return_pct": 149.5
+    "settled_weeks": 3,
+    "stake_kr": 240,
+    "return_kr": 283.6,
+    "profit_kr": 43.6,
+    "return_pct": 118.2
   },
-  "updated": "2026-11-01 14:40 UTC"
+  "updated": "2026-11-01 19:20 UTC"
 }
