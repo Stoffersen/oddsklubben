@@ -265,12 +265,99 @@
         {
           "date": "2026-10-30",
           "match": "Casa Pia AC vs Sporting Clube de Portugal",
-          "days_overdue": 1
+          "days_overdue": 2
         },
         {
           "date": "2026-10-30",
           "match": "Lille OSC vs Racing Club de Lens",
+          "days_overdue": 2
+        },
+        {
+          "date": "2026-10-31",
+          "match": "Moreirense FC vs CF Estrela da Amadora",
           "days_overdue": 1
+        },
+        {
+          "date": "2026-10-31",
+          "match": "PSV vs Willem II Tilburg",
+          "days_overdue": 1
+        }
+      ]
+    },
+    {
+      "coupon_date": "2026-11-01",
+      "model_updated": "2026-10-31 14:00 UTC",
+      "stake_kr": 80,
+      "rtp": 0.9,
+      "status": "open",
+      "risk_mode": "normal",
+      "risk_note": "Saldoen er omkring neutral: Bot’en bruger sin normale modelportefølje.",
+      "return_kr": null,
+      "profit_kr": null,
+      "bets": [
+        {
+          "type": "single",
+          "stake_kr": 20,
+          "fake_odds": 1.15,
+          "legs": [
+            {
+              "date": "2026-11-07",
+              "match": "Sporting Clube de Portugal vs Moreirense FC",
+              "selection": "Sporting Clube de Portugal",
+              "probability": 0.785,
+              "fake_odds": 1.15
+            }
+          ],
+          "result": "pending",
+          "return_kr": null
+        },
+        {
+          "type": "single",
+          "stake_kr": 20,
+          "fake_odds": 1.25,
+          "legs": [
+            {
+              "date": "2026-11-07",
+              "match": "1. FSV Mainz 05 vs FC Bayern München",
+              "selection": "FC Bayern München",
+              "probability": 0.72,
+              "fake_odds": 1.25
+            }
+          ],
+          "result": "pending",
+          "return_kr": null
+        },
+        {
+          "type": "single",
+          "stake_kr": 20,
+          "fake_odds": 2.43,
+          "legs": [
+            {
+              "date": "2026-11-07",
+              "match": "Wrexham AFC vs Wolves",
+              "selection": "Wrexham AFC",
+              "probability": 0.3702,
+              "fake_odds": 2.43
+            }
+          ],
+          "result": "pending",
+          "return_kr": null
+        },
+        {
+          "type": "single",
+          "stake_kr": 20,
+          "fake_odds": 2.71,
+          "legs": [
+            {
+              "date": "2026-11-07",
+              "match": "SC Paderborn 07 vs Eintracht Frankfurt",
+              "selection": "Eintracht Frankfurt",
+              "probability": 0.3315,
+              "fake_odds": 2.71
+            }
+          ],
+          "result": "pending",
+          "return_kr": null
         }
       ]
     }
@@ -282,5 +369,5 @@
     "profit_kr": 79.2,
     "return_pct": 149.5
   },
-  "updated": "2026-10-31 19:15 UTC"
+  "updated": "2026-11-01 00:04 UTC"
 }
