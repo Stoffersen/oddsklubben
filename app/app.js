@@ -331,6 +331,21 @@ function leagueStatsFromSaved_(rows){
 function paintLeagueAndGoals_(rows){
   if(!Array.isArray(rows))return;
   var data=leagueStatsFromSaved_(rows),played=data.league.some(function(x){return x.played>0});
+  var card=document.querySelector("#standings .leader-card");
+  var updated=document.querySelector("#standings .standings-updated");
+  if(card){
+    var leader=data.league[0],medal=card.querySelector(".leader-medal"),name=card.querySelector("strong"),detail=card.querySelector("span");
+    if(played&&leader){
+      if(medal)medal.textContent=String(leader.points);
+      if(name)name.textContent=players[leader.name];
+      if(detail)detail.textContent=leader.points+" point · "+leader.forGoals+"–"+leader.against+" mål · "+leader.played+" kampe";
+    }else{
+      if(medal)medal.textContent="0";
+      if(name)name.textContent="Ny sæson";
+      if(detail)detail.textContent="Alle starter på 0";
+    }
+  }
+  if(updated)updated.textContent=played?"Aktuel Super League · 2026/27":"Sæsonstart · 2026/27";
   [["league",data.league],["goals",data.goals]].forEach(function(pair){
     var panel=document.getElementById(pair[0]);if(!panel)return;
     Array.from(panel.querySelectorAll(".srow")).forEach(function(row,i){
