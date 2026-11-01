@@ -60,7 +60,7 @@ document.getElementById("cards").addEventListener("input",function(e){
 });
 document.getElementById("save").onclick=()=>{if(!validate())return;const data=summary();document.getElementById("notice").innerHTML=`<div class="confirm"><strong>Klar til at gemme uge ${data.week}</strong><span>Kontrollér oplysningerne og tryk Bekræft.</span><button id="confirmSave">Bekræft og gem</button><button id="cancelSave" class="secondary">Ret oplysninger</button></div>`;document.getElementById("cancelSave").onclick=()=>document.getElementById("notice").textContent="";function saveRoundParts_(data){const normal=data.entries.filter(e=>e.match!=="Toto Cup"),toto=data.entries.filter(e=>e.match==="Toto Cup"),parts=[];if(normal.length)parts.push({week:data.week,round:data.round,entries:normal});if(toto.length)parts.push({week:data.week,round:"Toto Cup",entries:toto});return parts.reduce((p,part)=>p.then(()=>fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(part)}).then(r=>r.json()).then(out=>{if(!out.ok)throw Error(part.round+": "+(out.error||"Fejl"));return out.status==="written"}).then(written=>({written}))),Promise.resolve({written:true})).then(out=>({json:()=>Promise.resolve({ok:true,status:out.written?"written":"dry-run"})}))}
 document.getElementById("confirmSave").onclick=()=>{localStorage.setItem("oddsklubben-draft-"+data.week,JSON.stringify(data));const btn=document.getElementById("confirmSave");btn.disabled=true;btn.textContent="Gemmer…";if(!API_URL){document.getElementById("notice").innerHTML='<div class="success">✓ Gemt som lokal kladde.<br><small>Backend er endnu ikke deployet.</small></div>';return}saveRoundParts_(data).then(function(res){return res.json()}).then(function(out){if(!out.ok)throw new Error(out.error||"Ukendt fejl");if(out.status==="written"&&localStorage.getItem("oddsklubben-draft-"+data.week)===JSON.stringify(data))localStorage.removeItem("oddsklubben-draft-"+data.week);if(out.status==="written"){window.refreshManagerStandings();window.refreshAllTimeLeader();}document.getElementById("notice").innerHTML=`<div class="success">✓ ${out.status==="written"?"Gemt i Google Sheet":"Test godkendt (dry-run)"}.<br><small>Uge ${data.week} · ${data.round}${backendWriteEnabled?"":" · live-skrivning er slukket"}</small></div>`}).catch(function(err){document.getElementById("notice").innerHTML=`<div class="error">Kunne ikke gemme: ${String(err.message||err)}<br><small>Din lokale kladde er bevaret.</small></div>`})}};render();updateHomeNextRound_();
-fetch(API_URL).then(function(res){return res.json()}).then(function(out){if(out && out.ok && Array.isArray(out.program) && out.program.length){backendWriteEnabled=out.writeEnabled===true;var status=document.getElementById("sheetWriteStatus");if(status)status.textContent=backendWriteEnabled?"✓ Google Sheet-forbindelse aktiv · gemning skriver til arket":"⚠️ Google Sheet er forbundet · gemning er i testtilstand";program=out.program;savedEntries=Array.isArray(out.saved)?out.saved:[];paintManagerFromSaved_(savedEntries);paintAllTimeFromSaved_(savedEntries);paintSeasonBalance_(savedEntries);paintWeeklyFinance_(savedEntries);paintHattricks_(savedEntries);paintGoalOfYear_(savedEntries);pos=initialPosition();render();updateHomeNextRound_();if(window.renderSeasonProgram)window.renderSeasonProgram()}else{var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"}}).catch(function(){var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"});
+fetch(API_URL).then(function(res){return res.json()}).then(function(out){if(out && out.ok && Array.isArray(out.program) && out.program.length){backendWriteEnabled=out.writeEnabled===true;var status=document.getElementById("sheetWriteStatus");if(status)status.textContent=backendWriteEnabled?"✓ Google Sheet-forbindelse aktiv · gemning skriver til arket":"⚠️ Google Sheet er forbundet · gemning er i testtilstand";program=out.program;savedEntries=Array.isArray(out.saved)?out.saved:[];paintLeagueAndGoals_(savedEntries);paintManagerFromSaved_(savedEntries);paintAllTimeFromSaved_(savedEntries);paintSeasonBalance_(savedEntries);paintWeeklyFinance_(savedEntries);paintHattricks_(savedEntries);paintGoalOfYear_(savedEntries);pos=initialPosition();render();updateHomeNextRound_();if(window.renderSeasonProgram)window.renderSeasonProgram()}else{var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"}}).catch(function(){var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"});
 function weeklyFinance_(rows){
   var names=Object.keys(players),weeks=new Map();
   (rows||[]).forEach(function(e){
@@ -288,6 +288,67 @@ window.refreshAllTimeLeader=function(){
     if(out&&out.ok&&Array.isArray(out.saved))paintAllTimeFromSaved_(out.saved);
   }).catch(function(){});
 };
+
+function leagueStatsFromSaved_(rows){
+  var names=Object.keys(players),stats={};
+  names.forEach(function(n){stats[n]={name:n,played:0,forGoals:0,against:0,points:0}});
+  var matches=new Map();
+  (rows||[]).forEach(function(e){
+    if(!/^Runde\s+\d+\b/i.test(String(e.round||"")))return;
+    var sides=String(e.match||"").split(/\s+[–-]\s+/).map(function(x){return x.trim()});
+    if(sides.length!==2||!stats[sides[0]]||!stats[sides[1]])return;
+    var key=String(e.week)+"|"+String(e.round)+"|"+String(e.match);
+    if(!matches.has(key))matches.set(key,{home:sides[0],away:sides[1],result:"",money:{}});
+    var game=matches.get(key),name=String(e.player||"").replace(/^[^A-Za-zÆØÅæøå]+/,"").trim();
+    if(name===game.home||name===game.away){
+      var raw=String(e.money==null?"":e.money).trim(),amount=raw?parseMoney(raw):null;
+      if(amount!==null)game.money[name]=amount;
+    }
+    var result=String(e.result||"").trim();
+    if(/^\d+\s*[-–]\s*\d+$/.test(result))game.result=result;
+  });
+  matches.forEach(function(g){
+    var score=g.result.match(/^(\d+)\s*[-–]\s*(\d+)$/);
+    if(!score)return;
+    var a=Number(score[1]),b=Number(score[2]),home=stats[g.home],away=stats[g.away];
+    home.played++;away.played++;home.forGoals+=a;home.against+=b;away.forGoals+=b;away.against+=a;
+    if(a>b)home.points+=3;
+    else if(b>a)away.points+=3;
+    else if(a===0&&b===0){home.points++;away.points++}
+    else{
+      var hm=g.money[g.home]||0,am=g.money[g.away]||0;
+      if(hm>am){home.points+=3;away.points++}
+      else if(am>hm){away.points+=3;home.points++}
+      else{home.points++;away.points++}
+    }
+  });
+  var league=names.map(function(n){return stats[n]});
+  league.sort(function(a,b){return b.points-a.points||(b.forGoals-b.against)-(a.forGoals-a.against)||b.forGoals-a.forGoals||names.indexOf(a.name)-names.indexOf(b.name)});
+  var goals=names.map(function(n){return stats[n]});
+  goals.sort(function(a,b){return b.forGoals-a.forGoals||names.indexOf(a.name)-names.indexOf(b.name)});
+  return {league:league,goals:goals};
+}
+function paintLeagueAndGoals_(rows){
+  if(!Array.isArray(rows))return;
+  var data=leagueStatsFromSaved_(rows),played=data.league.some(function(x){return x.played>0});
+  [["league",data.league],["goals",data.goals]].forEach(function(pair){
+    var panel=document.getElementById(pair[0]);if(!panel)return;
+    Array.from(panel.querySelectorAll(".srow")).forEach(function(row,i){
+      var item=pair[1][i];if(!item)return;
+      row.querySelector("b").textContent=String(i+1);
+      var label=row.querySelector("span"),value=row.querySelector("strong");
+      label.textContent=players[item.name];
+      if(pair[0]==="league"){
+        var small=document.createElement("small");
+        small.textContent=item.forGoals+"–"+item.against+" · "+item.played+" kampe";
+        label.appendChild(small);
+        value.textContent=String(item.points);
+      }else value.textContent=String(item.forGoals);
+    });
+    var mood=panel.querySelector(".mood");
+    if(mood)mood.textContent=played?"Opdateret fra registrerede Super League-kampe i Google Sheet":"Ingen afsluttede ligakampe endnu";
+  });
+}
 function paintManagerFromSaved_(rows){
   var panel=document.getElementById("money");
   if(!panel||!Array.isArray(rows))return;
@@ -316,7 +377,7 @@ window.refreshManagerStandings=function(){
     return res.json();
   }).then(function(out){
     if(!out||!out.ok||!Array.isArray(out.saved))throw new Error("mangler data");
-    paintManagerFromSaved_(out.saved);paintSeasonBalance_(out.saved);paintWeeklyFinance_(out.saved);paintHattricks_(out.saved);paintGoalOfYear_(out.saved);
+    savedEntries=out.saved;paintLeagueAndGoals_(out.saved);paintManagerFromSaved_(out.saved);paintSeasonBalance_(out.saved);paintWeeklyFinance_(out.saved);paintHattricks_(out.saved);paintGoalOfYear_(out.saved);
   }).catch(function(){
     var mood=document.querySelector("#money .mood");
     if(mood)mood.textContent="Kunne ikke hente aktuel stilling · prøv igen senere";
