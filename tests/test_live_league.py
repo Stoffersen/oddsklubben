@@ -29,6 +29,15 @@ function parseMoney(v){if(!v.trim())return null;var n=Number(v.replace(",", ".")
         self.assertEqual(league["Pingvinus"]["played"],0)
         self.assertEqual(league["Kardinalus"]["forGoals"],2)
         self.assertEqual(data["goals"][0]["name"],"Kardinalus")
+    def test_hero_card_updates_from_live_leader(self):
+        start=SRC.index("function paintLeagueAndGoals_(rows)")
+        end=SRC.index("function paintManagerFromSaved_(rows)",start)
+        section=SRC[start:end]
+        self.assertIn('card.querySelector(".leader-medal")',section)
+        self.assertIn("name.textContent=players[leader.name]",section)
+        self.assertIn('updated.textContent=played?',section)
+        self.assertIn('detail.textContent=leader.points+',section)
+
     def test_reload_and_post_save_wiring(self):
         self.assertIn("paintLeagueAndGoals_(savedEntries);paintManagerFromSaved_",SRC)
         self.assertIn("paintLeagueAndGoals_(out.saved);paintManagerFromSaved_",SRC)
