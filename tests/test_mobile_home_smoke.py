@@ -24,8 +24,12 @@ class MobileHomeSmoke(unittest.TestCase):
         trips=(ROOT/"ture.html").read_text(encoding="utf-8")
         self.assertIn('href="ture.html#arkiv">🏟️ Kampe vi har set',page)
         section=trips.split('id="arkiv"',1)[1]
-        self.assertIn('class="archive-app-back" href="index.html"',section[:260])
-        self.assertIn('Tilbage til appens forside',section[:260])
+        self.assertNotIn('class="archive-app-back"',section[:260])
+        self.assertIn('class="archive-app-back" href="index.html"',trips)
+        self.assertIn('aria-label="Tilbage til appens forside"',trips)
+        self.assertIn('position:fixed',trips)
+        self.assertIn('env(safe-area-inset-bottom)',trips)
+        self.assertIn('@media(min-width:851px){.archive-app-back{display:none}}',trips)
 
     def test_home_links_to_all_matches_seen(self):
         page=(ROOT/"index.html").read_text(encoding="utf-8")
