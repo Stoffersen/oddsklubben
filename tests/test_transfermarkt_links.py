@@ -10,6 +10,13 @@ class PlayerArchiveNavigation(unittest.TestCase):
         self.assertNotIn('data-quick="profile"',HTML)
         self.assertNotIn("profiles[p.name]",HTML)
 
+    def test_no_unverified_goal_or_card_stats(self):
+        self.assertNotIn("const verifiedIncidents=",HTML)
+        self.assertNotIn("eventBadges(p)",HTML)
+        self.assertNotIn('id="dialogEvents"',HTML)
+        self.assertNotIn('class="event-coverage"',HTML)
+        self.assertIn("Se hvilke kampe de spillede, og hvor mange gange vi har set dem.",HTML)
+
     def test_player_details_still_present(self):
         self.assertIn('id="playerDialog"',HTML)
         self.assertIn('data-quick="multi"',HTML)
