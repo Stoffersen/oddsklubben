@@ -5,6 +5,28 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 
 class MobileHomeSmoke(unittest.TestCase):
+    def test_bot_bet_is_nested_under_spilforslag(self):
+        page=(ROOT/"index.html").read_text(encoding="utf-8")
+        home=page.split('</section><main id="trophies"',1)[0]
+        self.assertNotIn('id="openBotBet"', home)
+        tips=page.split('<main id="tipsPage"',1)[1].split('<main id="botBetPage"',1)[0]
+        self.assertIn('id="openBotBet"',tips)
+        self.assertIn('id="backBotBet"',page)
+        self.assertIn('‹ Spilforslag</button>',page)
+        self.assertIn('‹ Tilbage til Spilforslag</button>',page)
+        self.assertIn('document.getElementById("tipsPage").className="tips-page entry-hidden";document.getElementById("botBetPage")',page)
+        self.assertIn('document.getElementById("tipsPage").className="tips-page";window.scrollTo(0,0)',page)
+        self.assertIn('document.getElementById("backBotBetBottom").onclick=function(){document.getElementById("backBotBet").click()}',page)
+        self.assertNotIn('"backTipsBottom","backBotBetBottom","backProgramBottom"',page)
+
+    def test_matches_archive_has_return_to_app(self):
+        page=(ROOT/"index.html").read_text(encoding="utf-8")
+        trips=(ROOT/"ture.html").read_text(encoding="utf-8")
+        self.assertIn('href="ture.html#arkiv">🏟️ Kampe vi har set',page)
+        section=trips.split('id="arkiv"',1)[1]
+        self.assertIn('class="archive-app-back" href="index.html"',section[:260])
+        self.assertIn('Tilbage til appens forside',section[:260])
+
     def test_home_links_to_all_matches_seen(self):
         page=(ROOT/"index.html").read_text(encoding="utf-8")
         trips=(ROOT/"ture.html").read_text(encoding="utf-8")
