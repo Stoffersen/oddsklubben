@@ -5,6 +5,15 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 
 class MobileHomeSmoke(unittest.TestCase):
+    def test_home_links_to_all_matches_seen(self):
+        page=(ROOT/"index.html").read_text(encoding="utf-8")
+        trips=(ROOT/"ture.html").read_text(encoding="utf-8")
+        players='<a class="home-secondary" href="spillere.html">⚽ Spillere vi har set</a>'
+        matches='<a class="home-secondary" href="ture.html#arkiv">🏟️ Kampe vi har set</a>'
+        self.assertIn(players+matches,page)
+        self.assertIn('id="arkiv"',trips)
+        self.assertIn('DEN KOMPLETTE LISTE',trips)
+
     def test_home_card_refreshes_after_sheet_load(self):
         script=(ROOT/"app/app.js").read_text()
         self.assertIn("function updateHomeNextRound_()",script)
