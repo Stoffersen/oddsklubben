@@ -7,7 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 class MobileHomeSmoke(unittest.TestCase):
     def test_bot_bet_is_nested_under_spilforslag(self):
         page=(ROOT/"index.html").read_text(encoding="utf-8")
-        home=page.split('</section><main id="trophies"',1)[0]
+        home=page.split('<main id="trophies"',1)[0]
         self.assertNotIn('id="openBotBet"', home)
         tips=page.split('<main id="tipsPage"',1)[1].split('<main id="botBetPage"',1)[0]
         self.assertIn('id="openBotBet"',tips)
