@@ -215,3 +215,10 @@
 .weekly-finance-legend{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:#4e6054;margin-top:7px}
 .weekly-finance-legend span{display:inline-flex;align-items:center;gap:5px}
 .weekly-finance-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+/* Bot'ens Bet belongs to the Spilforslag navigation, not the home menu. */
+.tips-botbet-entry{display:grid;grid-template-columns:1fr auto;align-items:center;gap:3px 12px;width:100%;padding:17px 18px;text-align:left;border:1px solid #d3dfd6;border-radius:17px;background:#fff;color:#163d27;font:inherit;box-shadow:0 3px 14px #0000000a;cursor:pointer}
+.tips-botbet-entry span{font-size:17px;font-weight:850}
+.tips-botbet-entry small{grid-column:1;color:#657469;font-size:12px}
+.tips-botbet-entry b{grid-column:2;grid-row:1/3;font-size:24px}
+.tips-botbet-entry:focus-visible{outline:3px solid #99753a;outline-offset:3px}
