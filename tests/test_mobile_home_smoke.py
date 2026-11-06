@@ -22,7 +22,7 @@ class MobileHomeSmoke(unittest.TestCase):
     def test_matches_archive_has_return_to_app(self):
         page=(ROOT/"index.html").read_text(encoding="utf-8")
         trips=(ROOT/"ture.html").read_text(encoding="utf-8")
-        self.assertIn('href="ture.html#arkiv">🏟️ Kampe vi har set',page)
+        self.assertIn('href="ture.html">🏟️ Kampe vi har set',page)
         section=trips.split('id="arkiv"',1)[1]
         self.assertNotIn('class="archive-app-back"',section[:260])
         self.assertIn('class="archive-app-back" href="index.html"',trips)
@@ -35,7 +35,7 @@ class MobileHomeSmoke(unittest.TestCase):
         page=(ROOT/"index.html").read_text(encoding="utf-8")
         trips=(ROOT/"ture.html").read_text(encoding="utf-8")
         players='<a class="home-secondary" href="spillere.html">⚽ Spillere vi har set</a>'
-        matches='<a class="home-secondary" href="ture.html#arkiv">🏟️ Kampe vi har set</a>'
+        matches='<a class="home-secondary" href="ture.html">🏟️ Kampe vi har set</a>'
         self.assertIn(players+matches,page)
         self.assertIn('id="arkiv"',trips)
         self.assertIn('DEN KOMPLETTE LISTE',trips)
