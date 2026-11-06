@@ -5,11 +5,12 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 concurrency:
-  group: pages-mobile-preview
-  cancel-in-progress: true
+  group: pages-publishing
+  cancel-in-progress: false
 jobs:
   deploy:
     environment:
@@ -26,9 +27,9 @@ jobs:
           test -f sw.js
           grep -Fq 'href="ture.html">🏟️ Kampe vi har set' index.html
           grep -Fq 'class="archive-app-back" href="index.html"' ture.html
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: .
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
