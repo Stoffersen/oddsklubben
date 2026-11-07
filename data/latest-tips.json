@@ -1,23 +1,6 @@
 {
-  "updated": "2026-11-06 15:32 UTC",
+  "updated": "2026-11-07 14:30 UTC",
   "favorites": [
-    {
-      "date": "2026-11-07",
-      "match": "Sporting Clube de Portugal vs Moreirense FC",
-      "selection": "Sporting Clube de Portugal",
-      "probability": 0.785,
-      "explanation": {
-        "home_expected_goals": 2.75,
-        "away_expected_goals": 0.78,
-        "home_attack_strength": 1.68,
-        "home_defence_strength": 0.79,
-        "away_attack_strength": 0.81,
-        "away_defence_strength": 1.12,
-        "league_home_goals": 1.46,
-        "league_away_goals": 1.23,
-        "summary": "Modellen forventer 2.75 mål til Sporting Clube de Portugal mod 0.78 til Moreirense FC; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
-      }
-    },
     {
       "date": "2026-11-08",
       "match": "SC Cambuur-Leeuwarden vs PSV",
@@ -51,6 +34,23 @@
         "league_away_goals": 1.45,
         "summary": "Modellen forventer 2.71 mål til SC Freiburg mod 0.92 til 1. FC Union Berlin; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
+    },
+    {
+      "date": "2026-11-08",
+      "match": "CF Estrela da Amadora vs Sport Lisboa e Benfica",
+      "selection": "Sport Lisboa e Benfica",
+      "probability": 0.7086,
+      "explanation": {
+        "home_expected_goals": 0.9,
+        "away_expected_goals": 2.41,
+        "home_attack_strength": 0.91,
+        "home_defence_strength": 1.14,
+        "away_attack_strength": 1.71,
+        "away_defence_strength": 0.67,
+        "league_home_goals": 1.46,
+        "league_away_goals": 1.23,
+        "summary": "Modellen forventer 2.41 mål til Sport Lisboa e Benfica mod 0.90 til CF Estrela da Amadora; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      }
     }
   ],
   "upsets": [
@@ -69,24 +69,6 @@
         "league_home_goals": 1.32,
         "league_away_goals": 1.21,
         "summary": "Modellen forventer 1.48 mål til AC Monza mod 1.48 til Atalanta BC; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
-      },
-      "uncertain": false
-    },
-    {
-      "date": "2026-11-07",
-      "match": "Wrexham AFC vs Wolves",
-      "selection": "Wrexham AFC",
-      "probability": 0.3702,
-      "explanation": {
-        "home_expected_goals": 1.71,
-        "away_expected_goals": 1.8,
-        "home_attack_strength": 1.09,
-        "home_defence_strength": 1.19,
-        "away_attack_strength": 1.25,
-        "away_defence_strength": 1.07,
-        "league_home_goals": 1.47,
-        "league_away_goals": 1.22,
-        "summary": "Modellen forventer 1.71 mål til Wrexham AFC mod 1.80 til Wolves; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       },
       "uncertain": false
     }
@@ -109,11 +91,11 @@
       "tier": "bold"
     },
     {
-      "date": "2026-11-07",
-      "match": "SC Paderborn 07 vs Eintracht Frankfurt",
-      "selection": "Eintracht Frankfurt",
-      "probability": 0.3315,
-      "favorite_probability": 0.451,
+      "date": "2026-11-08",
+      "match": "FC Internazionale Milano vs Como 1907",
+      "selection": "Como 1907",
+      "probability": 0.3147,
+      "favorite_probability": 0.4577,
       "tier": "bold"
     }
   ],
@@ -124,26 +106,26 @@
       {
         "type": "single",
         "stake_kr": 40,
-        "combined_probability": 0.785,
+        "combined_probability": 0.7652,
         "legs": [
           {
-            "date": "2026-11-07",
-            "match": "Sporting Clube de Portugal vs Moreirense FC",
-            "selection": "Sporting Clube de Portugal",
-            "probability": 0.785
+            "date": "2026-11-08",
+            "match": "SC Cambuur-Leeuwarden vs PSV",
+            "selection": "PSV",
+            "probability": 0.7652
           }
         ]
       },
       {
         "type": "double",
         "stake_kr": 20,
-        "combined_probability": 0.2959,
+        "combined_probability": 0.2884,
         "legs": [
           {
-            "date": "2026-11-07",
-            "match": "Sporting Clube de Portugal vs Moreirense FC",
-            "selection": "Sporting Clube de Portugal",
-            "probability": 0.785
+            "date": "2026-11-08",
+            "match": "SC Cambuur-Leeuwarden vs PSV",
+            "selection": "PSV",
+            "probability": 0.7652
           },
           {
             "date": "2026-11-08",
@@ -169,16 +151,16 @@
     ]
   },
   "smart_double": {
-    "combined_probability": 0.2959,
-    "expected_odds_90": 3.04,
+    "combined_probability": 0.2884,
+    "expected_odds_90": 3.12,
     "note": null,
     "legs": [
       {
         "role": "solid",
-        "date": "2026-11-07",
-        "match": "Sporting Clube de Portugal vs Moreirense FC",
-        "selection": "Sporting Clube de Portugal",
-        "probability": 0.785
+        "date": "2026-11-08",
+        "match": "SC Cambuur-Leeuwarden vs PSV",
+        "selection": "PSV",
+        "probability": 0.7652
       },
       {
         "role": "surprise",
