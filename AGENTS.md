@@ -269,6 +269,11 @@ Disse observationer er verificeret i forbindelse med brugerens faktiske indtastn
 - `Tabellen` har sektionen **Årets Mål** ved `A38:B39`; uge 43 viser **🙏 Kardinalus, 98,94 kr**. Appens **Mere → Årets Mål** er nu dynamisk beregnet ud fra højeste registrerede spillergevinst i `saved` (PR #42). Bevar denne automatiske opdatering. Behandl eventuelle uafgjorte højeste gevinster eksplicit i fremtidige ændringer i stedet for at skjule en delt førsteplads.
 - Vigtigt: Google Sheets hattrickfelter (Antal/Højeste) er **manuelle værdier**, ikke formler. Appens dynamiske visning opdaterer **ikke** automatisk `Tabellen!B:C` for fremtidige hattricks. Undgå at love, at regnskabet i selve arket automatisk følger appen, før automatisk opdatering i backend er implementeret og testet.
 
+### Saksespark (fire mål)
+- Fire eller flere mål af samme spiller i en afsluttet kamp giver **ét saksespark**. Det gælder mål på både hjemme- og udebane og kun én gang pr. kamp, selv om samme resultat optræder på flere indtastningsrækker.
+- Uge 45, Runde 2: Kaninus – Gorilla **0–4**; Gorilla opnåede dermed sæsonens første saksespark (gevinst **151 kr**), som allerede fremgår af `📲 Rundeindtastning`.
+- Appens `Mere → Saksespark` beregnes fra gemte resultater. Den manuelle tabel `Tabellen` skal afstemmes særskilt; visningens opdatering skriver ikke automatisk værdier i regnearket.
+
 ### Udviklingskvalitet
 - Bevar arbejdsdelingen mellem `📅 Program 26-27` (program), `📲 Rundeindtastning` (resultater/gevinst), `Tabellen` (stillings- og særregnskab) og appvisninger. Foretag kun minimal, målrettet Sheet-redigering ved brugerens udtrykkelige ønske; inspicér celler/formler før skrivning og kontrollér efter.
 - Dæk ikke kun at nye funktionsnavne eksisterer, men test konkret tal-eksempler (Supercup 3-1 -> Kardinalus hattrick; Toto Cup tre `0`-indtastninger; alle 22 sæsonuger; en indsats pr. uge; kombineret uge på tværs af aktiviteter).
