@@ -337,6 +337,28 @@
           "result": "pending",
           "return_kr": null
         }
+      ],
+      "missing_results": [
+        {
+          "date": "2026-11-07",
+          "match": "1. FSV Mainz 05 vs FC Bayern München",
+          "days_overdue": 1
+        },
+        {
+          "date": "2026-11-07",
+          "match": "SC Paderborn 07 vs Eintracht Frankfurt",
+          "days_overdue": 1
+        },
+        {
+          "date": "2026-11-07",
+          "match": "Sporting Clube de Portugal vs Moreirense FC",
+          "days_overdue": 1
+        },
+        {
+          "date": "2026-11-07",
+          "match": "Wrexham AFC vs Wolves",
+          "days_overdue": 1
+        }
       ]
     }
   ],
@@ -347,5 +369,5 @@
     "profit_kr": 43.6,
     "return_pct": 118.2
   },
-  "updated": "2026-11-07 19:23 UTC"
+  "updated": "2026-11-08 00:30 UTC"
 }
