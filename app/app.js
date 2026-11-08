@@ -209,8 +209,8 @@ function paintHattricks_(rows){
   results.forEach(function(v){
     var teams=v.match.split(/\s+[–-]\s+/).map(function(n){return n.trim()});
     if(teams.length!==2)return;
-    if(counts[teams[0]]!==undefined&&v.home>=3)counts[teams[0]]++;
-    if(counts[teams[1]]!==undefined&&v.away>=3)counts[teams[1]]++;
+    if(counts[teams[0]]!==undefined&&v.home===3)counts[teams[0]]++;
+    if(counts[teams[1]]!==undefined&&v.away===3)counts[teams[1]]++;
   });
   var row=Array.from(panel.querySelectorAll(".extra-row")).find(function(e){return e.textContent.includes("Hattrick")});
   if(!row)return;
