@@ -270,7 +270,7 @@ Disse observationer er verificeret i forbindelse med brugerens faktiske indtastn
 - Vigtigt: Google Sheets hattrickfelter (Antal/Højeste) er **manuelle værdier**, ikke formler. Appens dynamiske visning opdaterer **ikke** automatisk `Tabellen!B:C` for fremtidige hattricks. Undgå at love, at regnskabet i selve arket automatisk følger appen, før automatisk opdatering i backend er implementeret og testet.
 
 ### Saksespark (fire mål)
-- Fire eller flere mål af samme spiller i en afsluttet kamp giver **ét saksespark**. Det gælder mål på både hjemme- og udebane og kun én gang pr. kamp, selv om samme resultat optræder på flere indtastningsrækker.
+- Fire eller flere mål af samme spiller i en afsluttet kamp giver **ét saksespark**, ikke også et hattrick. Præcis tre mål giver ét hattrick. Det gælder mål på både hjemme- og udebane og kun én gang pr. kamp, selv om samme resultat optræder på flere indtastningsrækker.
 - Uge 45, Runde 2: Kaninus – Gorilla **0–4**; Gorilla opnåede dermed sæsonens første saksespark (gevinst **151 kr**), som allerede fremgår af `📲 Rundeindtastning`.
 - Appens `Mere → Saksespark` beregnes fra gemte resultater. Den manuelle tabel `Tabellen` skal afstemmes særskilt; visningens opdatering skriver ikke automatisk værdier i regnearket.
 
