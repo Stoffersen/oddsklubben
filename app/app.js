@@ -60,7 +60,7 @@ document.getElementById("cards").addEventListener("input",function(e){
 });
 document.getElementById("save").onclick=()=>{if(!validate())return;const data=summary();document.getElementById("notice").innerHTML=`<div class="confirm"><strong>Klar til at gemme uge ${data.week}</strong><span>Kontrollér oplysningerne og tryk Bekræft.</span><button id="confirmSave">Bekræft og gem</button><button id="cancelSave" class="secondary">Ret oplysninger</button></div>`;document.getElementById("cancelSave").onclick=()=>document.getElementById("notice").textContent="";function saveRoundParts_(data){const normal=data.entries.filter(e=>e.match!=="Toto Cup"),toto=data.entries.filter(e=>e.match==="Toto Cup"),parts=[];if(normal.length)parts.push({week:data.week,round:data.round,entries:normal});if(toto.length)parts.push({week:data.week,round:"Toto Cup",entries:toto});return parts.reduce((p,part)=>p.then(()=>fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(part)}).then(r=>r.json()).then(out=>{if(!out.ok)throw Error(part.round+": "+(out.error||"Fejl"));return out.status==="written"}).then(written=>({written}))),Promise.resolve({written:true})).then(out=>({json:()=>Promise.resolve({ok:true,status:out.written?"written":"dry-run"})}))}
 document.getElementById("confirmSave").onclick=()=>{localStorage.setItem("oddsklubben-draft-"+data.week,JSON.stringify(data));const btn=document.getElementById("confirmSave");btn.disabled=true;btn.textContent="Gemmer…";if(!API_URL){document.getElementById("notice").innerHTML='<div class="success">✓ Gemt som lokal kladde.<br><small>Backend er endnu ikke deployet.</small></div>';return}saveRoundParts_(data).then(function(res){return res.json()}).then(function(out){if(!out.ok)throw new Error(out.error||"Ukendt fejl");if(out.status==="written"&&localStorage.getItem("oddsklubben-draft-"+data.week)===JSON.stringify(data))localStorage.removeItem("oddsklubben-draft-"+data.week);if(out.status==="written"){window.refreshManagerStandings();window.refreshAllTimeLeader();}document.getElementById("notice").innerHTML=`<div class="success">✓ ${out.status==="written"?"Gemt i Google Sheet":"Test godkendt (dry-run)"}.<br><small>Uge ${data.week} · ${data.round}${backendWriteEnabled?"":" · live-skrivning er slukket"}</small></div>`}).catch(function(err){document.getElementById("notice").innerHTML=`<div class="error">Kunne ikke gemme: ${String(err.message||err)}<br><small>Din lokale kladde er bevaret.</small></div>`})}};render();updateHomeNextRound_();
-fetch(API_URL).then(function(res){return res.json()}).then(function(out){if(out && out.ok && Array.isArray(out.program) && out.program.length){backendWriteEnabled=out.writeEnabled===true;var status=document.getElementById("sheetWriteStatus");if(status)status.textContent=backendWriteEnabled?"✓ Google Sheet-forbindelse aktiv · gemning skriver til arket":"⚠️ Google Sheet er forbundet · gemning er i testtilstand";program=out.program;savedEntries=Array.isArray(out.saved)?out.saved:[];paintLeagueAndGoals_(savedEntries);paintManagerFromSaved_(savedEntries);paintAllTimeFromSaved_(savedEntries);paintSeasonBalance_(savedEntries);paintWeeklyFinance_(savedEntries);paintHattricks_(savedEntries);paintSaksespark_(savedEntries);paintGoalOfYear_(savedEntries);pos=initialPosition();render();updateHomeNextRound_();if(window.renderSeasonProgram)window.renderSeasonProgram()}else{var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"}}).catch(function(){var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"});
+fetch(API_URL).then(function(res){return res.json()}).then(function(out){if(out && out.ok && Array.isArray(out.program) && out.program.length){backendWriteEnabled=out.writeEnabled===true;var status=document.getElementById("sheetWriteStatus");if(status)status.textContent=backendWriteEnabled?"✓ Google Sheet-forbindelse aktiv · gemning skriver til arket":"⚠️ Google Sheet er forbundet · gemning er i testtilstand";program=out.program;savedEntries=Array.isArray(out.saved)?out.saved:[];paintLeagueAndGoals_(savedEntries);paintManagerFromSaved_(savedEntries);paintAllTimeFromSaved_(savedEntries);paintSeasonBalance_(savedEntries);paintWeeklyFinance_(savedEntries);paintHattricks_(savedEntries);paintSaksespark_(savedEntries);paintGoldenCage_(savedEntries);paintGoalOfYear_(savedEntries);pos=initialPosition();render();updateHomeNextRound_();if(window.renderSeasonProgram)window.renderSeasonProgram()}else{var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"}}).catch(function(){var status=document.getElementById("sheetWriteStatus");if(status)status.textContent="⚠️ Kunne ikke bekræfte Google Sheet-forbindelsen"});
 function weeklyFinance_(rows){
   var names=Object.keys(players),weeks=new Map();
   (rows||[]).forEach(function(e){
@@ -354,6 +354,46 @@ function leagueStatsFromSaved_(rows){
   goals.sort(function(a,b){return b.forGoals-a.forGoals||names.indexOf(a.name)-names.indexOf(b.name)});
   return {league:league,goals:goals};
 }
+// Golden Cage uses league goals conceded, then goal difference, then
+// registered winnings from completed league matches, per the club rules.
+function goldenCageStandings_(rows){
+  var league=leagueStatsFromSaved_(rows).league.filter(function(p){return p.played>0});
+  var completed=new Set(),amounts=new Map();
+  (rows||[]).forEach(function(e){
+    if(!/^Runde\s+\d+\b/i.test(String(e.round||"")))return;
+    var key=String(e.week)+"|"+String(e.round)+"|"+String(e.match||"");
+    if(/^\d+\s*[-–]\s*\d+$/.test(String(e.result||"").trim()))completed.add(key);
+    var name=String(e.player||"").replace(/^[^A-Za-zÆØÅæøå]+/,"").trim();
+    if(!players[name])return;
+    var raw=e.money===null||e.money===undefined?"":String(e.money).trim();
+    var amount=raw?parseMoney(raw):null;
+    if(amount!==null)amounts.set(key+"|"+name,{match:key,name:name,amount:amount});
+  });
+  var winnings=Object.fromEntries(Object.keys(players).map(function(name){return [name,0]}));
+  amounts.forEach(function(item){if(completed.has(item.match))winnings[item.name]+=item.amount});
+  league.forEach(function(p){p.winnings=winnings[p.name]});
+  league.sort(function(a,b){
+    return a.against-b.against
+      ||(b.forGoals-b.against)-(a.forGoals-a.against)
+      ||b.winnings-a.winnings
+      ||a.name.localeCompare(b.name,"da");
+  });
+  return league;
+}
+function paintGoldenCage_(rows){
+  var panel=document.getElementById("extras");
+  if(!panel||!Array.isArray(rows))return;
+  var target=Array.from(panel.querySelectorAll(".extra-row")).find(function(el){return el.textContent.includes("Gyldne Bur")});
+  if(!target)return;
+  var ranks=goldenCageStandings_(rows),strong=target.querySelector("strong");
+  if(!strong)return;
+  if(!ranks.length){strong.textContent="– · Ingen ligakampe";return}
+  var first=ranks[0];
+  var ties=ranks.filter(function(p){return p.against===first.against
+    &&p.forGoals-p.against===first.forGoals-first.against
+    &&Math.abs(p.winnings-first.winnings)<.005});
+  strong.textContent=ties.map(function(p){return players[p.name]}).join(" · ")+" · "+first.against+" imod";
+}
 function paintLeagueAndGoals_(rows){
   if(!Array.isArray(rows))return;
   var data=leagueStatsFromSaved_(rows),played=data.league.some(function(x){return x.played>0});
@@ -418,7 +458,7 @@ window.refreshManagerStandings=function(){
     return res.json();
   }).then(function(out){
     if(!out||!out.ok||!Array.isArray(out.saved))throw new Error("mangler data");
-    savedEntries=out.saved;paintLeagueAndGoals_(out.saved);paintManagerFromSaved_(out.saved);paintSeasonBalance_(out.saved);paintWeeklyFinance_(out.saved);paintHattricks_(out.saved);paintSaksespark_(out.saved);paintGoalOfYear_(out.saved);
+    savedEntries=out.saved;paintLeagueAndGoals_(out.saved);paintManagerFromSaved_(out.saved);paintSeasonBalance_(out.saved);paintWeeklyFinance_(out.saved);paintHattricks_(out.saved);paintSaksespark_(out.saved);paintGoldenCage_(out.saved);paintGoalOfYear_(out.saved);
   }).catch(function(){
     var mood=document.querySelector("#money .mood");
     if(mood)mood.textContent="Kunne ikke hente aktuel stilling · prøv igen senere";
