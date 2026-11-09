@@ -267,11 +267,11 @@
       "model_updated": "2026-10-31 14:00 UTC",
       "stake_kr": 80,
       "rtp": 0.9,
-      "status": "open",
+      "status": "settled",
       "risk_mode": "normal",
       "risk_note": "Saldoen er omkring neutral: Bot’en bruger sin normale modelportefølje.",
-      "return_kr": null,
-      "profit_kr": null,
+      "return_kr": 48,
+      "profit_kr": -32,
       "bets": [
         {
           "type": "single",
@@ -286,8 +286,8 @@
               "fake_odds": 1.15
             }
           ],
-          "result": "pending",
-          "return_kr": null
+          "result": "won",
+          "return_kr": 23
         },
         {
           "type": "single",
@@ -302,8 +302,8 @@
               "fake_odds": 1.25
             }
           ],
-          "result": "pending",
-          "return_kr": null
+          "result": "won",
+          "return_kr": 25
         },
         {
           "type": "single",
@@ -318,8 +318,8 @@
               "fake_odds": 2.43
             }
           ],
-          "result": "pending",
-          "return_kr": null
+          "result": "lost",
+          "return_kr": 0
         },
         {
           "type": "single",
@@ -334,40 +334,18 @@
               "fake_odds": 2.71
             }
           ],
-          "result": "pending",
-          "return_kr": null
-        }
-      ],
-      "missing_results": [
-        {
-          "date": "2026-11-07",
-          "match": "1. FSV Mainz 05 vs FC Bayern München",
-          "days_overdue": 2
-        },
-        {
-          "date": "2026-11-07",
-          "match": "SC Paderborn 07 vs Eintracht Frankfurt",
-          "days_overdue": 2
-        },
-        {
-          "date": "2026-11-07",
-          "match": "Sporting Clube de Portugal vs Moreirense FC",
-          "days_overdue": 2
-        },
-        {
-          "date": "2026-11-07",
-          "match": "Wrexham AFC vs Wolves",
-          "days_overdue": 2
+          "result": "lost",
+          "return_kr": 0
         }
       ]
     }
   ],
   "totals": {
-    "settled_weeks": 3,
-    "stake_kr": 240,
-    "return_kr": 283.6,
-    "profit_kr": 43.6,
-    "return_pct": 118.2
+    "settled_weeks": 4,
+    "stake_kr": 320,
+    "return_kr": 331.6,
+    "profit_kr": 11.6,
+    "return_pct": 103.6
   },
-  "updated": "2026-11-09 16:13 UTC"
+  "updated": "2026-11-09 17:16 UTC"
 }
