@@ -284,3 +284,28 @@ Disse observationer er verificeret i forbindelse med brugerens faktiske indtastn
 - Brugeren har oplyst, at Kaninus vandt Toto Cup i uge 43. Pokaloversigterne i app (`index.html`) og på desktop (`pokaler.html`, `stats.html`) er afstemt med denne afgørelse: Kaninus 1 Toto Cup, 41 pokaler, samlet 202 aktive spillerpokaler.
 - De tre Toto Cup-spillere havde registreret 0 kr. hver; den økonomiske opgørelse fastlægger derfor ikke vinderen. Ændr ikke gemte gevinster eller slutningsregler for at udlede vinderen.
 - Google Sheet `All Time Pokaler` er ikke redigeret ved denne UI-rettelse. Kontrollér den autoritative pokalcelle særskilt ved næste regnskabsafstemning.
+
+
+## Overdragelse 10. november 2026 — læringer og seneste accepterede adfærd
+
+Dette afsnit supplerer historiske øjebliksbilleder ovenfor. Kontroller altid aktuel `mobile-round-entry` og GitHub Actions ved en ny session; datoer og saldoer nedenfor er ikke en erstatning for live-data.
+
+### Kodegrænser, drift og udgivelse
+- Mobil-/website-koden, som brugerne ser, udvikles på `mobile-round-entry` og udgives af `.github/workflows/mobile-preview.yml` til https://stoffersen.github.io/oddsklubben/. `main` må ikke automatisk få disse ændringer.
+- Arbejd i en lille feature-branch og PR mod `mobile-round-entry`, kræv grønne tests, merge og **bekræft vellykket Mobile app preview-deployment** før en ændring kaldes live. Ændr ikke andre repos eller Sheets uden opgavens behov.
+- Pages-deployments fejlede tidligere med `deployment_queued`; PR #58 opdaterede upload/deploy-actions til v5 og brugte serialiseret workflow-kø. Genkør ikke blindt gamle mislykkede job, da der tidligere blev dannet dubletter af `github-pages`-artifacts.
+- Ved frontend-ændringer: opdater versionsparametre til assets og `sw.js` shell-cache, så PWA'en ikke viser forældet indhold.
+- `ture.html` og spillerarkivet er en del af den aktive app. Genvejen **Kampe vi har set** skal åbne `ture.html` fra toppen (ikke `#arkiv`); den flydende `⌂ Forside`-knap på tur-siden skal blive.
+- **Spillere vi har set** skal **ikke** vise mål-/kort-badges (afprøvet i PR #59, fjernet på brugers ønske i PR #60). Tekster skal heller ikke love Transfermarkt-links, som ikke længere findes.
+
+### Særregler fra faktiske resultater
+- **Hattrick er 3 eller flere mål i én kamp. Saksespark er 4 eller flere mål i én kamp.** Præcis fire mål giver således **både ét hattrick og ét saksespark**, ikke et enten/eller. PR #62 blev lukket *uden merge*, fordi den fejlagtigt ville udelukke hattrick ved fire mål; behold beregningen `>=3` for hattrick.
+- Uge 45, 2026/27: **Kaninus – Gorilla 0–4**; Gorilla vandt 151 fiktive kr. Saksespark-beregningen og visningen blev lagt ind i PR #61. Kampen må kun tælle én gang pr. særlig præstation, selv om den er gemt på flere indtastningsrækker.
+- **Det Gyldne Bur** i `Mere` skal vise **førerens navn og antal mål imod**; dynamisk rangering fra afsluttede ligakampe: færrest mål imod, dernæst målscore, dernæst vundne kroner. Ved verificeret opdatering efter uge 45 førte **Kardinalus med 0 indkasserede**, foran Gorilla (2). Lad ikke tidsbundne placeringer stå statisk.
+- `Tabellen` i Google Sheet kan have **manuelle** pokal-/særstatistikker. En ny dynamisk appvisning er ikke i sig selv en opdatering af Sheet-regnskabet. Undgå løfter om automatisk arkføring uden backend-dokumentation.
+
+### Professoren / Bot'ens Bet integration
+- Professorens separate repository er `Stoffersen/football-betting-agent`; resultatfeedets producentfil er `docs/bot-bets.json`, som synkroniseres til `data/bot-bets.json` på `mobile-round-entry`. Appen læser sidstnævnte. Brug kildefilen som autoritativ; skriv ikke fiktive udfald direkte ind i frontend.
+- PR #9 i Professorens repo indførte en sekundær, præcist matchet fuldtidsresultatkilde til kampe, som primærhistorikken mangler, samt alarm for stadig manglende resultater. PR #63 her synkroniserede kuponen 1. november: 7. november-kampene gav 2 vundne og 2 tabte spil; retur 48 kr på 80 kr indsats, resultat −32 kr. På dette øjebliksbillede var den samlede fiktive saldo **+11,60 kr. på fire afgjorte kuponer** (320 kr indsat, 331,60 kr retur). Tjek aktuel producentfil ved fortsættelse.
+- Genkørsler må **aldrig** oprette nye ugentlige kuponer, gentage indsats eller dobbeltafregne. Bevar `excluded_from_totals`/dubletværn; en grøn Actions-kørsel er ikke bevis for, at alle kampe er blevet afregnet.
+- Professorens **Archive daily football forecasts** fejlede 9.–10. november, fordi **0 kommende kampe** gav en fejlagtig nonzero exit. Professor-PR #10 fikset tom-arkiv som en vellykket *no-op* uden at ændre historik. Ny arkivkørsel og Analytics-tests blev grønne. Se de aktuelle actions fremfor gamle røde historiske kørsler.
