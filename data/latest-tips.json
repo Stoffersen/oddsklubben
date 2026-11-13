@@ -1,13 +1,116 @@
 {
-  "updated": "2026-11-12 16:30 UTC",
-  "favorites": [],
-  "upsets": [],
+  "updated": "2026-11-13 15:50 UTC",
+  "favorites": [
+    {
+      "date": "2026-11-20",
+      "match": "FC Bayern München vs 1. FC Köln",
+      "selection": "FC Bayern München",
+      "probability": 0.8746,
+      "explanation": {
+        "home_expected_goals": 4.01,
+        "away_expected_goals": 1.02,
+        "home_attack_strength": 1.9,
+        "home_defence_strength": 0.84,
+        "away_attack_strength": 0.83,
+        "away_defence_strength": 1.12,
+        "league_home_goals": 1.89,
+        "league_away_goals": 1.45,
+        "summary": "Modellen forventer 4.01 mål til FC Bayern München mod 1.02 til 1. FC Köln; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
+    }
+  ],
+  "upsets": [
+    {
+      "date": "2026-11-20",
+      "match": "ES Troyes AC vs Le Havre AC",
+      "selection": "Le Havre AC",
+      "probability": 0.371,
+      "explanation": {
+        "home_expected_goals": 1.41,
+        "away_expected_goals": 1.4,
+        "home_attack_strength": 0.91,
+        "home_defence_strength": 1.38,
+        "away_attack_strength": 0.79,
+        "away_defence_strength": 0.99,
+        "league_home_goals": 1.56,
+        "league_away_goals": 1.27,
+        "summary": "Modellen forventer 1.40 mål til Le Havre AC mod 1.41 til ES Troyes AC; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      },
+      "uncertain": false
+    }
+  ],
   "bold_upsets": [],
   "model_80kr_portfolio": {
     "budget_kr": 80,
     "note": "Probability-based model allocation only; bookmaker odds are not available, so expected value is not claimed.",
-    "bets": []
+    "bets": [
+      {
+        "type": "single",
+        "stake_kr": 40,
+        "combined_probability": 0.8746,
+        "legs": [
+          {
+            "date": "2026-11-20",
+            "match": "FC Bayern München vs 1. FC Köln",
+            "selection": "FC Bayern München",
+            "probability": 0.8746
+          }
+        ]
+      },
+      {
+        "type": "double",
+        "stake_kr": 20,
+        "combined_probability": 0.3245,
+        "legs": [
+          {
+            "date": "2026-11-20",
+            "match": "FC Bayern München vs 1. FC Köln",
+            "selection": "FC Bayern München",
+            "probability": 0.8746
+          },
+          {
+            "date": "2026-11-20",
+            "match": "ES Troyes AC vs Le Havre AC",
+            "selection": "Le Havre AC",
+            "probability": 0.371
+          }
+        ]
+      },
+      {
+        "type": "single",
+        "stake_kr": 20,
+        "combined_probability": 0.371,
+        "legs": [
+          {
+            "date": "2026-11-20",
+            "match": "ES Troyes AC vs Le Havre AC",
+            "selection": "Le Havre AC",
+            "probability": 0.371
+          }
+        ]
+      }
+    ]
   },
-  "smart_double": null,
+  "smart_double": {
+    "combined_probability": 0.3245,
+    "expected_odds_90": 2.77,
+    "note": null,
+    "legs": [
+      {
+        "role": "solid",
+        "date": "2026-11-20",
+        "match": "FC Bayern München vs 1. FC Köln",
+        "selection": "FC Bayern München",
+        "probability": 0.8746
+      },
+      {
+        "role": "surprise",
+        "date": "2026-11-20",
+        "match": "ES Troyes AC vs Le Havre AC",
+        "selection": "Le Havre AC",
+        "probability": 0.371
+      }
+    ]
+  },
   "smart_triple": null
 }
