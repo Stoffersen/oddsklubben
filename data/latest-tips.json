@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-13 15:50 UTC",
+  "updated": "2026-11-14 14:40 UTC",
   "favorites": [
     {
       "date": "2026-11-20",
@@ -17,9 +17,79 @@
         "league_away_goals": 1.45,
         "summary": "Modellen forventer 4.01 mål til FC Bayern München mod 1.02 til 1. FC Köln; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
+    },
+    {
+      "date": "2026-11-21",
+      "match": "Man City vs Fulham",
+      "selection": "Man City",
+      "probability": 0.6874,
+      "explanation": {
+        "home_expected_goals": 2.03,
+        "away_expected_goals": 0.69,
+        "home_attack_strength": 1.42,
+        "home_defence_strength": 0.8,
+        "away_attack_strength": 0.7,
+        "away_defence_strength": 0.94,
+        "league_home_goals": 1.52,
+        "league_away_goals": 1.24,
+        "summary": "Modellen forventer 2.03 mål til Man City mod 0.69 til Fulham; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
+    },
+    {
+      "date": "2026-11-21",
+      "match": "West Ham vs Preston North End FC",
+      "selection": "West Ham",
+      "probability": 0.6833,
+      "explanation": {
+        "home_expected_goals": 2.49,
+        "away_expected_goals": 1.07,
+        "home_attack_strength": 1.59,
+        "home_defence_strength": 0.91,
+        "away_attack_strength": 0.97,
+        "away_defence_strength": 1.07,
+        "league_home_goals": 1.47,
+        "league_away_goals": 1.22,
+        "summary": "Modellen forventer 2.49 mål til West Ham mod 1.07 til Preston North End FC; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
     }
   ],
   "upsets": [
+    {
+      "date": "2026-11-21",
+      "match": "Eintracht Frankfurt vs TSG 1899 Hoffenheim",
+      "selection": "TSG 1899 Hoffenheim",
+      "probability": 0.3918,
+      "explanation": {
+        "home_expected_goals": 1.88,
+        "away_expected_goals": 1.88,
+        "home_attack_strength": 0.9,
+        "home_defence_strength": 1.18,
+        "away_attack_strength": 1.09,
+        "away_defence_strength": 1.11,
+        "league_home_goals": 1.89,
+        "league_away_goals": 1.45,
+        "summary": "Modellen forventer 1.88 mål til TSG 1899 Hoffenheim mod 1.88 til Eintracht Frankfurt; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      },
+      "uncertain": false
+    },
+    {
+      "date": "2026-11-21",
+      "match": "1. FC Union Berlin vs RB Leipzig",
+      "selection": "RB Leipzig",
+      "probability": 0.3728,
+      "explanation": {
+        "home_expected_goals": 1.66,
+        "away_expected_goals": 1.6,
+        "home_attack_strength": 0.91,
+        "home_defence_strength": 1.15,
+        "away_attack_strength": 0.96,
+        "away_defence_strength": 0.97,
+        "league_home_goals": 1.89,
+        "league_away_goals": 1.45,
+        "summary": "Modellen forventer 1.60 mål til RB Leipzig mod 1.66 til 1. FC Union Berlin; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      },
+      "uncertain": false
+    },
     {
       "date": "2026-11-20",
       "match": "ES Troyes AC vs Le Havre AC",
@@ -39,7 +109,32 @@
       "uncertain": false
     }
   ],
-  "bold_upsets": [],
+  "bold_upsets": [
+    {
+      "date": "2026-11-21",
+      "match": "FC Groningen vs SC Heerenveen",
+      "selection": "SC Heerenveen",
+      "probability": 0.3383,
+      "favorite_probability": 0.4252,
+      "tier": "bold"
+    },
+    {
+      "date": "2026-11-21",
+      "match": "Tottenham vs Ipswich",
+      "selection": "Tottenham",
+      "probability": 0.3255,
+      "favorite_probability": 0.4438,
+      "tier": "bold"
+    },
+    {
+      "date": "2026-11-21",
+      "match": "Chelsea vs Leeds",
+      "selection": "Leeds",
+      "probability": 0.3267,
+      "favorite_probability": 0.4282,
+      "tier": "bold"
+    }
+  ],
   "model_80kr_portfolio": {
     "budget_kr": 80,
     "note": "Probability-based model allocation only; bookmaker odds are not available, so expected value is not claimed.",
@@ -60,7 +155,7 @@
       {
         "type": "double",
         "stake_kr": 20,
-        "combined_probability": 0.3245,
+        "combined_probability": 0.3427,
         "legs": [
           {
             "date": "2026-11-20",
@@ -69,31 +164,31 @@
             "probability": 0.8746
           },
           {
-            "date": "2026-11-20",
-            "match": "ES Troyes AC vs Le Havre AC",
-            "selection": "Le Havre AC",
-            "probability": 0.371
+            "date": "2026-11-21",
+            "match": "Eintracht Frankfurt vs TSG 1899 Hoffenheim",
+            "selection": "TSG 1899 Hoffenheim",
+            "probability": 0.3918
           }
         ]
       },
       {
         "type": "single",
         "stake_kr": 20,
-        "combined_probability": 0.371,
+        "combined_probability": 0.3918,
         "legs": [
           {
-            "date": "2026-11-20",
-            "match": "ES Troyes AC vs Le Havre AC",
-            "selection": "Le Havre AC",
-            "probability": 0.371
+            "date": "2026-11-21",
+            "match": "Eintracht Frankfurt vs TSG 1899 Hoffenheim",
+            "selection": "TSG 1899 Hoffenheim",
+            "probability": 0.3918
           }
         ]
       }
     ]
   },
   "smart_double": {
-    "combined_probability": 0.3245,
-    "expected_odds_90": 2.77,
+    "combined_probability": 0.3427,
+    "expected_odds_90": 2.63,
     "note": null,
     "legs": [
       {
@@ -105,10 +200,10 @@
       },
       {
         "role": "surprise",
-        "date": "2026-11-20",
-        "match": "ES Troyes AC vs Le Havre AC",
-        "selection": "Le Havre AC",
-        "probability": 0.371
+        "date": "2026-11-21",
+        "match": "Eintracht Frankfurt vs TSG 1899 Hoffenheim",
+        "selection": "TSG 1899 Hoffenheim",
+        "probability": 0.3918
       }
     ]
   },
