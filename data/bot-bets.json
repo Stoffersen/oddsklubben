@@ -338,6 +338,74 @@
           "return_kr": 0
         }
       ]
+    },
+    {
+      "coupon_date": "2026-11-15",
+      "model_updated": "2026-11-14 14:40 UTC",
+      "stake_kr": 80,
+      "rtp": 0.9,
+      "status": "open",
+      "risk_mode": "normal",
+      "risk_note": "Saldoen er omkring neutral: Bot’en bruger sin normale modelportefølje.",
+      "return_kr": null,
+      "profit_kr": null,
+      "bets": [
+        {
+          "type": "single",
+          "stake_kr": 40,
+          "fake_odds": 1.03,
+          "legs": [
+            {
+              "date": "2026-11-20",
+              "match": "FC Bayern München vs 1. FC Köln",
+              "selection": "FC Bayern München",
+              "probability": 0.8746,
+              "fake_odds": 1.03
+            }
+          ],
+          "result": "pending",
+          "return_kr": null
+        },
+        {
+          "type": "double",
+          "stake_kr": 20,
+          "fake_odds": 2.37,
+          "legs": [
+            {
+              "date": "2026-11-20",
+              "match": "FC Bayern München vs 1. FC Köln",
+              "selection": "FC Bayern München",
+              "probability": 0.8746,
+              "fake_odds": 1.03
+            },
+            {
+              "date": "2026-11-21",
+              "match": "Eintracht Frankfurt vs TSG 1899 Hoffenheim",
+              "selection": "TSG 1899 Hoffenheim",
+              "probability": 0.3918,
+              "fake_odds": 2.3
+            }
+          ],
+          "result": "pending",
+          "return_kr": null
+        },
+        {
+          "type": "single",
+          "stake_kr": 20,
+          "fake_odds": 2.3,
+          "legs": [
+            {
+              "date": "2026-11-21",
+              "match": "Eintracht Frankfurt vs TSG 1899 Hoffenheim",
+              "selection": "TSG 1899 Hoffenheim",
+              "probability": 0.3918,
+              "fake_odds": 2.3
+            }
+          ],
+          "result": "pending",
+          "return_kr": null
+        }
+      ]
     }
   ],
   "totals": {
@@ -347,5 +415,5 @@
     "profit_kr": 11.6,
     "return_pct": 103.6
   },
-  "updated": "2026-11-14 22:17 UTC"
+  "updated": "2026-11-15 06:18 UTC"
 }
