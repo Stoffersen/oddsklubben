@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14 14:40 UTC",
+  "updated": "2026-11-15 15:08 UTC",
   "favorites": [
     {
       "date": "2026-11-20",
@@ -19,37 +19,37 @@
       }
     },
     {
-      "date": "2026-11-21",
-      "match": "Man City vs Fulham",
-      "selection": "Man City",
-      "probability": 0.6874,
+      "date": "2026-11-22",
+      "match": "FC Barcelona vs Villarreal CF",
+      "selection": "FC Barcelona",
+      "probability": 0.7294,
       "explanation": {
-        "home_expected_goals": 2.03,
-        "away_expected_goals": 0.69,
-        "home_attack_strength": 1.42,
-        "home_defence_strength": 0.8,
-        "away_attack_strength": 0.7,
-        "away_defence_strength": 0.94,
-        "league_home_goals": 1.52,
-        "league_away_goals": 1.24,
-        "summary": "Modellen forventer 2.03 mål til Man City mod 0.69 til Fulham; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+        "home_expected_goals": 2.6,
+        "away_expected_goals": 0.94,
+        "home_attack_strength": 1.74,
+        "home_defence_strength": 0.73,
+        "away_attack_strength": 1.1,
+        "away_defence_strength": 0.92,
+        "league_home_goals": 1.63,
+        "league_away_goals": 1.18,
+        "summary": "Modellen forventer 2.60 mål til FC Barcelona mod 0.94 til Villarreal CF; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
     },
     {
-      "date": "2026-11-21",
-      "match": "West Ham vs Preston North End FC",
-      "selection": "West Ham",
-      "probability": 0.6833,
+      "date": "2026-11-22",
+      "match": "FC Twente '65 vs Willem II Tilburg",
+      "selection": "FC Twente '65",
+      "probability": 0.7155,
       "explanation": {
-        "home_expected_goals": 2.49,
-        "away_expected_goals": 1.07,
-        "home_attack_strength": 1.59,
-        "home_defence_strength": 0.91,
-        "away_attack_strength": 0.97,
-        "away_defence_strength": 1.07,
-        "league_home_goals": 1.47,
-        "league_away_goals": 1.22,
-        "summary": "Modellen forventer 2.49 mål til West Ham mod 1.07 til Preston North End FC; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+        "home_expected_goals": 2.45,
+        "away_expected_goals": 0.9,
+        "home_attack_strength": 1.05,
+        "home_defence_strength": 0.66,
+        "away_attack_strength": 0.87,
+        "away_defence_strength": 1.31,
+        "league_home_goals": 1.78,
+        "league_away_goals": 1.54,
+        "summary": "Modellen forventer 2.45 mål til FC Twente '65 mod 0.90 til Willem II Tilburg; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
     }
   ],
@@ -111,6 +111,14 @@
   ],
   "bold_upsets": [
     {
+      "date": "2026-11-22",
+      "match": "FC Lorient vs Stade Rennais FC 1901",
+      "selection": "Stade Rennais FC 1901",
+      "probability": 0.3435,
+      "favorite_probability": 0.4447,
+      "tier": "bold"
+    },
+    {
       "date": "2026-11-21",
       "match": "FC Groningen vs SC Heerenveen",
       "selection": "SC Heerenveen",
@@ -119,19 +127,11 @@
       "tier": "bold"
     },
     {
-      "date": "2026-11-21",
-      "match": "Tottenham vs Ipswich",
-      "selection": "Tottenham",
-      "probability": 0.3255,
-      "favorite_probability": 0.4438,
-      "tier": "bold"
-    },
-    {
-      "date": "2026-11-21",
-      "match": "Chelsea vs Leeds",
-      "selection": "Leeds",
-      "probability": 0.3267,
-      "favorite_probability": 0.4282,
+      "date": "2026-11-22",
+      "match": "FC Augsburg vs 1. FSV Mainz 05",
+      "selection": "FC Augsburg",
+      "probability": 0.327,
+      "favorite_probability": 0.4449,
       "tier": "bold"
     }
   ],
