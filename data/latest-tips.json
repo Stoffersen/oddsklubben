@@ -1,23 +1,6 @@
 {
-  "updated": "2026-11-19 16:58 UTC",
+  "updated": "2026-11-20 16:33 UTC",
   "favorites": [
-    {
-      "date": "2026-11-20",
-      "match": "FC Bayern München vs 1. FC Köln",
-      "selection": "FC Bayern München",
-      "probability": 0.8746,
-      "explanation": {
-        "home_expected_goals": 4.01,
-        "away_expected_goals": 1.02,
-        "home_attack_strength": 1.9,
-        "home_defence_strength": 0.84,
-        "away_attack_strength": 0.83,
-        "away_defence_strength": 1.12,
-        "league_home_goals": 1.89,
-        "league_away_goals": 1.45,
-        "summary": "Modellen forventer 4.01 mål til FC Bayern München mod 1.02 til 1. FC Köln; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
-      }
-    },
     {
       "date": "2026-11-22",
       "match": "FC Barcelona vs Villarreal CF",
@@ -50,6 +33,23 @@
         "league_home_goals": 1.78,
         "league_away_goals": 1.54,
         "summary": "Modellen forventer 2.45 mål til FC Twente '65 mod 0.90 til Willem II Tilburg; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
+    },
+    {
+      "date": "2026-11-21",
+      "match": "Man City vs Fulham",
+      "selection": "Man City",
+      "probability": 0.6874,
+      "explanation": {
+        "home_expected_goals": 2.03,
+        "away_expected_goals": 0.69,
+        "home_attack_strength": 1.42,
+        "home_defence_strength": 0.8,
+        "away_attack_strength": 0.7,
+        "away_defence_strength": 0.94,
+        "league_home_goals": 1.52,
+        "league_away_goals": 1.24,
+        "summary": "Modellen forventer 2.03 mål til Man City mod 0.69 til Fulham; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
     }
   ],
@@ -89,24 +89,6 @@
         "summary": "Modellen forventer 1.60 mål til RB Leipzig mod 1.66 til 1. FC Union Berlin; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
       },
       "uncertain": false
-    },
-    {
-      "date": "2026-11-20",
-      "match": "ES Troyes AC vs Le Havre AC",
-      "selection": "Le Havre AC",
-      "probability": 0.371,
-      "explanation": {
-        "home_expected_goals": 1.41,
-        "away_expected_goals": 1.4,
-        "home_attack_strength": 0.91,
-        "home_defence_strength": 1.38,
-        "away_attack_strength": 0.79,
-        "away_defence_strength": 0.99,
-        "league_home_goals": 1.56,
-        "league_away_goals": 1.27,
-        "summary": "Modellen forventer 1.40 mål til Le Havre AC mod 1.41 til ES Troyes AC; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
-      },
-      "uncertain": false
     }
   ],
   "bold_upsets": [
@@ -142,26 +124,26 @@
       {
         "type": "single",
         "stake_kr": 40,
-        "combined_probability": 0.8746,
+        "combined_probability": 0.7294,
         "legs": [
           {
-            "date": "2026-11-20",
-            "match": "FC Bayern München vs 1. FC Köln",
-            "selection": "FC Bayern München",
-            "probability": 0.8746
+            "date": "2026-11-22",
+            "match": "FC Barcelona vs Villarreal CF",
+            "selection": "FC Barcelona",
+            "probability": 0.7294
           }
         ]
       },
       {
         "type": "double",
         "stake_kr": 20,
-        "combined_probability": 0.3427,
+        "combined_probability": 0.2858,
         "legs": [
           {
-            "date": "2026-11-20",
-            "match": "FC Bayern München vs 1. FC Köln",
-            "selection": "FC Bayern München",
-            "probability": 0.8746
+            "date": "2026-11-22",
+            "match": "FC Barcelona vs Villarreal CF",
+            "selection": "FC Barcelona",
+            "probability": 0.7294
           },
           {
             "date": "2026-11-21",
@@ -187,16 +169,16 @@
     ]
   },
   "smart_double": {
-    "combined_probability": 0.3427,
-    "expected_odds_90": 2.63,
+    "combined_probability": 0.2858,
+    "expected_odds_90": 3.15,
     "note": null,
     "legs": [
       {
         "role": "solid",
-        "date": "2026-11-20",
-        "match": "FC Bayern München vs 1. FC Köln",
-        "selection": "FC Bayern München",
-        "probability": 0.8746
+        "date": "2026-11-22",
+        "match": "FC Barcelona vs Villarreal CF",
+        "selection": "FC Barcelona",
+        "probability": 0.7294
       },
       {
         "role": "surprise",
