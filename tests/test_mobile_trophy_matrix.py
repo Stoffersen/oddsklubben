@@ -87,7 +87,7 @@ class TrophyMatrixTests(unittest.TestCase):
         self.assertRegex(css, r"\.mobile-trophy-matrix th:first-child\{[^}]*position:sticky")
         self.assertIn("app/styles.css?v=20261116-1", page)
         self.assertIn("app/styles.css?v=20261116-1", sw)
-        self.assertIn("oddsklubben-shell-v115", sw)
+        self.assertIn("oddsklubben-shell-v116", sw)
 
 
 if __name__ == "__main__":
