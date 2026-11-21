@@ -40,6 +40,12 @@ class MobileHomeSmoke(unittest.TestCase):
         self.assertIn('id="arkiv"',trips)
         self.assertIn('DEN KOMPLETTE LISTE',trips)
 
+    def test_pokal_semifinal_fallback_uses_confirmed_winner(self):
+        script=(ROOT/"app/app.js").read_text(encoding="utf-8")
+        self.assertIn('{w:2,r:"Pokal · semifinaler",m:["King – Pingvinus","Gorilla – Kardinalus"],free:"Kaninus"}',script)
+        self.assertNotIn('King – vinder af Pingvinus/Kaninus',script)
+        self.assertNotIn('Taberen af Pingvinus/Kaninus',script)
+
     def test_home_card_refreshes_after_sheet_load(self):
         script=(ROOT/"app/app.js").read_text()
         self.assertIn("function updateHomeNextRound_()",script)
