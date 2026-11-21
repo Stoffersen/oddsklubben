@@ -72,7 +72,7 @@ class MobileHomeSmoke(unittest.TestCase):
 
     def test_supercup_trophy_total_matches_recorded_sheet(self):
         page=(ROOT/"index.html").read_text()
-        self.assertIn('<span>🙏 Kardinalus</span><strong>72</strong>',page)
+        self.assertIn('<strong>🙏 Kardinalus</strong><span><b>72</b> pokaler i alt',page)
         self.assertIn('<b>72</b> pokaler i alt',page)
         self.assertIn('inkl. Supercup 2026/27',page)
 

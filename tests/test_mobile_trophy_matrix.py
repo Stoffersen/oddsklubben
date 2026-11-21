@@ -69,8 +69,9 @@ class TrophyMatrixTests(unittest.TestCase):
         page = (ROOT / "index.html").read_text(encoding="utf-8")
         trophy_view = page.split('<main id="trophies"', 1)[1].split('<main id="standings"', 1)[0]
         self.assertLess(trophy_view.index('class="podium-cards"'), trophy_view.index('class="mobile-trophy-archive"'))
-        self.assertLess(trophy_view.index('class="mobile-trophy-archive"'), trophy_view.index('class="ranking"'))
-        self.assertLess(trophy_view.index('class="ranking"'), trophy_view.index('class="record-list"'))
+        self.assertLess(trophy_view.index('class="mobile-trophy-archive"'), trophy_view.index('class="section-head records-head"'))
+        self.assertNotIn('All-time stilling', trophy_view)
+        self.assertNotIn('<section class="ranking">', trophy_view)
         self.assertLess(trophy_view.index('class="mobile-trophy-archive"'), trophy_view.index('id="backTrophiesBottom"'))
         self.assertIn('class="mobile-trophy-scroll" role="region"', trophy_view)
         self.assertIn('tabindex="0"', trophy_view)
@@ -86,7 +87,7 @@ class TrophyMatrixTests(unittest.TestCase):
         self.assertRegex(css, r"\.mobile-trophy-matrix th:first-child\{[^}]*position:sticky")
         self.assertIn("app/styles.css?v=20261116-1", page)
         self.assertIn("app/styles.css?v=20261116-1", sw)
-        self.assertIn("oddsklubben-shell-v114", sw)
+        self.assertIn("oddsklubben-shell-v115", sw)
 
 
 if __name__ == "__main__":
