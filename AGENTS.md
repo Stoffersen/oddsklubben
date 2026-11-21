@@ -309,3 +309,10 @@ Dette afsnit supplerer historiske øjebliksbilleder ovenfor. Kontroller altid ak
 - PR #9 i Professorens repo indførte en sekundær, præcist matchet fuldtidsresultatkilde til kampe, som primærhistorikken mangler, samt alarm for stadig manglende resultater. PR #63 her synkroniserede kuponen 1. november: 7. november-kampene gav 2 vundne og 2 tabte spil; retur 48 kr på 80 kr indsats, resultat −32 kr. På dette øjebliksbillede var den samlede fiktive saldo **+11,60 kr. på fire afgjorte kuponer** (320 kr indsat, 331,60 kr retur). Tjek aktuel producentfil ved fortsættelse.
 - Genkørsler må **aldrig** oprette nye ugentlige kuponer, gentage indsats eller dobbeltafregne. Bevar `excluded_from_totals`/dubletværn; en grøn Actions-kørsel er ikke bevis for, at alle kampe er blevet afregnet.
 - Professorens **Archive daily football forecasts** fejlede 9.–10. november, fordi **0 kommende kampe** gav en fejlagtig nonzero exit. Professor-PR #10 fikset tom-arkiv som en vellykket *no-op* uden at ændre historik. Ny arkivkørsel og Analytics-tests blev grønne. Se de aktuelle actions fremfor gamle røde historiske kørsler.
+
+
+## Pokal uge 47 — verificeret 21. november 2026
+
+- Den indledende pokalkamp `Pingvinus – Kaninus` er registreret i `📲 Rundeindtastning` med **1-0** og **64 kr til Pingvinus**. Pingvinus går derfor videre.
+- `📅 Program 26-27` uge 2 er afstemt til **King – Pingvinus** og **Gorilla – Kardinalus**; **Kaninus har Fri Odds**. Appens lokale fallback i `app/app.js` matcher dette.
+- Den eksisterende 2027-semiopsætning i `📲 Rundeindtastning` har foreløbig kun tre spiller-rækker (King, Gorilla, Kardinalus). Udvid ikke denne manuelt ved at forskyde eksisterende formler eller sæsonrækker; afstem fuld migration af de to manglende spiller-rækker (Pingvinus og Kaninus) separat, før live-skrivning aktiveres. De eksisterende 1-0/64 kr.-oplysninger må ikke ændres.
