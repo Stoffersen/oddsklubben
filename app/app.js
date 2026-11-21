@@ -15,7 +15,7 @@ let program=[
 {w:50,r:"Runde 6",m:["Kaninus – Kardinalus","King – Gorilla"],free:"Pingvinus"},
 {w:51,r:"JULEFERIE",m:[]},{w:52,r:"JULEFERIE",m:[]},{w:53,r:"JULEFERIE",m:[]},
 {w:1,r:"Runde 7",m:["Pingvinus – Kardinalus","Gorilla – Kaninus"],free:"King"},
-{w:2,r:"Pokal · semifinaler",m:["King – vinder af Pingvinus/Kaninus","Gorilla – Kardinalus"],free:"Taberen af Pingvinus/Kaninus"},
+{w:2,r:"Pokal · semifinaler",m:["King – Pingvinus","Gorilla – Kardinalus"],free:"Kaninus"},
 {w:3,r:"Runde 8",m:["Pingvinus – King","Gorilla – Kardinalus"],free:"Kaninus"},
 {w:4,r:"Fri Odds",m:[],allFree:true},{w:5,r:"Runde 9",m:["Pingvinus – Gorilla","Kaninus – King"],free:"Kardinalus"},
 {w:6,r:"Fri Odds",m:[],allFree:true},{w:7,r:"VINTERFERIE",m:[]},{w:8,r:"Pokalfinale",m:["TBD – TBD"]},{w:9,r:"Fri Odds",m:[],allFree:true},
