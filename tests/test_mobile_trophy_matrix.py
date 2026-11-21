@@ -69,7 +69,7 @@ class TrophyMatrixTests(unittest.TestCase):
         page = (ROOT / "index.html").read_text(encoding="utf-8")
         trophy_view = page.split('<main id="trophies"', 1)[1].split('<main id="standings"', 1)[0]
         self.assertLess(trophy_view.index('class="podium-cards"'), trophy_view.index('class="mobile-trophy-archive"'))
-        self.assertLess(trophy_view.index('class="mobile-trophy-archive"'), trophy_view.index('class="records-head"'))
+        self.assertLess(trophy_view.index('class="mobile-trophy-archive"'), trophy_view.index('class="section-head records-head"'))
         self.assertNotIn('All-time stilling', trophy_view)
         self.assertNotIn('<section class="ranking">', trophy_view)
         self.assertLess(trophy_view.index('class="mobile-trophy-archive"'), trophy_view.index('id="backTrophiesBottom"'))
