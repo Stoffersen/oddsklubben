@@ -405,6 +405,13 @@
           "result": "pending",
           "return_kr": null
         }
+      ],
+      "missing_results": [
+        {
+          "date": "2026-11-20",
+          "match": "FC Bayern München vs 1. FC Köln",
+          "days_overdue": 1
+        }
       ]
     }
   ],
@@ -415,5 +422,5 @@
     "profit_kr": 11.6,
     "return_pct": 103.6
   },
-  "updated": "2026-11-20 20:04 UTC"
+  "updated": "2026-11-21 02:09 UTC"
 }
