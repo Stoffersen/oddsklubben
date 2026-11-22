@@ -85,9 +85,9 @@ class TrophyMatrixTests(unittest.TestCase):
         sw = (ROOT / "sw.js").read_text(encoding="utf-8")
         self.assertRegex(css, r"\.mobile-trophy-scroll\{[^}]*overflow-x:auto")
         self.assertRegex(css, r"\.mobile-trophy-matrix th:first-child\{[^}]*position:sticky")
-        self.assertIn("app/styles.css?v=20261116-1", page)
-        self.assertIn("app/styles.css?v=20261116-1", sw)
-        self.assertIn("oddsklubben-shell-v116", sw)
+        self.assertIn("app/styles.css?v=20261122-bot-retired", page)
+        self.assertIn("app/styles.css?v=20261122-bot-retired", sw)
+        self.assertIn("oddsklubben-shell-v117", sw)
 
 
 if __name__ == "__main__":

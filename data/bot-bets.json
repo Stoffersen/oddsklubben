@@ -344,11 +344,11 @@
       "model_updated": "2026-11-14 14:40 UTC",
       "stake_kr": 80,
       "rtp": 0.9,
-      "status": "open",
+      "status": "settled",
       "risk_mode": "normal",
       "risk_note": "Saldoen er omkring neutral: Bot’en bruger sin normale modelportefølje.",
-      "return_kr": null,
-      "profit_kr": null,
+      "return_kr": 0.0,
+      "profit_kr": -80.0,
       "bets": [
         {
           "type": "single",
@@ -363,8 +363,8 @@
               "fake_odds": 1.03
             }
           ],
-          "result": "pending",
-          "return_kr": null
+          "result": "lost",
+          "return_kr": 0.0
         },
         {
           "type": "double",
@@ -386,8 +386,8 @@
               "fake_odds": 2.3
             }
           ],
-          "result": "pending",
-          "return_kr": null
+          "result": "lost",
+          "return_kr": 0.0
         },
         {
           "type": "single",
@@ -402,20 +402,8 @@
               "fake_odds": 2.3
             }
           ],
-          "result": "pending",
-          "return_kr": null
-        }
-      ],
-      "missing_results": [
-        {
-          "date": "2026-11-20",
-          "match": "FC Bayern München vs 1. FC Köln",
-          "days_overdue": 2
-        },
-        {
-          "date": "2026-11-21",
-          "match": "Eintracht Frankfurt vs TSG 1899 Hoffenheim",
-          "days_overdue": 1
+          "result": "lost",
+          "return_kr": 0.0
         }
       ]
     },
@@ -466,11 +454,11 @@
     }
   ],
   "totals": {
-    "settled_weeks": 4,
-    "stake_kr": 320,
+    "settled_weeks": 5,
+    "stake_kr": 400,
     "return_kr": 331.6,
-    "profit_kr": 11.6,
-    "return_pct": 103.6
+    "profit_kr": -68.4,
+    "return_pct": 82.9
   },
-  "updated": "2026-11-22 01:12 UTC"
+  "updated": "2026-11-22 06:40 UTC"
 }
