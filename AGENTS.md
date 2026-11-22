@@ -1,5 +1,14 @@
 # Oddsklubben – agenthåndbog
 
+## Current product decision — 22 November 2026: Bot'ens Bet retired
+
+The owner has shut down **Bot'ens Bet** entirely due to unreliable result checking. This supersedes all older guidance below to display or produce its weekly coupons.
+- Never show or link the Bot Bet page, current coupon, mood, history, balances or alerts in the mobile app. The visible entry and frontend feed loader have been removed.
+- No active `data/bot-bets.json` synchronization or settlement workflow; the preserved file is a final audit snapshot only. Do not change it on subsequent syncs.
+- The separate **Spilforslag** feature and Professoren's odds-free forecast feed `data/latest-tips.json`, including the 80 kr *model suggestion*, stay active. Do not remove them as a side effect.
+- Historical data/files and decisions remain for audit; reopening Bot Bet requires a new explicit product decision. This instruction takes priority over historical Bot Bet mentions elsewhere in this handbook.
+
+
 Denne fil er den vedvarende projektkontekst for AI-agenter, der arbejder på Oddsklubben. Læs den før ændringer i repo, Google Sheet, statistik eller datamodel.
 
 ## Arbejdsprincipper
