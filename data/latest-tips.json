@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21 15:46 UTC",
+  "updated": "2026-11-22 15:50 UTC",
   "favorites": [
     {
       "date": "2026-11-28",
@@ -19,6 +19,23 @@
       }
     },
     {
+      "date": "2026-11-29",
+      "match": "AS Roma vs AC Monza",
+      "selection": "AS Roma",
+      "probability": 0.743,
+      "explanation": {
+        "home_expected_goals": 2.52,
+        "away_expected_goals": 0.82,
+        "home_attack_strength": 1.41,
+        "home_defence_strength": 0.65,
+        "away_attack_strength": 1.04,
+        "away_defence_strength": 1.36,
+        "league_home_goals": 1.32,
+        "league_away_goals": 1.21,
+        "summary": "Modellen forventer 2.52 mål til AS Roma mod 0.82 til AC Monza; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
+      }
+    },
+    {
       "date": "2026-11-28",
       "match": "PSV vs Go Ahead Eagles",
       "selection": "PSV",
@@ -34,96 +51,71 @@
         "league_away_goals": 1.54,
         "summary": "Modellen forventer 3.22 mål til PSV mod 1.35 til Go Ahead Eagles; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       }
-    },
-    {
-      "date": "2026-11-22",
-      "match": "FC Barcelona vs Villarreal CF",
-      "selection": "FC Barcelona",
-      "probability": 0.7294,
-      "explanation": {
-        "home_expected_goals": 2.6,
-        "away_expected_goals": 0.94,
-        "home_attack_strength": 1.74,
-        "home_defence_strength": 0.73,
-        "away_attack_strength": 1.1,
-        "away_defence_strength": 0.92,
-        "league_home_goals": 1.63,
-        "league_away_goals": 1.18,
-        "summary": "Modellen forventer 2.60 mål til FC Barcelona mod 0.94 til Villarreal CF; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
-      }
     }
   ],
   "upsets": [
     {
-      "date": "2026-11-28",
-      "match": "Everton vs Liverpool",
-      "selection": "Everton",
-      "probability": 0.3693,
+      "date": "2026-11-29",
+      "match": "ADO Den Haag vs FC Utrecht",
+      "selection": "ADO Den Haag",
+      "probability": 0.3813,
       "explanation": {
-        "home_expected_goals": 1.5,
-        "away_expected_goals": 1.55,
-        "home_attack_strength": 0.98,
-        "home_defence_strength": 1.06,
-        "away_attack_strength": 1.18,
-        "away_defence_strength": 1.01,
-        "league_home_goals": 1.52,
-        "league_away_goals": 1.24,
-        "summary": "Modellen forventer 1.50 mål til Everton mod 1.55 til Liverpool; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
-      },
-      "uncertain": true
-    },
-    {
-      "date": "2026-11-28",
-      "match": "SC Cambuur-Leeuwarden vs Sparta Rotterdam",
-      "selection": "Sparta Rotterdam",
-      "probability": 0.3684,
-      "explanation": {
-        "home_expected_goals": 1.98,
+        "home_expected_goals": 1.79,
         "away_expected_goals": 1.84,
-        "home_attack_strength": 0.95,
-        "home_defence_strength": 1.44,
-        "away_attack_strength": 0.83,
-        "away_defence_strength": 1.17,
+        "home_attack_strength": 0.91,
+        "home_defence_strength": 1.25,
+        "away_attack_strength": 0.96,
+        "away_defence_strength": 1.11,
         "league_home_goals": 1.78,
         "league_away_goals": 1.54,
-        "summary": "Modellen forventer 1.84 mål til Sparta Rotterdam mod 1.98 til SC Cambuur-Leeuwarden; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+        "summary": "Modellen forventer 1.79 mål til ADO Den Haag mod 1.84 til FC Utrecht; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       },
-      "uncertain": true
+      "uncertain": false
     },
     {
-      "date": "2026-11-27",
-      "match": "Stade Brestois 29 vs Paris FC",
-      "selection": "Paris FC",
-      "probability": 0.3648,
+      "date": "2026-11-29",
+      "match": "Toulouse FC vs Stade Rennais FC 1901",
+      "selection": "Toulouse FC",
+      "probability": 0.378,
       "explanation": {
-        "home_expected_goals": 1.32,
-        "away_expected_goals": 1.3,
-        "home_attack_strength": 1.0,
-        "home_defence_strength": 1.07,
-        "away_attack_strength": 0.96,
-        "away_defence_strength": 0.85,
+        "home_expected_goals": 1.69,
+        "away_expected_goals": 1.73,
+        "home_attack_strength": 0.88,
+        "home_defence_strength": 1.1,
+        "away_attack_strength": 1.24,
+        "away_defence_strength": 1.23,
         "league_home_goals": 1.56,
         "league_away_goals": 1.27,
-        "summary": "Modellen forventer 1.30 mål til Paris FC mod 1.32 til Stade Brestois 29; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+        "summary": "Modellen forventer 1.69 mål til Toulouse FC mod 1.73 til Stade Rennais FC 1901; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       },
-      "uncertain": true
+      "uncertain": false
+    },
+    {
+      "date": "2026-11-29",
+      "match": "RC Celta de Vigo vs Villarreal CF",
+      "selection": "Villarreal CF",
+      "probability": 0.3738,
+      "explanation": {
+        "home_expected_goals": 1.53,
+        "away_expected_goals": 1.51,
+        "home_attack_strength": 1.03,
+        "home_defence_strength": 1.16,
+        "away_attack_strength": 1.1,
+        "away_defence_strength": 0.92,
+        "league_home_goals": 1.63,
+        "league_away_goals": 1.18,
+        "summary": "Modellen forventer 1.51 mål til Villarreal CF mod 1.53 til RC Celta de Vigo; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      },
+      "uncertain": false
     }
   ],
   "bold_upsets": [
     {
-      "date": "2026-11-22",
-      "match": "FC Lorient vs Stade Rennais FC 1901",
-      "selection": "Stade Rennais FC 1901",
-      "probability": 0.3435,
-      "favorite_probability": 0.4447,
-      "tier": "bold"
-    },
-    {
-      "date": "2026-11-22",
-      "match": "FC Augsburg vs 1. FSV Mainz 05",
-      "selection": "FC Augsburg",
-      "probability": 0.327,
-      "favorite_probability": 0.4449,
+      "date": "2026-11-29",
+      "match": "Elche CF vs Club Atlético de Madrid",
+      "selection": "Elche CF",
+      "probability": 0.3358,
+      "favorite_probability": 0.4327,
       "tier": "bold"
     },
     {
@@ -132,6 +124,14 @@
       "selection": "Le Havre AC",
       "probability": 0.3248,
       "favorite_probability": 0.4219,
+      "tier": "bold"
+    },
+    {
+      "date": "2026-11-29",
+      "match": "Málaga CF vs Athletic Club",
+      "selection": "Athletic Club",
+      "probability": 0.3247,
+      "favorite_probability": 0.4183,
       "tier": "bold"
     }
   ],
@@ -153,47 +153,59 @@
         ]
       },
       {
-        "type": "single",
-        "stake_kr": 40,
-        "combined_probability": 0.7381,
+        "type": "double",
+        "stake_kr": 20,
+        "combined_probability": 0.2837,
         "legs": [
           {
             "date": "2026-11-28",
-            "match": "PSV vs Go Ahead Eagles",
-            "selection": "PSV",
-            "probability": 0.7381
+            "match": "West Ham vs Stoke City FC",
+            "selection": "West Ham",
+            "probability": 0.7441
+          },
+          {
+            "date": "2026-11-29",
+            "match": "ADO Den Haag vs FC Utrecht",
+            "selection": "ADO Den Haag",
+            "probability": 0.3813
+          }
+        ]
+      },
+      {
+        "type": "single",
+        "stake_kr": 20,
+        "combined_probability": 0.3813,
+        "legs": [
+          {
+            "date": "2026-11-29",
+            "match": "ADO Den Haag vs FC Utrecht",
+            "selection": "ADO Den Haag",
+            "probability": 0.3813
           }
         ]
       }
     ]
   },
-  "smart_double": null,
-  "smart_triple": {
-    "combined_probability": 0.4006,
-    "expected_odds_90": 2.25,
-    "note": "Professoren er lidt i tvivl om det her · bedste tilgængelige bud",
+  "smart_double": {
+    "combined_probability": 0.2837,
+    "expected_odds_90": 3.17,
+    "note": null,
     "legs": [
       {
-        "role": "best_available",
+        "role": "solid",
         "date": "2026-11-28",
         "match": "West Ham vs Stoke City FC",
         "selection": "West Ham",
         "probability": 0.7441
       },
       {
-        "role": "best_available",
-        "date": "2026-11-28",
-        "match": "PSV vs Go Ahead Eagles",
-        "selection": "PSV",
-        "probability": 0.7381
-      },
-      {
-        "role": "best_available",
-        "date": "2026-11-22",
-        "match": "FC Barcelona vs Villarreal CF",
-        "selection": "FC Barcelona",
-        "probability": 0.7294
+        "role": "surprise",
+        "date": "2026-11-29",
+        "match": "ADO Den Haag vs FC Utrecht",
+        "selection": "ADO Den Haag",
+        "probability": 0.3813
       }
     ]
-  }
+  },
+  "smart_triple": null
 }
