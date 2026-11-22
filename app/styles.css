@@ -181,16 +181,9 @@
 .tip-card.bold-upset .tip-copy span,.tip-card.bold-upset>b{color:#71451f}
 .bold-upset-group .section-head small{color:#684c34}
 
-/* Bot'ens Bet */
-.botbet-page{min-height:100vh;background:#f4f7f3;color:#17241b}.botbet-shell{width:min(100% - 28px,620px);margin:auto;padding:24px 0}.botbet-page h1{margin:8px 0 4px}.botbet-sub{margin:0 0 18px;color:#465249;font-size:14px;line-height:1.45}.botbet-hero{background:#173f28;color:#fff;border-radius:20px;padding:18px;margin:14px 0}.botbet-hero small{display:block;font-size:12px;letter-spacing:.08em;opacity:.9}.botbet-hero strong{display:block;font-size:20px;margin:5px 0}.botbet-hero span{font-size:13px;line-height:1.45}.botbet-bet{background:#fff;border:1px solid #dce5dd;border-radius:18px;padding:15px;margin:11px 0}.botbet-bet-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.botbet-bet-top b{font-size:15px}.botbet-bet-top span{font-size:12px;color:#465249}.botbet-leg{padding:8px 0;border-top:1px solid #edf1ed}.botbet-leg strong{display:block;font-size:14px}.botbet-leg span{display:block;font-size:12px;color:#465249;line-height:1.45;margin-top:2px}.botbet-result{display:block;margin-top:8px;font-size:12px;color:#365742;font-weight:800}.botbet-score{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}.botbet-score div{background:#fff;border:1px solid #dce5dd;border-radius:15px;padding:12px 8px;text-align:center}.botbet-score small{display:block;font-size:11px;color:#465249}.botbet-score strong{display:block;font-size:14px;margin-top:4px}
-
-.botbet-result{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:9px;font-size:12px;color:#365742}.botbet-bet.won{border-left:4px solid #367348}.botbet-bet.lost{border-left:4px solid #9b4540}.botbet-bet.lost .botbet-result{color:#7c3834}.botbet-return{font-weight:700}.botbet-history{margin-top:24px}.botbet-history h2{font-size:18px;margin:0 0 3px}.botbet-history>p,.botbet-history-empty{font-size:13px;line-height:1.5;color:#465249}.botbet-week{margin:16px 0 22px}.botbet-week-head{display:flex;justify-content:space-between;gap:12px;align-items:end;margin-bottom:8px;padding:0 3px}.botbet-week-head strong{font-size:14px}.botbet-week-head span{font-size:12px;color:#465249}
-
 .tip-doubt{display:block;margin-top:5px;font-size:12px;line-height:1.4;color:#765d2c;font-weight:700}
 
 .tip-explain{margin-top:9px;border-top:1px solid #e4ebe5;padding-top:8px}.tip-explain summary{cursor:pointer;font-size:12px;font-weight:850;color:#285238;list-style:none}.tip-explain summary::-webkit-details-marker{display:none}.tip-explain summary:after{content:" +";font-weight:900}.tip-explain[open] summary:after{content:" −"}.tip-explain p{margin:8px 0 7px;font-size:12px;line-height:1.45;color:#3f4b42;font-weight:600}.tip-explain-stats{display:grid;gap:4px;padding:8px 9px;border-radius:10px;background:#f4f7f4}.tip-explain-stats span{display:flex!important;justify-content:space-between;gap:10px;font-size:11px!important;color:#4f5951!important;font-weight:650!important}.tip-explain-stats b{color:#263d2d;font-size:11px}.tip-card.upset .tip-explain summary,.tip-card.upset .tip-explain-stats b{color:#684c18}
-
-.botbet-mood{display:flex;align-items:flex-start;gap:12px;margin:12px 0;padding:13px 14px;border:1px solid #d8e7dc;border-radius:16px;background:#f7fbf8}.botbet-mood-icon{font-size:25px;line-height:1.1}.botbet-mood div{min-width:0}.botbet-mood small{display:block;font-size:10px;font-weight:900;letter-spacing:.09em;color:#52665a}.botbet-mood strong{display:block;margin:2px 0 3px;font-size:15px;color:#183f28}.botbet-mood p{margin:0;font-size:12px;line-height:1.45;color:#45544a}
 
 .triple-odds{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #dfe9e2;background:#f7fbf8}.triple-odds span{font-size:12px;font-weight:700;color:#4f6255}.triple-odds b{font-size:17px;color:#183f28}
 
@@ -215,13 +208,6 @@
 .weekly-finance-legend{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:#4e6054;margin-top:7px}
 .weekly-finance-legend span{display:inline-flex;align-items:center;gap:5px}
 .weekly-finance-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
-
-/* Bot'ens Bet belongs to the Spilforslag navigation, not the home menu. */
-.tips-botbet-entry{display:grid;grid-template-columns:1fr auto;align-items:center;gap:3px 12px;width:100%;padding:17px 18px;text-align:left;border:1px solid #d3dfd6;border-radius:17px;background:#fff;color:#163d27;font:inherit;box-shadow:0 3px 14px #0000000a;cursor:pointer}
-.tips-botbet-entry span{font-size:17px;font-weight:850}
-.tips-botbet-entry small{grid-column:1;color:#657469;font-size:12px}
-.tips-botbet-entry b{grid-column:2;grid-row:1/3;font-size:24px}
-.tips-botbet-entry:focus-visible{outline:3px solid #99753a;outline-offset:3px}
 
 /* Pokalarkiv i appen: kompakt matrix med fast kategorikolonne og swipe. */
 .trophy-page .mobile-trophy-archive{margin-top:26px}
