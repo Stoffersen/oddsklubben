@@ -410,7 +410,57 @@
         {
           "date": "2026-11-20",
           "match": "FC Bayern München vs 1. FC Köln",
+          "days_overdue": 2
+        },
+        {
+          "date": "2026-11-21",
+          "match": "Eintracht Frankfurt vs TSG 1899 Hoffenheim",
           "days_overdue": 1
+        }
+      ]
+    },
+    {
+      "coupon_date": "2026-11-22",
+      "model_updated": "2026-11-21 15:46 UTC",
+      "stake_kr": 80,
+      "rtp": 0.9,
+      "status": "open",
+      "risk_mode": "normal",
+      "risk_note": "Saldoen er omkring neutral: Bot’en bruger sin normale modelportefølje.",
+      "return_kr": null,
+      "profit_kr": null,
+      "bets": [
+        {
+          "type": "single",
+          "stake_kr": 40,
+          "fake_odds": 1.21,
+          "legs": [
+            {
+              "date": "2026-11-28",
+              "match": "West Ham vs Stoke City FC",
+              "selection": "West Ham",
+              "probability": 0.7441,
+              "fake_odds": 1.21
+            }
+          ],
+          "result": "pending",
+          "return_kr": null
+        },
+        {
+          "type": "single",
+          "stake_kr": 40,
+          "fake_odds": 1.22,
+          "legs": [
+            {
+              "date": "2026-11-28",
+              "match": "PSV vs Go Ahead Eagles",
+              "selection": "PSV",
+              "probability": 0.7381,
+              "fake_odds": 1.22
+            }
+          ],
+          "result": "pending",
+          "return_kr": null
         }
       ]
     }
@@ -422,5 +472,5 @@
     "profit_kr": 11.6,
     "return_pct": 103.6
   },
-  "updated": "2026-11-21 19:08 UTC"
+  "updated": "2026-11-22 01:12 UTC"
 }
