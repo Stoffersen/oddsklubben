@@ -5,19 +5,22 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 
 class MobileHomeSmoke(unittest.TestCase):
-    def test_bot_bet_is_nested_under_spilforslag(self):
+    def test_bot_bet_is_retired_but_spilforslag_is_available(self):
         page=(ROOT/"index.html").read_text(encoding="utf-8")
-        home=page.split('<main id="trophies"',1)[0]
-        self.assertNotIn('id="openBotBet"', home)
-        tips=page.split('<main id="tipsPage"',1)[1].split('<main id="botBetPage"',1)[0]
-        self.assertIn('id="openBotBet"',tips)
-        self.assertIn('id="backBotBet"',page)
-        self.assertIn('‹ Spilforslag</button>',page)
-        self.assertIn('‹ Tilbage til Spilforslag</button>',page)
-        self.assertIn('document.getElementById("tipsPage").className="tips-page entry-hidden";document.getElementById("botBetPage")',page)
-        self.assertIn('document.getElementById("tipsPage").className="tips-page";window.scrollTo(0,0)',page)
-        self.assertIn('document.getElementById("backBotBetBottom").onclick=function(){document.getElementById("backBotBet").click()}',page)
-        self.assertNotIn('"backTipsBottom","backBotBetBottom","backProgramBottom"',page)
+        script=(ROOT/"app/app.js").read_text(encoding="utf-8")
+        styles=(ROOT/"app/styles.css").read_text(encoding="utf-8")
+        self.assertNotIn('id="openBotBet"',page)
+        self.assertNotIn('id="botBetPage"',page)
+        self.assertNotIn('botBetPage',page)
+        self.assertNotIn('Bot’ens Bet',page)
+        self.assertNotIn('BOT_BET_URL',script)
+        self.assertNotIn('renderBotBet',script)
+        self.assertNotIn('data/bot-bets.json',script)
+        self.assertNotIn('.botbet',styles)
+        self.assertIn('id="openTips"',page)
+        self.assertIn('id="portfolio80"',page)
+        self.assertIn('id="favoriteTips"',page)
+        self.assertIn('window.renderBettingTips=',script)
 
     def test_matches_archive_has_return_to_app(self):
         page=(ROOT/"index.html").read_text(encoding="utf-8")
