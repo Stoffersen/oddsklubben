@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24 19:15 UTC",
+  "updated": "2026-11-25 18:19 UTC",
   "favorites": [
     {
       "date": "2026-11-28",
@@ -119,19 +119,19 @@
       "tier": "bold"
     },
     {
+      "date": "2026-12-02",
+      "match": "Chelsea vs Crystal Palace",
+      "selection": "Crystal Palace",
+      "probability": 0.3224,
+      "favorite_probability": 0.4359,
+      "tier": "bold"
+    },
+    {
       "date": "2026-11-28",
       "match": "Le Havre AC vs RC Strasbourg Alsace",
       "selection": "Le Havre AC",
       "probability": 0.3248,
       "favorite_probability": 0.4219,
-      "tier": "bold"
-    },
-    {
-      "date": "2026-11-29",
-      "match": "Málaga CF vs Athletic Club",
-      "selection": "Athletic Club",
-      "probability": 0.3247,
-      "favorite_probability": 0.4183,
       "tier": "bold"
     }
   ],
