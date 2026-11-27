@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26 17:59 UTC",
+  "updated": "2026-11-27 17:47 UTC",
   "favorites": [
     {
       "date": "2026-11-28",
@@ -55,6 +55,24 @@
   ],
   "upsets": [
     {
+      "date": "2026-12-04",
+      "match": "Telstar 1963 vs FC Groningen",
+      "selection": "FC Groningen",
+      "probability": 0.3851,
+      "explanation": {
+        "home_expected_goals": 1.68,
+        "away_expected_goals": 1.68,
+        "home_attack_strength": 0.97,
+        "home_defence_strength": 1.13,
+        "away_attack_strength": 0.96,
+        "away_defence_strength": 0.97,
+        "league_home_goals": 1.78,
+        "league_away_goals": 1.54,
+        "summary": "Modellen forventer 1.68 mål til FC Groningen mod 1.68 til Telstar 1963; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
+      },
+      "uncertain": false
+    },
+    {
       "date": "2026-11-29",
       "match": "ADO Den Haag vs FC Utrecht",
       "selection": "ADO Den Haag",
@@ -89,27 +107,17 @@
         "summary": "Modellen forventer 1.69 mål til Toulouse FC mod 1.73 til Stade Rennais FC 1901; vurderingen bygger på hjemmeangreb, hjemmeforsvar og modstanderens udeprofil."
       },
       "uncertain": false
-    },
-    {
-      "date": "2026-11-29",
-      "match": "RC Celta de Vigo vs Villarreal CF",
-      "selection": "Villarreal CF",
-      "probability": 0.3738,
-      "explanation": {
-        "home_expected_goals": 1.53,
-        "away_expected_goals": 1.51,
-        "home_attack_strength": 1.03,
-        "home_defence_strength": 1.16,
-        "away_attack_strength": 1.1,
-        "away_defence_strength": 0.92,
-        "league_home_goals": 1.63,
-        "league_away_goals": 1.18,
-        "summary": "Modellen forventer 1.51 mål til Villarreal CF mod 1.53 til RC Celta de Vigo; vurderingen bygger på udeangreb, udeforsvar og modstanderens hjemmeprofil."
-      },
-      "uncertain": false
     }
   ],
   "bold_upsets": [
+    {
+      "date": "2026-12-04",
+      "match": "Sheffield United FC vs West Ham",
+      "selection": "Sheffield United FC",
+      "probability": 0.343,
+      "favorite_probability": 0.4365,
+      "tier": "bold"
+    },
     {
       "date": "2026-11-29",
       "match": "Elche CF vs Club Atlético de Madrid",
@@ -124,14 +132,6 @@
       "selection": "Crystal Palace",
       "probability": 0.3224,
       "favorite_probability": 0.4359,
-      "tier": "bold"
-    },
-    {
-      "date": "2026-11-28",
-      "match": "Le Havre AC vs RC Strasbourg Alsace",
-      "selection": "Le Havre AC",
-      "probability": 0.3248,
-      "favorite_probability": 0.4219,
       "tier": "bold"
     }
   ],
@@ -155,7 +155,7 @@
       {
         "type": "double",
         "stake_kr": 20,
-        "combined_probability": 0.2837,
+        "combined_probability": 0.2866,
         "legs": [
           {
             "date": "2026-11-28",
@@ -164,31 +164,31 @@
             "probability": 0.7441
           },
           {
-            "date": "2026-11-29",
-            "match": "ADO Den Haag vs FC Utrecht",
-            "selection": "ADO Den Haag",
-            "probability": 0.3813
+            "date": "2026-12-04",
+            "match": "Telstar 1963 vs FC Groningen",
+            "selection": "FC Groningen",
+            "probability": 0.3851
           }
         ]
       },
       {
         "type": "single",
         "stake_kr": 20,
-        "combined_probability": 0.3813,
+        "combined_probability": 0.3851,
         "legs": [
           {
-            "date": "2026-11-29",
-            "match": "ADO Den Haag vs FC Utrecht",
-            "selection": "ADO Den Haag",
-            "probability": 0.3813
+            "date": "2026-12-04",
+            "match": "Telstar 1963 vs FC Groningen",
+            "selection": "FC Groningen",
+            "probability": 0.3851
           }
         ]
       }
     ]
   },
   "smart_double": {
-    "combined_probability": 0.2837,
-    "expected_odds_90": 3.17,
+    "combined_probability": 0.2866,
+    "expected_odds_90": 3.14,
     "note": null,
     "legs": [
       {
@@ -200,10 +200,10 @@
       },
       {
         "role": "surprise",
-        "date": "2026-11-29",
-        "match": "ADO Den Haag vs FC Utrecht",
-        "selection": "ADO Den Haag",
-        "probability": 0.3813
+        "date": "2026-12-04",
+        "match": "Telstar 1963 vs FC Groningen",
+        "selection": "FC Groningen",
+        "probability": 0.3851
       }
     ]
   },
